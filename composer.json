@@ -1,0 +1,20 @@
+{
+  "name": "kuvic16/amar-kaaz",
+  "description": "A new way to manage personal task aiming to keep focusing",
+  "type": "wordpress-plugin",
+  "license": "GPLv2",
+  "authors": [
+    {
+      "name": "Shaiful Islam Palash",
+      "email": "kuvic16@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Amar\\Kaaz\\": "src/"
+    },
+    "files": []
+  }
+}
