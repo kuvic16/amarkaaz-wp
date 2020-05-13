@@ -14,3 +14,25 @@
 if(!defined('ABSPATH')){
     exit;
 }
+
+require_once __DIR__ . '/vendor/autload.php';
+
+/**
+ * The main plugin class
+ */
+final class Amar_Kaaz{
+    
+    /**
+     * Plugin version
+     * 
+     * @var version | string
+     */
+    const version = '1.0';
+
+    /**
+     * class constructor
+     */
+    private function __construct(){
+
+    }
+}
