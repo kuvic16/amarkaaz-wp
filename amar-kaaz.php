@@ -15,7 +15,7 @@ if(!defined('ABSPATH')){
     exit;
 }
 
-require_once __DIR__ . '/vendor/autload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * The main plugin class
@@ -34,5 +34,9 @@ final class Amar_Kaaz{
      */
     private function __construct(){
 
+    }
+
+    public static function init() {
+        
     }
 }
