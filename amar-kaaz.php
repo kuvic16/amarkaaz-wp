@@ -20,7 +20,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main plugin class
  */
-final class Amar_Kaaz{
+final class Amar_Kaaz {
     
     /**
      * Plugin version
@@ -32,11 +32,65 @@ final class Amar_Kaaz{
     /**
      * class constructor
      */
-    private function __construct(){
+    private function __construct() {
+        $this->define_constants();
+        register_activation_hook( __FILE__, [$this, 'activate'] );
+        add_action( 'plugins_loaded', [$this, 'init_plugin'] );
+    }
+
+    /**
+     * Initializes a singleton instances
+     * 
+     * @return \Amar_Kaaz
+     */
+    public static function init() {
+        static $instance = false;
+        if ( ! $instance ) {
+            $instance = new self();
+        }
+        return $instance;
+    }
+
+    /**
+     * Define the required plugin constants
+     * 
+     * @return void
+     */
+    public function define_constants() {
+        define( 'AMAR_KAAZ_VERSION', self::version );
+        define( 'AMAR_KAAZ_FILE', __FILE__ );
+        define( 'AMAR_KAAZ_PATH', __DIR__ );
+        define( 'AMAR_KAAZ_URL', plugins_url( '', AMAR_KAAZ_FILE ) );
+        define( 'AMAR_KAAZ_PUBLIC', AMAR_KAAZ_URL . '/public' );
+    }
+
+    /**
+     * Initialze the plugin
+     * 
+     * @return void
+     */
+    public function init_plugin() {
 
     }
 
-    public static function init() {
-        
+    /**
+     * Do stuff upon plugin activation
+     * 
+     * @return void
+     */
+    public function activate() {
+
     }
 }
+
+/**
+ * Initializes the main plugin
+ * 
+ * @return \Amar_Kaaz
+ */
+function amar_kaaz() {
+    return Amar_Kaaz::init();
+}
+
+// Kick-off the plugin
+amar_kaaz();

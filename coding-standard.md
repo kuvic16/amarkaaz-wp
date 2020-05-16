@@ -28,3 +28,17 @@ Using lowercase letters in **variable**, **action/filter**, and **function names
 ```php
     my-plugin-name.php
 ```
+
+class file names should be based on the class name with class- prepended and the underscores in the class name replaced with hyphens, for example WP_Error becomes:
+
+```php
+    class-wp-error.php
+```
+
+This file-naming standard is for all current and new files with classes. There is one exception for three files that contain code that code that got ported into BackPress: class.wp-dependencies.php, class.wp-scripts.php, class.wp-styles.php. Those files are prepended with **class.**, a dot after the word class instead of a hyphen.
+
+Files containing template tags in **wp-includes** should have **-template** appended to the end of the name so that they are obvious.
+
+```php
+    general-template.php
+```
