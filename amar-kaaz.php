@@ -79,7 +79,7 @@ final class Amar_Kaaz {
      * @return void
      */
     public function activate() {
-
+        (new Amar\Kaaz\Installer())->run();
     }
 }
 
