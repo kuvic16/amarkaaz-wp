@@ -15,6 +15,9 @@ class Assets {
         add_action('admin_enqueue_scripts', [$this, 'enqueue_assets']);
     }
 
+    /**
+     * enqueue assets
+     */
     public function enqueue_assets() {
         
     }
