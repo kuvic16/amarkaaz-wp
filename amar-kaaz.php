@@ -70,6 +70,13 @@ final class Amar_Kaaz {
      * @return void
      */
     public function init_plugin() {
+        // loading assets
+        new Amar\Kaaz\Assets();
+
+        if( is_admin() ) {
+            new Amar\Kaaz\Admin();
+        }
+
 
     }
 
