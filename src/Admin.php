@@ -7,7 +7,11 @@ namespace Amar\Kaaz;
  */
 class Admin {
 
+    /**
+     * Initialize the menu class
+     */
     function __construct() {
-        
+        $homepage = new Admin\HomePage();
+        new Admin\Menu($homepage);   
     }
 }
