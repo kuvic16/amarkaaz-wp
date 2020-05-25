@@ -1,2 +1,5 @@
-/vendor/
-.env
+/vendor
+/node_modules
+/node_modules/.staging
+package-lock.json
+/public
