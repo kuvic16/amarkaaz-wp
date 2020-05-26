@@ -37,6 +37,18 @@ class Menu {
             [$this->homepage, 'plugin_page'],
             'dashicons-welcome-learn-more'
         );
+
+        // enqueue the admin assets (scripts + styles)
+        add_action('admin_head-'. $hook, [$this, 'enqueue_admin_assets']);
     }
 
+    /**
+     * enqueue admin assets those are register into Amar\Kaaz\Assets
+     * 
+     * @return void
+     */
+    public function enqueue_admin_assets() {
+        wp_enqueue_style('amar-kaaz-admin-style');
+        wp_enqueue_script('amar-kaaz-admin-script');
+    }
 }
