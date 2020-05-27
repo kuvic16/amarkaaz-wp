@@ -13,7 +13,7 @@ let LoadersAnimation = () =>
   import(/* webpackChunkName: "loaders" */ "./components/LoadersAnimation");
 
 export default {
-  mode: "history",
+  mode: "hash",
   linkActiveClass: "font-bold",
   routes: [
     {

@@ -7,16 +7,22 @@
             <h5 class="uppercase font-bold mb-5 text-base">Amar Kaaz</h5>
             <ul class="list-reset">
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="#/" exact>Logo</router-link>
+                <router-link class="text-black" to="/" exact>Logo</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="#/logo-symbol">Logo Symbol</router-link>
+                <router-link class="text-black" to="/logo-symbol"
+                  >Logo Symbol</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/colors">Colors</router-link>
+                <router-link class="text-black" to="/colors"
+                  >Colors</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/typography">Typography</router-link>
+                <router-link class="text-black" to="/typography"
+                  >Typography</router-link
+                >
               </li>
             </ul>
           </section>
@@ -24,16 +30,24 @@
             <h5 class="uppercase font-bold mb-5 text-base">Doodle</h5>
             <ul class="list-reset">
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/mascot">Mascot</router-link>
+                <router-link class="text-black" to="/mascot"
+                  >Mascot</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/illustration">Illustration</router-link>
+                <router-link class="text-black" to="/illustration"
+                  >Illustration</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/loaders-animation">Loaders and Animation</router-link>
+                <router-link class="text-black" to="/loaders-animation"
+                  >Loaders and Animation</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/wallpapers">Wallpapers</router-link>
+                <router-link class="text-black" to="/wallpapers"
+                  >Wallpapers</router-link
+                >
               </li>
             </ul>
           </section>
@@ -41,10 +55,14 @@
             <h5 class="uppercase font-bold mb-5 text-base">Stats</h5>
             <ul class="list-reset">
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/site-stats">Site Stats</router-link>
+                <router-link class="text-black" to="/site-stats"
+                  >Site Stats</router-link
+                >
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/achievements">Achievements</router-link>
+                <router-link class="text-black" to="/achievements"
+                  >Achievements</router-link
+                >
               </li>
             </ul>
           </section>
@@ -59,9 +77,8 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
-<style>
-</style>
+<style></style>
