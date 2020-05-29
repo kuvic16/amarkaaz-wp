@@ -11,7 +11,7 @@
  * License URL: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if(!defined('ABSPATH')){
+if (!defined('ABSPATH')) {
     exit;
 }
 
@@ -20,8 +20,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main plugin class
  */
-final class Amar_Kaaz {
-    
+final class Amar_Kaaz
+{
+
     /**
      * Plugin version
      * 
@@ -32,10 +33,11 @@ final class Amar_Kaaz {
     /**
      * class constructor
      */
-    private function __construct() {
+    private function __construct()
+    {
         $this->define_constants();
-        register_activation_hook( __FILE__, [$this, 'activate'] );
-        add_action( 'plugins_loaded', [$this, 'init_plugin'] );
+        register_activation_hook(__FILE__, [$this, 'activate']);
+        add_action('plugins_loaded', [$this, 'init_plugin']);
     }
 
     /**
@@ -43,9 +45,10 @@ final class Amar_Kaaz {
      * 
      * @return \Amar_Kaaz
      */
-    public static function init() {
+    public static function init()
+    {
         static $instance = false;
-        if ( ! $instance ) {
+        if (!$instance) {
             $instance = new self();
         }
         return $instance;
@@ -56,12 +59,13 @@ final class Amar_Kaaz {
      * 
      * @return void
      */
-    public function define_constants() {
-        define( 'AMAR_KAAZ_VERSION', self::version );
-        define( 'AMAR_KAAZ_FILE', __FILE__ );
-        define( 'AMAR_KAAZ_PATH', __DIR__ );
-        define( 'AMAR_KAAZ_URL', plugins_url( '', AMAR_KAAZ_FILE ) );
-        define( 'AMAR_KAAZ_PUBLIC', AMAR_KAAZ_URL . '/public' );
+    public function define_constants()
+    {
+        define('AMAR_KAAZ_VERSION', self::version);
+        define('AMAR_KAAZ_FILE', __FILE__);
+        define('AMAR_KAAZ_PATH', __DIR__);
+        define('AMAR_KAAZ_URL', plugins_url('', AMAR_KAAZ_FILE));
+        define('AMAR_KAAZ_PUBLIC', AMAR_KAAZ_URL . '/public');
     }
 
     /**
@@ -69,15 +73,14 @@ final class Amar_Kaaz {
      * 
      * @return void
      */
-    public function init_plugin() {
+    public function init_plugin()
+    {
         // loading assets
         new Amar\Kaaz\Assets();
 
-        if( is_admin() ) {
+        if (is_admin()) {
             new Amar\Kaaz\Admin();
         }
-
-
     }
 
     /**
@@ -85,7 +88,8 @@ final class Amar_Kaaz {
      * 
      * @return void
      */
-    public function activate() {
+    public function activate()
+    {
         (new Amar\Kaaz\Installer())->run();
     }
 }
@@ -95,7 +99,8 @@ final class Amar_Kaaz {
  * 
  * @return \Amar_Kaaz
  */
-function amar_kaaz() {
+function amar_kaaz()
+{
     return Amar_Kaaz::init();
 }
 
