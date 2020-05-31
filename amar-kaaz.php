@@ -81,6 +81,8 @@ final class Amar_Kaaz
         if (is_admin()) {
             new Amar\Kaaz\Admin();
         }
+
+        new Amar\Kaaz\Api();
     }
 
     /**
