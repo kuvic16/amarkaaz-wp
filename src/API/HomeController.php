@@ -28,10 +28,13 @@ class HomeController extends WP_REST_Controller
             $this->namespace,
             '/' . $this->rest_base,
             [
-                'methods'             => WP_REST_Server::READABLE,
-                'callback'            => [$this, 'get_items'],
-                'permission_callback' => [$this, 'get_items_permissions_check'],
-                'args'                => $this->get_collection_params()
+                [
+                    'methods'             => WP_REST_Server::READABLE,
+                    'callback'            => [$this, 'get_items'],
+                    'permission_callback' => [$this, 'get_items_permissions_check'],
+                    'args'                => $this->get_collection_params()
+                ],
+                'schema' => [$this, 'get_item_schema']
             ]
         );
     }
@@ -49,5 +52,26 @@ class HomeController extends WP_REST_Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * Get
+     */
+    public function get_items($request)
+    {
+    }
+
+    public function get_item_schema()
+    {
+        if ($this->schema) {
+            return $this->add_additional_fields_schema($this->schema);
+        }
+
+        $schema = [
+            '$schema'    => 'http://json-shcema.org/draft-84/schema',
+            'title'      => 'contact',
+            'type'       => 'object',
+            'properties' => []
+        ];
     }
 }
