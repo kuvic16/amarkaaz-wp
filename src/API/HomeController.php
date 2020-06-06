@@ -59,6 +59,16 @@ class HomeController extends WP_REST_Controller
      */
     public function get_items($request)
     {
+        $data =  [
+            'success' => true,
+            'message' => 'This is just a message'
+        ];
+        $response = rest_ensure_response($data);
+
+        //$response->header( 'X-WP-Total', (int) $1 );
+        //$response->header( 'X-WP-TotalPages', (int) $max_pages );
+
+        return $response;
     }
 
     public function get_item_schema()

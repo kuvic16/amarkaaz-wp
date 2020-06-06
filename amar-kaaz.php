@@ -80,9 +80,12 @@ final class Amar_Kaaz
 
         if (is_admin()) {
             new Amar\Kaaz\Admin();
-        }
 
-        new Amar\Kaaz\Api();
+            if (defined('DOING_AJAX') && DOING_AJAX) {
+                new Amar\Kaaz\Ajax();
+            }
+        }
+        //new Amar\Kaaz\Api();
     }
 
     /**

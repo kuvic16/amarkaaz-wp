@@ -8,3 +8,6 @@ We will be included
 
 https://www.makeareadme.com/
 https://guides.github.com/features/mastering-markdown/
+
+https://torquemag.io/2017/02/using-vuejs-components-wordpress-rest-api/
+https://deliciousbrains.com/building-reactive-wordpress-plugins-part-2-vue-js/
