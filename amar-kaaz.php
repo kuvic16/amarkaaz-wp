@@ -17,6 +17,8 @@ if (!defined('ABSPATH')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use Amar\Kaaz\Core\Router;
+
 /**
  * The main plugin class
  */
@@ -80,9 +82,8 @@ final class Amar_Kaaz
 
         if (is_admin()) {
             new Amar\Kaaz\Admin();
-
             if (defined('DOING_AJAX') && DOING_AJAX) {
-                new Amar\Kaaz\Ajax();
+                Router::load(__DIR__ . '/src/Routes/api.php')->direct();
             }
         }
         //new Amar\Kaaz\Api();
