@@ -1,13 +1,13 @@
-import Logo from "./components/Logo";
-import LogoSymbol from "./components/LogoSymbol";
-import Colors from "./components/Colors";
-import Typography from "./components/Typography";
-import Mascot from "./components/Mascot";
-import Illustration from "./components/Illustration";
-import Wallpapers from "./components/Wallpapers";
-import NotFound from "./components/NotFound";
-import SiteStats from "./components/SiteStats";
-import Achievements from "./components/Achievements";
+import Home from "./pages/Home";
+import TodayKaaz from "./pages/TodayKaaz";
+import PreviousKaaz from "./pages/PreviousKaaz";
+import UpcomingKaaz from "./pages/UpcomingKaaz";
+import RepeatKaaz from "./pages/RepeatKaaz";
+import CalenderGraph from "./pages/CalenderGraph";
+import Insight from "./pages/Insight";
+import KaazCategory from "./pages/KaazCategory";
+import Notifications from "./pages/Notifications";
+import NotFound from "./pages/NotFound";
 
 let LoadersAnimation = () =>
   import(/* webpackChunkName: "loaders" */ "./components/LoadersAnimation");
@@ -22,43 +22,39 @@ export default {
     },
     {
       path: "/",
-      component: Logo,
+      component: Home,
     },
     {
-      path: "/logo-symbol",
-      component: LogoSymbol,
+      path: "/today-kaaz",
+      component: TodayKaaz,
     },
     {
-      path: "/colors",
-      component: Colors,
+      path: "/previous-kaaz",
+      component: PreviousKaaz,
     },
     {
-      path: "/typography",
-      component: Typography,
+      path: "/upcoming-kaaz",
+      component: UpcomingKaaz,
     },
     {
-      path: "/mascot",
-      component: Mascot,
+      path: "/repeat-kaaz",
+      component: RepeatKaaz,
     },
     {
-      path: "/illustration",
-      component: Illustration,
+      path: "/calender-graph",
+      component: CalenderGraph,
     },
     {
-      path: "/loaders-animation",
-      component: LoadersAnimation,
+      path: "/insight",
+      component: Insight,
     },
     {
-      path: "/wallpapers",
-      component: Wallpapers,
+      path: "/kaaz-category",
+      component: KaazCategory,
     },
     {
-      path: "/site-stats",
-      component: SiteStats,
-    },
-    {
-      path: "/achievements",
-      component: Achievements,
+      path: "/notifications",
+      component: Notifications,
     },
   ],
 };

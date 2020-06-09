@@ -10,16 +10,16 @@
                 <router-link class="text-black" to="/" exact>Home</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/logo-symbol">Today</router-link>
+                <router-link class="text-black" to="/today-kaaz">Today</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/colors">Previous</router-link>
+                <router-link class="text-black" to="/previous-kaaz">Previous</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/typography">Upcoming</router-link>
+                <router-link class="text-black" to="/upcoming-kaaz">Upcoming</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/typography">Repeat</router-link>
+                <router-link class="text-black" to="/repeat-kaaz">Repeat</router-link>
               </li>
             </ul>
           </section>
@@ -27,10 +27,10 @@
             <h5 class="uppercase font-bold mb-5 text-base">Progress</h5>
             <ul class="list-reset">
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/mascot">Calender Graph</router-link>
+                <router-link class="text-black" to="/calender-graph">Calender Graph</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/illustration">Insight</router-link>
+                <router-link class="text-black" to="/insight">Insight</router-link>
               </li>
             </ul>
           </section>
@@ -38,10 +38,10 @@
             <h5 class="uppercase font-bold mb-5 text-base">Settings</h5>
             <ul class="list-reset">
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/site-stats">Kaaz Category</router-link>
+                <router-link class="text-black" to="/kaaz-category">Kaaz Category</router-link>
               </li>
               <li class="text-sm leading-loose">
-                <router-link class="text-black" to="/achievements">Notifications</router-link>
+                <router-link class="text-black" to="/notifications">Notifications</router-link>
               </li>
             </ul>
           </section>
