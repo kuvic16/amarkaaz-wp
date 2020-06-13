@@ -63,6 +63,7 @@ final class Amar_Kaaz
      */
     public function define_constants()
     {
+        define('WP_DEBUG', true);
         define('AMAR_KAAZ_VERSION', self::version);
         define('AMAR_KAAZ_FILE', __FILE__);
         define('AMAR_KAAZ_PATH', __DIR__);

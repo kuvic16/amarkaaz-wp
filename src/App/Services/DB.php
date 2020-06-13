@@ -1,19 +1,44 @@
 <?php
 
+namespace Amar\Kaaz\App\Services;
+
 /**
  * Database class controller
  */
 class DB
 {
+
     /**
-     * Get address
+     * Table name to operate database functions
      * 
-     * @param array $args
+     * @var string
+     */
+    protected $table_name;
+
+    /**
+     * Initialize the DB class
+     * 
+     * @param string $table_name
+     */
+    public static function table($table_name)
+    {
+        static $instance = false;
+        if (!$instance) {
+            $instance = new self();
+        }
+        $instance->table_name = $table_name;
+        return $instance;
+    }
+
+    /**
+     * Get list of rows
+     * 
+     * @param array $args['number', 'offset', 'orderby', 'order']
      * 
      * @return array
      * 
      */
-    function get_list($args = [])
+    public function get($args = [])
     {
         global $wpdb;
 
@@ -27,7 +52,7 @@ class DB
         $args = wp_parse_args($args, $defaults);
         $items = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT * from {$wpdb->prefix}pd_addresses
+                "SELECT * from {$wpdb->prefix}{$this->table_name}
             ORDER BY {$args['orderby']} {$args['order']}
             LIMIT %d, %d",
                 $args['offset'],
