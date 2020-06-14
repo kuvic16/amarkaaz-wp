@@ -55,7 +55,9 @@ class Installer
             `name` VARCHAR(250) NOT NULL,
             `color` VARCHAR(10) NOT NULL,
             `created_at` DATETIME NOT NULL,
+            `created_by` INTEGER UNSIGNED NO NULL,
             `updated_at` DATETIME NOT NULL,
+            `updated_by` INTEGER UNSIGNED NO NULL,
             PRIMARY KEY (`id`)
           )$charset_collate";
 
@@ -72,7 +74,9 @@ class Installer
             `start_time` DATETIME,
             `end_time` DATETIME,
             `created_at` DATETIME NOT NULL,
+            `created_by` INTEGER UNSIGNED NO NULL,
             `updated_at` DATETIME NOT NULL,
+            `updated_by` INTEGER UNSIGNED NO NULL,
             PRIMARY KEY (`id`)
           )$charset_collate";
 
@@ -90,7 +94,9 @@ class Installer
             `end_time` DATETIME,
             `repeat_kaaz_id` INTEGER NOT NULL,
             `created_at` DATETIME NOT NULL,
+            `created_by` INTEGER UNSIGNED NO NULL,
             `updated_at` DATETIME NOT NULL,
+            `updated_by` INTEGER UNSIGNED NO NULL,
             PRIMARY KEY (`id`)
           )$charset_collate";
 

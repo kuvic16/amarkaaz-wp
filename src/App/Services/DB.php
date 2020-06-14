@@ -62,4 +62,113 @@ class DB
 
         return $items;
     }
+
+    /**
+     * Get the count of total rows
+     * 
+     * @return int
+     */
+    function count()
+    {
+        global $wpdb;
+        return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
+    }
+
+    /**
+     * Fetch a single row
+     * 
+     * @param int $id
+     * 
+     * @return object
+     */
+    function detail($id)
+    {
+        global $wpdb;
+        return $wpdb->get_row(
+            $wpdb->prepare("SELECT *FROM {$wpdb->prefix}{$this->table_name} WHERE id=%d", $id)
+        );
+    }
+
+    /**
+     * Delete an row
+     * 
+     * @param int $id
+     * 
+     * @return int|boolean
+     */
+    function delete($id)
+    {
+        global $wpdb;
+
+        return $wpdb->delete(
+            $wpdb->prefix . $this->table_name,
+            ['id' => $id],
+            ['%d']
+        );
+    }
+
+    /**
+     * Create or Update the records
+     * 
+     * @param array $args
+     * 
+     * @return int|WP_Error
+     */
+    function save($args = [])
+    {
+        global $wpdb;
+
+        if (empty($args['name'])) {
+            return new \WP_Error(
+                'no-name',
+                __('You must provide a name', 'plugin-dev')
+            );
+        }
+
+        $defaults = [
+            'created_by' => get_current_user_id(),
+            'created_at' => current_time('mysql')
+        ];
+
+
+        $data = wp_parse_args($args, $defaults);
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            unset($data['id']);
+            $updated = $wpdb->update(
+                $wpdb->prefix . 'pd_addresses',
+                $data,
+                ['id' => $id],
+                [
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%d',
+                    '%s'
+                ],
+                ['%d']
+            );
+            return $updated;
+        } else {
+            $inserted = $wpdb->insert(
+                "{$wpdb->prefix}pd_addresses",
+                $data,
+                [
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%d',
+                    '%s'
+                ]
+            );
+
+            if (!$inserted) {
+                return new \WP_Error(
+                    'failed-to-insert',
+                    __('Failed to insert data', 'plugin-dev')
+                );
+            }
+        }
+        return $wpdb->insert_id;
+    }
 }
