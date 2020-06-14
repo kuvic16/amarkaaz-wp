@@ -9,8 +9,8 @@ import KaazCategory from "./pages/KaazCategory";
 import Notifications from "./pages/Notifications";
 import NotFound from "./pages/NotFound";
 
-let LoadersAnimation = () =>
-  import(/* webpackChunkName: "loaders" */ "./components/LoadersAnimation");
+// let LoadersAnimation = () =>
+//   import(/* webpackChunkName: "loaders" */ "./components/LoadersAnimation");
 
 export default {
   mode: "hash",
