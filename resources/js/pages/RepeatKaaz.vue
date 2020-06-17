@@ -3,8 +3,11 @@
     <h1 class="font-normal text-3xl text-gray-700 leading-none">Repeat Kaaz</h1>
 
     <form class="mt-10">
+      <!-- <div class="w-full flex">
+        <div class="w-1/3"></div>
+      </div>-->
       <div class="w-full flex">
-        <div class="w-1/3">
+        <div class="w-2/4">
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
               <label
@@ -48,20 +51,138 @@
                   id="grid-state"
                 >
                   <option>Daily</option>
+                  <option>Weekday</option>
+                  <option>Weekend</option>
                   <option>Monthly</option>
                   <option>Yearly</option>
                 </select>
               </div>
             </div>
           </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >Start Month</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                </select>
+              </div>
+            </div>
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >Start Day</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >Start Time</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>12:00 AM</option>
+                  <option>12:30 AM</option>
+                  <option>01:00 AM</option>
+                  <option>01:30 AM</option>
+                  <option>02:00 AM</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >End Month</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                </select>
+              </div>
+            </div>
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >End Day</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="w-1/3 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >End Time</label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>12:00 AM</option>
+                  <option>12:30 AM</option>
+                  <option>01:00 AM</option>
+                  <option>01:30 AM</option>
+                  <option>02:00 AM</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="w-2/3 ml-10">
+        <div class="w-2/4 ml-10">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-state"
+          >All Repeat Tasks</label>
           <table class="table-auto w-full">
             <thead>
               <tr>
-                <th class="px-4 py-2 w-2/4">Name</th>
-                <th class="px-4 py-2 w-1/4">Start Time</th>
-                <th class="px-4 py-2 w-1/4">End Time</th>
+                <th class="border text-left px-4 py-2 w-2/4">Name</th>
+                <th class="border text-left px-4 py-2 w-1/4">Start Time</th>
+                <th class="border text-left px-4 py-2 w-1/4">End Time</th>
               </tr>
             </thead>
             <tbody>
