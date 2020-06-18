@@ -1,8 +1,8 @@
 <template>
   <div id="vue-backend-app">
-    <div class="px-8 pb-10">
+    <div class="px-8">
       <main class="flex">
-        <aside class="w-64 pt-8">
+        <aside class="w-160 pt-8">
           <section class="mb-10">
             <h5 class="uppercase font-bold mb-5 text-base">Amar Kaaz</h5>
             <ul class="list-reset">
@@ -63,4 +63,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.w-160 {
+  width: 160px;
+}
+</style>
