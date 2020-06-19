@@ -10,14 +10,17 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-name"
-              >Task Name</label>
+                >Task Name</label
+              >
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-task-name"
                 type="text"
                 placeholder="Ex. Exercise"
               />
-              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+              <p class="text-red-500 text-xs italic">
+                Please fill out this field.
+              </p>
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
@@ -25,14 +28,17 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-name"
-              >Tags</label>
+                >Tags</label
+              >
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-task-name"
                 type="text"
                 placeholder="Ex. Focusing"
               />
-              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+              <p class="text-red-500 text-xs italic">
+                Please fill out this field.
+              </p>
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
@@ -40,7 +46,8 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-type"
-              >Type</label>
+                >Type</label
+              >
               <label>
                 <input class id="grid-city" type="radio" name="task-type" />
                 Nice to have
@@ -56,17 +63,19 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >Repeat Policy</label>
+                >Repeat Policy:</label
+              >
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.repeat_policy"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>Daily</option>
-                  <option>Weekday</option>
-                  <option>Weekend</option>
-                  <option>Monthly</option>
-                  <option>Yearly</option>
+                  <option value="weekday">Weekday</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekend">Weekend</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
                 </select>
               </div>
             </div>
@@ -76,17 +85,16 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >Start Month</label>
+                >Start Month</label
+              >
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.start_month"
+                  @change="generateDaysOfMonth(repeat_kaaz.start_month)"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>January</option>
-                  <option>February</option>
-                  <option>March</option>
-                  <option>April</option>
-                  <option>May</option>
+                  <option v-for="month in months" v-text="month"></option>
                 </select>
               </div>
             </div>
@@ -94,17 +102,15 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >Start Day</label>
+                >Start Day</label
+              >
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.start_day"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option v-for="day in days" v-text="day"></option>
                 </select>
               </div>
             </div>
@@ -112,7 +118,8 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >Start Time</label>
+                >Start Time</label
+              >
               <div class="relative">
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -132,17 +139,16 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >End Month</label>
+                >End Month</label
+              >
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.end_month"
+                  @change="generateDaysOfMonth(repeat_kaaz.start_month)"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>January</option>
-                  <option>February</option>
-                  <option>March</option>
-                  <option>April</option>
-                  <option>May</option>
+                  <option v-for="month in months" v-text="month"></option>
                 </select>
               </div>
             </div>
@@ -150,17 +156,15 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >End Day</label>
+                >End Day</label
+              >
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.end_day"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option v-for="day in days" v-text="day"></option>
                 </select>
               </div>
             </div>
@@ -168,7 +172,8 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-              >End Time</label>
+                >End Time</label
+              >
               <div class="relative">
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -185,15 +190,18 @@
             <div class="w-1/3 px-3 ml-auto text-right mt-3">
               <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >Save</button>
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
-        <div class="w-2/3 ml-10">
+        <div class="w-2/3 pl-2">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >All Repeat Tasks</label>
+            >All Repeat Tasks</label
+          >
           <table class="table-auto w-full">
             <thead>
               <tr>
@@ -231,9 +239,60 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   mounted() {
     console.log("Component mounted");
-  }
+    console.log(moment().format("MMMM"));
+    console.log(moment().format("D"));
+
+    this.populateDays(moment().daysInMonth());
+  },
+  data() {
+    return {
+      repeat_kaaz: {
+        name: "",
+        tags: "",
+        type: "",
+        repeat_policy: "daily",
+        start_month: moment().format("MMMM"),
+        start_day: moment().format("D"),
+        start_time: "",
+        end_month: moment().format("MMMM"),
+        end_day: moment().format("D"),
+        end_time: "",
+      },
+      months: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      days: [],
+      token: "",
+      message: "",
+    };
+  },
+  methods: {
+    generateDaysOfMonth(month) {
+      this.populateDays(moment(month, "MMMM").daysInMonth());
+    },
+
+    populateDays(noOfDays) {
+      this.days = [];
+      for (var i = 1; i <= noOfDays; i++) {
+        this.days.push(i);
+      }
+    },
+  },
 };
 </script>

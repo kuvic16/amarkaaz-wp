@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "in-viewport": "^3.6.0",
+    "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
   }
