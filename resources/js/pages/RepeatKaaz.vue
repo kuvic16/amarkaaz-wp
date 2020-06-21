@@ -278,6 +278,8 @@ export default {
         "December",
       ],
       days: [],
+      start_times: [],
+      end_times: [],
       token: "",
       message: "",
     };
