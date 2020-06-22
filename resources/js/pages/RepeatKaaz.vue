@@ -10,17 +10,14 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-name"
-                >Task Name</label
-              >
+              >Task Name</label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-task-name"
                 type="text"
                 placeholder="Ex. Exercise"
               />
-              <p class="text-red-500 text-xs italic">
-                Please fill out this field.
-              </p>
+              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
@@ -28,17 +25,14 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-name"
-                >Tags</label
-              >
+              >Tags</label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-task-name"
                 type="text"
                 placeholder="Ex. Focusing"
               />
-              <p class="text-red-500 text-xs italic">
-                Please fill out this field.
-              </p>
+              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
@@ -46,8 +40,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-task-type"
-                >Type</label
-              >
+              >Type</label>
               <label>
                 <input class id="grid-city" type="radio" name="task-type" />
                 Nice to have
@@ -63,8 +56,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >Repeat Policy:</label
-              >
+              >Repeat Policy:</label>
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.repeat_policy"
@@ -85,8 +77,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >Start Month</label
-              >
+              >Start Month</label>
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.start_month"
@@ -102,8 +93,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >Start Day</label
-              >
+              >Start Day</label>
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.start_day"
@@ -118,18 +108,14 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >Start Time</label
-              >
+              >Start Time</label>
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.start_time"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>12:00 AM</option>
-                  <option>12:30 AM</option>
-                  <option>01:00 AM</option>
-                  <option>01:30 AM</option>
-                  <option>02:00 AM</option>
+                  <option v-for="time in start_times" v-text="time"></option>
                 </select>
               </div>
             </div>
@@ -139,8 +125,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >End Month</label
-              >
+              >End Month</label>
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.end_month"
@@ -156,8 +141,7 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >End Day</label
-              >
+              >End Day</label>
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.end_day"
@@ -172,27 +156,21 @@
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
-                >End Time</label
-              >
+              >End Time</label>
               <div class="relative">
                 <select
+                  v-model="repeat_kaaz.end_time"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>12:00 AM</option>
-                  <option>12:30 AM</option>
-                  <option>01:00 AM</option>
-                  <option>01:30 AM</option>
-                  <option>02:00 AM</option>
+                  <option v-for="time in end_times" v-text="time"></option>
                 </select>
               </div>
             </div>
             <div class="w-1/3 px-3 ml-auto text-right mt-3">
               <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >
-                Save
-              </button>
+              >Save</button>
             </div>
           </div>
         </div>
@@ -200,8 +178,7 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-            >All Repeat Tasks</label
-          >
+          >All Repeat Tasks</label>
           <table class="table-auto w-full">
             <thead>
               <tr>
@@ -246,8 +223,16 @@ export default {
     console.log("Component mounted");
     console.log(moment().format("MMMM"));
     console.log(moment().format("D"));
+    console.log(moment().format("hh:mm A"));
+    console.log(
+      moment()
+        .add(30, "minutes")
+        .format("hh:mm A")
+    );
+    console.log(this.pad(2));
 
     this.populateDays(moment().daysInMonth());
+    this.populateTimes();
   },
   data() {
     return {
@@ -258,10 +243,10 @@ export default {
         repeat_policy: "daily",
         start_month: moment().format("MMMM"),
         start_day: moment().format("D"),
-        start_time: "",
+        start_time: moment().format("hh:mm A"),
         end_month: moment().format("MMMM"),
         end_day: moment().format("D"),
-        end_time: "",
+        end_time: ""
       },
       months: [
         "January",
@@ -275,13 +260,13 @@ export default {
         "September",
         "October",
         "November",
-        "December",
+        "December"
       ],
       days: [],
       start_times: [],
       end_times: [],
       token: "",
-      message: "",
+      message: ""
     };
   },
   methods: {
@@ -295,6 +280,44 @@ export default {
         this.days.push(i);
       }
     },
-  },
+
+    populateTimes() {
+      this.start_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
+      for (var i = 1; i < 12; i++) {
+        this.start_times.push(this.pad(i) + ":00am");
+        this.start_times.push(this.pad(i) + ":15am");
+        this.start_times.push(this.pad(i) + ":30am");
+        this.start_times.push(this.pad(i) + ":45am");
+      }
+
+      this.start_times.push(["12:00pm", "12:15pm", "12:30pm", "12:45pm"]);
+      for (var i = 1; i < 12; i++) {
+        this.start_times.push(this.pad(i) + ":00pm");
+        this.start_times.push(this.pad(i) + ":15pm");
+        this.start_times.push(this.pad(i) + ":30pm");
+        this.start_times.push(this.pad(i) + ":45pm");
+      }
+
+      this.end_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
+      for (var i = 1; i < 12; i++) {
+        this.end_times.push(this.pad(i) + ":00am");
+        this.end_times.push(this.pad(i) + ":15am");
+        this.end_times.push(this.pad(i) + ":30am");
+        this.end_times.push(this.pad(i) + ":45am");
+      }
+
+      this.end_times.push(["12:00pm", "12:15pm", "12:30pm", "12:45pm"]);
+      for (var i = 1; i < 12; i++) {
+        this.end_times.push(this.pad(i) + ":00pm");
+        this.end_times.push(this.pad(i) + ":15pm");
+        this.end_times.push(this.pad(i) + ":30pm");
+        this.end_times.push(this.pad(i) + ":45pm");
+      }
+    },
+
+    pad(number) {
+      return number < 10 ? "0" + number : number;
+    }
+  }
 };
 </script>
