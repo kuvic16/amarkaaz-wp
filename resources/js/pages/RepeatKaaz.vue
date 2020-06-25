@@ -221,15 +221,18 @@ import moment from "moment";
 export default {
   mounted() {
     console.log("Component mounted");
-    console.log(moment().format("MMMM"));
-    console.log(moment().format("D"));
-    console.log(moment().format("hh:mm A"));
-    console.log(
-      moment()
-        .add(30, "minutes")
-        .format("hh:mm A")
-    );
-    console.log(this.pad(2));
+    // console.log(moment().format("MMMM"));
+    // console.log(moment().format("D"));
+    // console.log(moment().format("hh:mm"));
+    // console.log(moment().format("A"));
+    // console.log(moment().format("hh:mm A"));
+    // console.log(
+    //   moment()
+    //     .add(30, "minutes")
+    //     .format("hh:mm A")
+    // );
+    // console.log(this.pad(2));
+    console.log(moment().format("hh"));
 
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
@@ -281,6 +284,15 @@ export default {
       }
     },
 
+    getPossibleCurrentTime() {
+      var minute = parseInt(moment().format("mm"));
+      console.log(minute);
+      if (minute > 0 && minute < 15) minute = 15;
+      if (minute > 15 && minute < 30) minute = 30;
+      if (minute > 30 && minute < 45) minute = 45;
+      if (minute > 45 && minute <= 59) minute = 00;
+    },
+
     populateTimes() {
       this.start_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
       for (var i = 1; i < 12; i++) {
@@ -290,7 +302,7 @@ export default {
         this.start_times.push(this.pad(i) + ":45am");
       }
 
-      this.start_times.push(["12:00pm", "12:15pm", "12:30pm", "12:45pm"]);
+      this.start_times.push("12:00pm", "12:15pm", "12:30pm", "12:45pm");
       for (var i = 1; i < 12; i++) {
         this.start_times.push(this.pad(i) + ":00pm");
         this.start_times.push(this.pad(i) + ":15pm");
@@ -306,7 +318,7 @@ export default {
         this.end_times.push(this.pad(i) + ":45am");
       }
 
-      this.end_times.push(["12:00pm", "12:15pm", "12:30pm", "12:45pm"]);
+      this.end_times.push("12:00pm", "12:15pm", "12:30pm", "12:45pm");
       for (var i = 1; i < 12; i++) {
         this.end_times.push(this.pad(i) + ":00pm");
         this.end_times.push(this.pad(i) + ":15pm");
