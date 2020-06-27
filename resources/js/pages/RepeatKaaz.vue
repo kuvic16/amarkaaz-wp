@@ -285,6 +285,7 @@ export default {
     },
 
     getPossibleCurrentTime() {
+      // get possible current time to show user
       var minute = parseInt(moment().format("mm"));
       console.log(minute);
       if (minute > 0 && minute < 15) minute = 15;
