@@ -236,6 +236,7 @@ export default {
 
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
+    this.getPossibleCurrentTime();
   },
   data() {
     return {
@@ -287,11 +288,33 @@ export default {
     getPossibleCurrentTime() {
       // get possible current time to show user
       var minute = parseInt(moment().format("mm"));
-      console.log(minute);
+      var hour = parseInt(moment().format("hh"));
+      var amPm = moment().format("a");
+
       if (minute > 0 && minute < 15) minute = 15;
       if (minute > 15 && minute < 30) minute = 30;
       if (minute > 30 && minute < 45) minute = 45;
-      if (minute > 45 && minute <= 59) minute = 00;
+      if (minute > 45 && minute <= 59) {
+        if (hour == 11) {
+          amPm = amPm == "am" ? "pm" : "am";
+        }
+        hour = +1;
+      }
+      this.start_time = this.pad(hour) + ":" + this.pad(minute) + amPm;
+
+      minute += 15;
+      if (minute > 0 && minute < 15) minute = 15;
+      if (minute > 15 && minute < 30) minute = 30;
+      if (minute > 30 && minute < 45) minute = 45;
+      if (minute > 45 && minute <= 59) {
+        if (hour == 11) {
+          amPm = amPm == "am" ? "pm" : "am";
+        }
+        hour = +1;
+      }
+      this.end_time = this.pad(hour) + ":" + this.pad(minute) + amPm;
+      console.log("Start Time: " + this.start_time);
+      console.log("End Time: " + this.end_time);
     },
 
     populateTimes() {
