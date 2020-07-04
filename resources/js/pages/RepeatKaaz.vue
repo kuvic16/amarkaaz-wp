@@ -220,25 +220,11 @@ import moment from "moment";
 
 export default {
   mounted() {
-    console.log("Component mounted");
-    // console.log(moment().format("MMMM"));
-    // console.log(moment().format("D"));
-    // console.log(moment().format("hh:mm"));
-    // console.log(moment().format("A"));
-    // console.log(moment().format("hh:mm A"));
-    // console.log(
-    //   moment()
-    //     .add(30, "minutes")
-    //     .format("hh:mm A")
-    // );
-    // console.log(this.pad(2));
-    console.log(moment().format("hh"));
-
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
     this.getPossibleCurrentTime();
   },
-  data() {
+  data: function() {
     return {
       repeat_kaaz: {
         name: "",
@@ -274,10 +260,22 @@ export default {
     };
   },
   methods: {
+    /**
+     * Generate days list of specific month using moment
+     *
+     * @param {int} month
+     * @return {void}
+     */
     generateDaysOfMonth(month) {
       this.populateDays(moment(month, "MMMM").daysInMonth());
     },
 
+    /**
+     * Populate array list from number of days
+     *
+     * @param {int} noOfDays
+     * @return {void}
+     */
     populateDays(noOfDays) {
       this.days = [];
       for (var i = 1; i <= noOfDays; i++) {
@@ -285,8 +283,12 @@ export default {
       }
     },
 
+    /**
+     * Get possible current time to adjust in time dropdown
+     *
+     * @return {void}
+     */
     getPossibleCurrentTime() {
-      // get possible current time to show user
       var minute = parseInt(moment().format("mm"));
       var hour = parseInt(moment().format("hh"));
       var amPm = moment().format("a");
@@ -294,29 +296,38 @@ export default {
       if (minute > 0 && minute < 15) minute = 15;
       if (minute > 15 && minute < 30) minute = 30;
       if (minute > 30 && minute < 45) minute = 45;
-      if (minute > 45 && minute <= 59) {
+      if (minute > 45) {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
         hour = +1;
+        minute = 0;
       }
-      this.start_time = this.pad(hour) + ":" + this.pad(minute) + amPm;
+      this.repeat_kaaz.start_time =
+        this.pad(hour) + ":" + this.pad(minute) + amPm;
 
       minute += 15;
       if (minute > 0 && minute < 15) minute = 15;
       if (minute > 15 && minute < 30) minute = 30;
       if (minute > 30 && minute < 45) minute = 45;
-      if (minute > 45 && minute <= 59) {
+      if (minute > 45) {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
         hour = +1;
       }
-      this.end_time = this.pad(hour) + ":" + this.pad(minute) + amPm;
-      console.log("Start Time: " + this.start_time);
-      console.log("End Time: " + this.end_time);
+      this.repeat_kaaz.end_time =
+        this.pad(hour) + ":" + this.pad(minute) + amPm;
+
+      console.log("Start Time: " + this.repeat_kaaz.start_time);
+      console.log("End Time: " + this.repeat_kaaz.end_time);
     },
 
+    /**
+     * Populate times array of the current day
+     *
+     * @return {void}
+     */
     populateTimes() {
       this.start_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
       for (var i = 1; i < 12; i++) {
@@ -351,6 +362,12 @@ export default {
       }
     },
 
+    /**
+     * Padding 0 of any single disit number
+     *
+     * @param {int} number
+     * @param {int}
+     */
     pad(number) {
       return number < 10 ? "0" + number : number;
     }
