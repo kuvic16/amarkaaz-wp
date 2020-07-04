@@ -60,6 +60,7 @@
               <div class="relative">
                 <select
                   v-model="repeat_kaaz.repeat_policy"
+                  @change="onPolicyChange($event)"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
@@ -73,7 +74,7 @@
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-1/3 px-3">
+            <div v-if="repeat_kaaz.repeat_policy == 'yearly'" class="w-1/3 px-3">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
@@ -89,7 +90,10 @@
                 </select>
               </div>
             </div>
-            <div class="w-1/3 px-3">
+            <div
+              v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+              class="w-1/3 px-3"
+            >
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
@@ -121,7 +125,7 @@
             </div>
           </div>
           <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-1/3 px-3">
+            <div class="w-1/3 px-3" v-if="repeat_kaaz.repeat_policy == 'yearly'">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
@@ -137,7 +141,10 @@
                 </select>
               </div>
             </div>
-            <div class="w-1/3 px-3">
+            <div
+              class="w-1/3 px-3"
+              v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+            >
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
@@ -167,7 +174,9 @@
                 </select>
               </div>
             </div>
-            <div class="w-1/3 px-3 ml-auto text-right mt-3">
+          </div>
+          <div class="flex">
+            <div class="w-3 mt-3">
               <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
               >Save</button>
@@ -300,7 +309,7 @@ export default {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
-        hour = +1;
+        hour += 1;
         minute = 0;
       }
       this.repeat_kaaz.start_time =
@@ -314,7 +323,7 @@ export default {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
-        hour = +1;
+        hour += 1;
       }
       this.repeat_kaaz.end_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
@@ -366,11 +375,19 @@ export default {
      * Padding 0 of any single disit number
      *
      * @param {int} number
-     * @param {int}
+     * @return {int}
      */
     pad(number) {
       return number < 10 ? "0" + number : number;
-    }
+    },
+
+    /**
+     * On policy on change listener
+     *
+     * @param {event} event
+     * @return {void}
+     */
+    onPolicyChange(event) {}
   }
 };
 </script>
