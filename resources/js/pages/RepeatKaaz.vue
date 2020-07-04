@@ -4,7 +4,86 @@
 
     <form class="mt-10">
       <div class="w-full flex">
-        <div class="w-1/3">
+        <div class="w-1/4">
+          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-task-name"
+            >Task Name</label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-task-name"
+              type="text"
+              placeholder="Ex. Exercise"
+            />
+            <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="w-1/4">
+          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-task-name"
+            >Tags</label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-task-name"
+              type="text"
+              placeholder="Ex. Focusing"
+            />
+            <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="w-1/4">
+          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
+          <div class="w-full px-3">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-task-type"
+            >Type</label>
+            <label>
+              <input class id="grid-city" type="radio" name="task-type" />
+              Nice to have
+            </label>
+            <label class="ml-2">
+              <input class id="grid-city" type="radio" name="task-type" />
+              Must to have
+            </label>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="w-1/4">
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >Repeat Policy:</label>
+              <div class="relative">
+                <select
+                  v-model="repeat_kaaz.repeat_policy"
+                  @change="onPolicyChange($event)"
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option value="weekday">Weekday</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekend">Weekend</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full flex">
+        <!-- <div class="w-1/3">
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
               <label
@@ -182,8 +261,8 @@
               >Save</button>
             </div>
           </div>
-        </div>
-        <div class="w-2/3 pl-2">
+        </div>-->
+        <div class="w-full pl-2 mt-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
