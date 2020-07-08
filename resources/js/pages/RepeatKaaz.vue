@@ -4,7 +4,7 @@
 
     <form class="mt-10">
       <div class="flex flex-wrap">
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-500">
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-name"
@@ -17,7 +17,7 @@
           />
           <p class="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-400">
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-name"
@@ -30,7 +30,7 @@
           />
           <p class="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-500">
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-type"
@@ -44,11 +44,11 @@
           <div class="mt-2">
             <label>
               <input class id="grid-city" type="radio" name="task-type" />
-              Must to have
+              Must have
             </label>
           </div>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-400">
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
@@ -70,7 +70,7 @@
         </div>
         <div
           v-if="repeat_kaaz.repeat_policy == 'yearly'"
-          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-500"
+          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -89,7 +89,7 @@
         </div>
         <div
           v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
-          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400"
+          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -105,7 +105,7 @@
             </select>
           </div>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400">
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
@@ -122,7 +122,7 @@
         </div>
         <div
           v-if="repeat_kaaz.repeat_policy == 'yearly'"
-          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400"
+          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -141,7 +141,7 @@
         </div>
         <div
           v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
-          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400"
+          class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -157,227 +157,29 @@
             </select>
           </div>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400">
-          <div class="px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
-            >End Time</label>
-            <div class="relative">
-              <select
-                v-model="repeat_kaaz.end_time"
-                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
-              >
-                <option v-for="time in end_times" v-text="time"></option>
-              </select>
-            </div>
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-state"
+          >End Time</label>
+          <div class="relative">
+            <select
+              v-model="repeat_kaaz.end_time"
+              class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+            >
+              <option v-for="time in end_times" v-text="time"></option>
+            </select>
           </div>
         </div>
-        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4 bg-gray-400"></div>
-      </div>
-
-      <div class="w-full flex">
-        <div class="lg:w-1/4">
-          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
-
-          <!-- </div> -->
-        </div>
-        <div class="lg:w-1/4">
-          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
-
-          <!-- </div> -->
-        </div>
-        <div class="w-1/4">
-          <!-- <div class="flex flex-wrap -mx-3 mb-6"> -->
-
-          <!-- </div> -->
-        </div>
-        <div class="w-1/4">
-          <div class="flex flex-wrap -mx-3 mb-6"></div>
+        <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4">
+          <button
+            class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          >Save</button>
         </div>
       </div>
 
       <div class="w-full flex">
-        <!-- <div class="w-1/3">
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-task-name"
-              >Task Name</label>
-              <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-task-name"
-                type="text"
-                placeholder="Ex. Exercise"
-              />
-              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-task-name"
-              >Tags</label>
-              <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-task-name"
-                type="text"
-                placeholder="Ex. Focusing"
-              />
-              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-task-type"
-              >Type</label>
-              <label>
-                <input class id="grid-city" type="radio" name="task-type" />
-                Nice to have
-              </label>
-              <label class="ml-2">
-                <input class id="grid-city" type="radio" name="task-type" />
-                Must to have
-              </label>
-            </div>
-          </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >Repeat Policy:</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.repeat_policy"
-                  @change="onPolicyChange($event)"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option value="weekday">Weekday</option>
-                  <option value="daily">Daily</option>
-                  <option value="weekend">Weekend</option>
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div v-if="repeat_kaaz.repeat_policy == 'yearly'" class="w-1/3 px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >Start Month</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.start_month"
-                  @change="generateDaysOfMonth(repeat_kaaz.start_month)"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="month in months" v-text="month"></option>
-                </select>
-              </div>
-            </div>
-            <div
-              v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
-              class="w-1/3 px-3"
-            >
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >Start Day</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.start_day"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="day in days" v-text="day"></option>
-                </select>
-              </div>
-            </div>
-            <div class="w-1/3 px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >Start Time</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.start_time"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="time in start_times" v-text="time"></option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-1/3 px-3" v-if="repeat_kaaz.repeat_policy == 'yearly'">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >End Month</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.end_month"
-                  @change="generateDaysOfMonth(repeat_kaaz.start_month)"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="month in months" v-text="month"></option>
-                </select>
-              </div>
-            </div>
-            <div
-              class="w-1/3 px-3"
-              v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
-            >
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >End Day</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.end_day"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="day in days" v-text="day"></option>
-                </select>
-              </div>
-            </div>
-            <div class="w-1/3 px-3">
-              <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-state"
-              >End Time</label>
-              <div class="relative">
-                <select
-                  v-model="repeat_kaaz.end_time"
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option v-for="time in end_times" v-text="time"></option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="flex">
-            <div class="w-3 mt-3">
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >Save</button>
-            </div>
-          </div>
-        </div>-->
         <div class="w-full pl-2 mt-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -504,7 +306,11 @@ export default {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
-        hour += 1;
+        if (hour == 12) {
+          hour = 1;
+        } else {
+          hour += 1;
+        }
         minute = 0;
       }
       this.repeat_kaaz.start_time =
@@ -518,7 +324,11 @@ export default {
         if (hour == 11) {
           amPm = amPm == "am" ? "pm" : "am";
         }
-        hour += 1;
+        if (hour == 12) {
+          hour = 1;
+        } else {
+          hour += 1;
+        }
       }
       this.repeat_kaaz.end_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
@@ -582,7 +392,16 @@ export default {
      * @param {event} event
      * @return {void}
      */
-    onPolicyChange(event) {}
+    onPolicyChange(event) {},
+
+    /**
+     * Save repeat kaaz
+     *
+     * @return {void}
+     */
+    saveRepeatKaaz() {
+      console.log(this.repeat_kaaz);
+    }
   }
 };
 </script>
