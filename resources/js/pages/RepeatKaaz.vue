@@ -56,7 +56,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.repeat_policy"
-              @change="onPolicyChange($event)"
+              @change="onPolicyChangeListener($event)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -79,7 +79,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_month"
-              @change="generateDaysOfMonth(repeat_kaaz.start_month)"
+              @change="onStartMonthChangeListener(repeat_kaaz.start_month)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -88,7 +88,10 @@
           </div>
         </div>
         <div
-          v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+          v-if="
+            repeat_kaaz.repeat_policy == 'yearly' ||
+              repeat_kaaz.repeat_policy == 'monthly'
+          "
           class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
@@ -98,6 +101,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_day"
+              @change="onStartDayChangeListener(repeat_kaaz.start_day)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -131,7 +135,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_month"
-              @change="generateDaysOfMonth(repeat_kaaz.start_month)"
+              @change="onEndMonthChangeListener(repeat_kaaz.end_month)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -140,7 +144,10 @@
           </div>
         </div>
         <div
-          v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+          v-if="
+            repeat_kaaz.repeat_policy == 'yearly' ||
+              repeat_kaaz.repeat_policy == 'monthly'
+          "
           class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4"
         >
           <label
@@ -150,6 +157,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_day"
+              @change="onLastDayChangeListener(repeat_kaaz.end_day)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -222,7 +230,7 @@
 </template>
 
 <script>
-import moment from "moment";
+//import moment from "moment";
 
 export default {
   mounted() {
@@ -392,7 +400,72 @@ export default {
      * @param {event} event
      * @return {void}
      */
-    onPolicyChange(event) {},
+    onPolicyChangeListener(event) {},
+
+    /**
+     * On Start month change listener method
+     *
+     * @param {int} month
+     * @return {void}
+     */
+    onStartMonthChangeListener(month) {
+      this.generateDaysOfMonth(month);
+      this.repeat_kaaz.end_month = month;
+    },
+
+    /**
+     * On Last month change listener method
+     *
+     * @param {int} month
+     * @return {void}
+     */
+    onLastMonthChangeListener(month) {
+      this.generateDaysOfMonth(month);
+      if (this.repeat_kaaz.end_month < this.repeat_kaaz.start_month) {
+        this.repeat_kaaz.start_month = month;
+      }
+    },
+
+    /**
+     * On Start day change listener method
+     *
+     * @param {int} day
+     * @return {void}
+     */
+    onStartDayChangeListener(day) {
+      this.repeat_kaaz.end_day = day;
+    },
+
+    /**
+     * On Last day change listener method
+     *
+     * @param {int} day
+     * @return {void}
+     */
+    onLastDayChangeListener(day) {
+      console.log("day: " + day);
+      console.log("end day: " + this.repeat_kaaz.end_day);
+      console.log("start day: " + this.repeat_kaaz.start_day);
+      console.log("repeat policy: " + this.repeat_kaaz.repeat_policy);
+
+      if (
+        this.repeat_kaaz.repeat_policy == "yearly" &&
+        parseInt(this.repeat_kaaz.end_month) ==
+          parseInt(this.repeat_kaaz.start_month) &&
+        parseInt(this.repeat_kaaz.end_day) <
+          parseInt(this.repeat_kaaz.start_day)
+      ) {
+        this.repeat_kaaz.start_day = day;
+      }
+
+      if (
+        this.repeat_kaaz.repeat_policy == "monthly" &&
+        parseInt(this.repeat_kaaz.end_day) <
+          parseInt(this.repeat_kaaz.start_day)
+      ) {
+        this.repeat_kaaz.start_day = day;
+      }
+    },
 
     /**
      * Save repeat kaaz
