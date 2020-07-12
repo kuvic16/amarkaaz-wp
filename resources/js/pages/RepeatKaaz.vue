@@ -468,6 +468,22 @@ export default {
     },
 
     /**
+     * On Start time change listener method
+     *
+     * @param {string} time
+     * @return {void}
+     */
+    onStartTimeChangeListener(time) {},
+
+    /**
+     * On End time change listener method
+     *
+     * @param {string} time
+     * @return {void}
+     */
+    onEndTimeChangeListener(time) {},
+
+    /**
      * Save repeat kaaz
      *
      * @return {void}
