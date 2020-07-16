@@ -117,6 +117,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_time"
+              @change="onStartTimeChangeListener()"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -173,6 +174,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_time"
+              @change="onEndTimeChangeListener()"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -324,6 +326,12 @@ export default {
       this.repeat_kaaz.start_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
 
+      this.populateEndTime(minute, hour, amPm);
+
+      // console.log("Start Time: " + this.repeat_kaaz.start_time);
+    },
+
+    populateEndTime(minute, hour, amPm) {
       minute += 15;
       if (minute > 0 && minute < 15) minute = 15;
       if (minute > 15 && minute < 30) minute = 30;
@@ -341,7 +349,6 @@ export default {
       this.repeat_kaaz.end_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
 
-      console.log("Start Time: " + this.repeat_kaaz.start_time);
       console.log("End Time: " + this.repeat_kaaz.end_time);
     },
 
@@ -473,7 +480,13 @@ export default {
      * @param {string} time
      * @return {void}
      */
-    onStartTimeChangeListener(time) {},
+    onStartTimeChangeListener() {
+      var selectedTime = this.repeat_kaaz.start_time;
+      var minute = parseInt(selectedTime.slice(3, 5));
+      var hour = parseInt(selectedTime.slice(0, 2));
+      var amPm = selectedTime.slice(5, 7);
+      this.populateEndTime(minute, hour, amPm);
+    },
 
     /**
      * On End time change listener method
@@ -481,7 +494,27 @@ export default {
      * @param {string} time
      * @return {void}
      */
-    onEndTimeChangeListener(time) {},
+    onEndTimeChangeListener(time) {
+      var selectedEndTime = this.repeat_kaaz.end_time;
+      if (selectedEndTime && selectedStartTime) {
+        var endMinute = parseInt(selectedEndTime.slice(3, 5));
+        var endHour = parseInt(selectedEndTime.slice(0, 2));
+        var endAmPm = selectedEndTime.slice(5, 7);
+
+        var selectedStartTime = this.repeat_kaaz.start_time;
+        var startMinute = parseInt(selectedStartTime.slice(3, 5));
+        var startHour = parseInt(selectedStartTime.slice(0, 2));
+        var startAmPm = selectedStartTime.slice(5, 7);
+
+        if (
+          endHour < startHour ||
+          (endHour == startHour && endMinute < startMinute)
+        ) {
+          this.repeat_kaaz.start_time =
+            this.pad(endHour) + ":" + this.pad(endMinute) + endAmPm;
+        }
+      }
+    },
 
     /**
      * Save repeat kaaz
