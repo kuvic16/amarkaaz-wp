@@ -158,7 +158,7 @@
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_day"
-              @change="onLastDayChangeListener(repeat_kaaz.end_day)"
+              @change="onEndDayChangeListener(repeat_kaaz.end_day)"
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
@@ -240,7 +240,7 @@ export default {
     this.populateTimes();
     this.getPossibleCurrentTime();
   },
-  data: function() {
+  data: function () {
     return {
       repeat_kaaz: {
         name: "",
@@ -252,7 +252,7 @@ export default {
         start_time: moment().format("hh:mm A"),
         end_month: moment().format("MMMM"),
         end_day: moment().format("D"),
-        end_time: ""
+        end_time: moment().format("hh:mm A"),
       },
       months: [
         "January",
@@ -266,13 +266,13 @@ export default {
         "September",
         "October",
         "November",
-        "December"
+        "December",
       ],
       days: [],
       start_times: [],
       end_times: [],
       token: "",
-      message: ""
+      message: "",
     };
   },
   methods: {
@@ -320,6 +320,7 @@ export default {
           hour = 1;
         } else {
           hour += 1;
+          minute = 0;
         }
         minute = 0;
       }
@@ -344,8 +345,10 @@ export default {
           hour = 1;
         } else {
           hour += 1;
+          minute = 0;
         }
       }
+
       this.repeat_kaaz.end_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
 
@@ -426,7 +429,7 @@ export default {
      * @param {int} month
      * @return {void}
      */
-    onLastMonthChangeListener(month) {
+    onEndMonthChangeListener(month) {
       this.generateDaysOfMonth(month);
       if (this.repeat_kaaz.end_month < this.repeat_kaaz.start_month) {
         this.repeat_kaaz.start_month = month;
@@ -449,7 +452,7 @@ export default {
      * @param {int} day
      * @return {void}
      */
-    onLastDayChangeListener(day) {
+    onEndDayChangeListener(day) {
       console.log("day: " + day);
       console.log("end day: " + this.repeat_kaaz.end_day);
       console.log("start day: " + this.repeat_kaaz.start_day);
@@ -495,7 +498,11 @@ export default {
      * @return {void}
      */
     onEndTimeChangeListener(time) {
+      var selectedStartTime = this.repeat_kaaz.start_time;
       var selectedEndTime = this.repeat_kaaz.end_time;
+      //console.log("s: " + selectedStartTime);
+      //console.log("e: " + selectedEndTime);
+
       if (selectedEndTime && selectedStartTime) {
         var endMinute = parseInt(selectedEndTime.slice(3, 5));
         var endHour = parseInt(selectedEndTime.slice(0, 2));
@@ -505,6 +512,9 @@ export default {
         var startMinute = parseInt(selectedStartTime.slice(3, 5));
         var startHour = parseInt(selectedStartTime.slice(0, 2));
         var startAmPm = selectedStartTime.slice(5, 7);
+
+        //console.log(startHour + "-" + startMinute + "-" + startAmPm);
+        //console.log(endHour + "-" + endMinute + "-" + endAmPm);
 
         if (
           endHour < startHour ||
@@ -523,7 +533,7 @@ export default {
      */
     saveRepeatKaaz() {
       console.log(this.repeat_kaaz);
-    }
-  }
+    },
+  },
 };
 </script>
