@@ -252,7 +252,11 @@ export default {
   mounted() {
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
-    this.getPossibleCurrentTime();
+
+    var minute = parseInt(moment().format("mm"));
+    var hour = parseInt(moment().format("hh"));
+    var amPm = moment().format("a");
+    this.getPossibleCurrentTime(hour, minute, amPm);
   },
   data: function() {
     return {
@@ -318,11 +322,7 @@ export default {
      *
      * @return {void}
      */
-    getPossibleCurrentTime() {
-      var minute = parseInt(moment().format("mm"));
-      var hour = parseInt(moment().format("hh"));
-      var amPm = moment().format("a");
-
+    getPossibleCurrentTime(hour, minute, amPm) {
       if (minute > 0 && minute < 15) minute = 15;
       if (minute > 15 && minute < 30) minute = 30;
       if (minute > 30 && minute < 45) minute = 45;
@@ -366,7 +366,7 @@ export default {
       this.repeat_kaaz.end_time =
         this.pad(hour) + ":" + this.pad(minute) + amPm;
 
-      console.log("End Time: " + this.repeat_kaaz.end_time);
+      //console.log("End Time: " + this.repeat_kaaz.end_time);
     },
 
     /**
@@ -467,10 +467,10 @@ export default {
      * @return {void}
      */
     onEndDayChangeListener(day) {
-      console.log("day: " + day);
-      console.log("end day: " + this.repeat_kaaz.end_day);
-      console.log("start day: " + this.repeat_kaaz.start_day);
-      console.log("repeat policy: " + this.repeat_kaaz.repeat_policy);
+      //console.log("day: " + day);
+      //console.log("end day: " + this.repeat_kaaz.end_day);
+      //console.log("start day: " + this.repeat_kaaz.start_day);
+      //console.log("repeat policy: " + this.repeat_kaaz.repeat_policy);
 
       if (
         this.repeat_kaaz.repeat_policy == "yearly" &&
@@ -499,10 +499,12 @@ export default {
      */
     onStartTimeChangeListener() {
       var selectedTime = this.repeat_kaaz.start_time;
-      var minute = parseInt(selectedTime.slice(3, 5));
-      var hour = parseInt(selectedTime.slice(0, 2));
-      var amPm = selectedTime.slice(5, 7);
-      this.populateEndTime(minute, hour, amPm);
+      if (selectedTime) {
+        var minute = parseInt(selectedTime.slice(3, 5));
+        var hour = parseInt(selectedTime.slice(0, 2));
+        var amPm = selectedTime.slice(5, 7);
+        this.populateEndTime(minute, hour, amPm);
+      }
     },
 
     /**
@@ -546,19 +548,15 @@ export default {
      * @return {void}
      */
     saveRepeatKaaz() {
-      console.log(this.repeat_kaaz);
+      //console.log(this.repeat_kaaz);
     },
 
     onSubmit() {
-      console.log(this.repeat_kaaz);
+      //console.log(this.repeat_kaaz);
       // this.form
       //   .submit("post", "/projects")
       //   .then((data) => console.log(data))
       //   .catch((errors) => console.log(errors));
-    },
-
-    sum(a, b) {
-      return a + b;
     },
   },
 };
