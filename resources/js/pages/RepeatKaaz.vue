@@ -2,13 +2,15 @@
   <div>
     <h1 class="font-normal text-3xl text-gray-700 leading-none">Repeat Kaaz</h1>
 
-    <form class="mt-10">
+    <form class="mt-10" @submit.prevent="onSubmit">
+      >
       <div class="flex flex-wrap">
         <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-name"
-          >Task Name</label>
+            >Task Name</label
+          >
           <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-task-name"
@@ -21,7 +23,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-name"
-          >Tags</label>
+            >Tags</label
+          >
           <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-task-name"
@@ -34,7 +37,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-type"
-          >Type</label>
+            >Type</label
+          >
           <div>
             <label>
               <input class id="grid-city" type="radio" name="task-type" />
@@ -52,7 +56,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >Repeat Policy:</label>
+            >Repeat Policy:</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.repeat_policy"
@@ -75,7 +80,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >Start Month</label>
+            >Start Month</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_month"
@@ -97,7 +103,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >Start Day</label>
+            >Start Day</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_day"
@@ -113,7 +120,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >Start Time</label>
+            >Start Time</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.start_time"
@@ -132,7 +140,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >End Month</label>
+            >End Month</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_month"
@@ -154,7 +163,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >End Day</label>
+            >End Day</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_day"
@@ -170,7 +180,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >End Time</label>
+            >End Time</label
+          >
           <div class="relative">
             <select
               v-model="repeat_kaaz.end_time"
@@ -185,7 +196,9 @@
         <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/6 mb-4">
           <button
             class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          >Save</button>
+          >
+            Save
+          </button>
         </div>
       </div>
 
@@ -194,7 +207,8 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
-          >All Repeat Tasks</label>
+            >All Repeat Tasks</label
+          >
           <table class="table-auto w-full">
             <thead>
               <tr>
@@ -232,7 +246,7 @@
 </template>
 
 <script>
-//import moment from "moment";
+import moment from "moment";
 
 export default {
   mounted() {
@@ -240,7 +254,7 @@ export default {
     this.populateTimes();
     this.getPossibleCurrentTime();
   },
-  data: function () {
+  data: function() {
     return {
       repeat_kaaz: {
         name: "",
@@ -533,6 +547,18 @@ export default {
      */
     saveRepeatKaaz() {
       console.log(this.repeat_kaaz);
+    },
+
+    onSubmit() {
+      console.log(this.repeat_kaaz);
+      // this.form
+      //   .submit("post", "/projects")
+      //   .then((data) => console.log(data))
+      //   .catch((errors) => console.log(errors));
+    },
+
+    sum(a, b) {
+      return a + b;
     },
   },
 };
