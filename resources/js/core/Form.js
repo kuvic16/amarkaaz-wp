@@ -2,6 +2,7 @@ import Errors from "../core/Errors.js";
 
 class Form {
   constructor(data) {
+    console.log(data);
     this.originalData = data;
     for (let field in data) {
       this[field] = data[field];
@@ -54,3 +55,5 @@ class Form {
     this.errors.record(errors);
   }
 }
+
+export default Form;
