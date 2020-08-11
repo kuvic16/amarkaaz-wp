@@ -4,6 +4,26 @@ amar-kaaz: A new way to manage personal task aiming to keep focusing
 
 We will be included
 
+## PHPUnit Testing
+
+### Install The PHPUnit
+
+`composer require phpunit/phpunit`
+
+### Check the PHPUnit
+
+`./vendor/bin/phpunit --version`
+
+#### Run the PHPUnit
+
+`./vendor/bin/phpunit tests`
+
+## Vue testing
+
+### Mocha test
+
+`npm run test`
+
 ## Readme content writing references
 
 https://www.makeareadme.com/
