@@ -3,4 +3,5 @@
 $router->url_prefix('amar_kaaz');
 $router->get('dashboard', 'HomeController@dashboard');
 
-$router->get('repeatkaaz', 'RepeatKaazController@repeatkaaz');
+$router->get('repeatkaaz', 'RepeatKaazController@list');
+//$router->get('repeatkaaz', 'RepeatKaazController@store');

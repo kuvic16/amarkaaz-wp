@@ -7,32 +7,38 @@ namespace Amar\Kaaz\App\Controllers;
  */
 class KaazController
 {
-
     /**
-     * Get kaaz list
+     * Class contstructor
      */
-    public function list()
+    public function __construct()
     {
     }
 
-    /**
-     * Create new kaaz
-     */
-    public function create()
-    {
-    }
+    // /**
+    //  * Get kaaz list
+    //  */
+    // public function list()
+    // {
+    // }
 
-    /**
-     * Update a kaaz
-     */
-    public function update()
-    {
-    }
+    // /**
+    //  * Create new kaaz
+    //  */
+    // public function create()
+    // {
+    // }
 
-    /**
-     * Delete a kaaz
-     */
-    public function delete()
-    {
-    }
+    // /**
+    //  * Update a kaaz
+    //  */
+    // public function update()
+    // {
+    // }
+
+    // /**
+    //  * Delete a kaaz
+    //  */
+    // public function delete()
+    // {
+    // }
 }

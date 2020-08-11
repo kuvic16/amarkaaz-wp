@@ -9,6 +9,12 @@ use Amar\Kaaz\App\Services\DB;
  */
 class HomeController
 {
+    /**
+     * Class contstructor
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * Method against dashboard api

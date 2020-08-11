@@ -2,41 +2,25 @@
 
 namespace Amar\Kaaz\App\Controllers;
 
+use Amar\Kaaz\App\Services\DB;
+
 /**
  * Rpeat kaaz controller class
  */
 class RepeatKaazController
 {
-
     /**
-     * Get kaaz list
+     * Class contstructor
      */
-    public function repeatkaaz()
+    public function __construct()
     {
     }
 
-    /**
-     * Create new kaaz
-     */
     public function list()
     {
-        // wp_send_json_success([
-        //     'message' => 'Dashboard api completed',
-        //     'list' => $_POST
-        // ]);
     }
 
-    /**
-     * Update a kaaz
-     */
-    public function update()
-    {
-    }
-
-    /**
-     * Delete a kaaz
-     */
-    public function delete()
-    {
-    }
+    // public function store()
+    // {
+    // }
 }
