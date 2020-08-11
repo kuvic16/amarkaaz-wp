@@ -21,6 +21,7 @@ Vue.mixin({
       return amarKaaz.ajaxurl;
     },
   },
+  methods: {},
 });
 
 let app = new Vue({

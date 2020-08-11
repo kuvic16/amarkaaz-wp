@@ -43,10 +43,10 @@ class DB
         global $wpdb;
 
         $defaults = [
-            'number' => 20,
-            'offset' => 0,
+            'number'  => 20,
+            'offset'  => 0,
             'orderby' => 'id',
-            'order' => 'ASC'
+            'order'   => 'ASC'
         ];
 
         $args = wp_parse_args($args, $defaults);

@@ -76,7 +76,7 @@ class Router
      */
     public function post($uri, $controller)
     {
-        $this->routes['GET'][$uri] = $controller;
+        $this->routes['POST'][$uri] = $controller;
     }
 
     /**
@@ -92,6 +92,7 @@ class Router
                 ...explode('@', $route)
             );
         }
+        die;
     }
 
     /**
@@ -105,19 +106,30 @@ class Router
      */
     protected function callAction($uri, $controller, $action)
     {
-        $controller = "Amar\\Kaaz\\App\\Controllers\\{$controller}";
-        $controller = new $controller;
-        if (!method_exists($controller, $action)) {
-            throw new Exception(
-                "{$controller} does not respond to the {$action} action."
+        var_dump($controller);
+        var_dump($action);
+        try {
+            $controller = "Amar\\Kaaz\\App\\Controllers\\{$controller}";
+            $controller = new $controller;
+            // if (!method_exists($controller, $action)) {
+            //     throw new Exception(
+            //         "{$controller} does not respond to the {$action} action."
+            //     );
+            // }
+
+            //var_dump($controller);
+            //var_dump($uri);
+            var_dump('wp_ajax_wd-' . $this->url_prefix . "_{$uri}");
+
+            add_action(
+                'wp_ajax' . $this->url_prefix . "_{$uri}",
+                array(
+                    $controller,
+                    $action
+                )
             );
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
         }
-        add_action(
-            'wp_ajax_' . $this->url_prefix . "_{$uri}",
-            [
-                $controller,
-                $action
-            ]
-        );
     }
 }

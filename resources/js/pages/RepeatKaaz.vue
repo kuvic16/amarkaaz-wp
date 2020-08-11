@@ -569,10 +569,10 @@ export default {
 
     onSubmit() {
       console.log(this.repeat_kaaz.type);
-      // this.form
-      //   .submit("post", "/projects")
-      //   .then((data) => console.log(data))
-      //   .catch((errors) => console.log(errors));
+      this.form
+        .submit("post", this.wp_url + "?action=amar_kaaz_dashboard")
+        .then((data) => console.log(data))
+        .catch((errors) => console.log(errors));
     },
   },
 };

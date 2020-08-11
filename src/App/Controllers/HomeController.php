@@ -17,7 +17,8 @@ class HomeController
     {
         $list = DB::table('amrkz_kaazs')->get();
         wp_send_json_success([
-            'message' => 'Dashboard api completed'
+            'message' => 'Dashboard api completed',
+            'list' => $list
         ]);
     }
 }
