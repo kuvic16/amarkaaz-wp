@@ -16,11 +16,18 @@ class RepeatKaazController
     {
     }
 
-    public function list()
+
+    public function store()
     {
+        wp_send_json_success([
+            'message' => 'Dashboard api completed store'
+        ]);
     }
 
-    // public function store()
-    // {
-    // }
+    public function update()
+    {
+        wp_send_json_success([
+            'message' => 'Dashboard api completed update'
+        ]);
+    }
 }

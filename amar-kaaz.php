@@ -63,7 +63,9 @@ final class Amar_Kaaz
      */
     public function define_constants()
     {
-        define('WP_DEBUG', true);
+        //define('WP_DEBUG', true);
+        //define('WP_DEBUG_LOG', true);
+        //define('WP_DEBUG_DISPLAY', true);
         define('AMAR_KAAZ_VERSION', self::version);
         define('AMAR_KAAZ_FILE', __FILE__);
         define('AMAR_KAAZ_PATH', __DIR__);
@@ -84,7 +86,7 @@ final class Amar_Kaaz
         if (is_admin()) {
             new Amar\Kaaz\Admin();
             if (defined('DOING_AJAX') && DOING_AJAX) {
-                Router::load(__DIR__ . '/src/Routes/api.php')->direct();
+                Router::load(__DIR__ . '/src/Routes/api.php')->direct($_GET['action'], $_SERVER['REQUEST_METHOD']);
             }
         }
         //new Amar\Kaaz\Api();

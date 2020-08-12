@@ -80,19 +80,22 @@ class Router
     }
 
     /**
-     * Get associative controller based on uri
+     * Set the action hook for the current request
+     * 
+     * @param string $uri
+     * @param string $requestType
      * 
      * @return void
      */
-    public function direct()
+    public function direct($uri, $requestType)
     {
-        foreach ($this->routes['GET'] as $uri => $route) {
+        $uri = str_replace($this->url_prefix . "_", "",  $uri);
+        if (array_key_exists($uri, $this->routes[$requestType])) {
             $this->callAction(
                 $uri,
-                ...explode('@', $route)
+                ...explode('@', $this->routes[$requestType][$uri])
             );
         }
-        die;
     }
 
     /**
@@ -106,27 +109,21 @@ class Router
      */
     protected function callAction($uri, $controller, $action)
     {
-        var_dump($controller);
-        var_dump($action);
         try {
             $controller = "Amar\\Kaaz\\App\\Controllers\\{$controller}";
-            $controller = new $controller;
-            // if (!method_exists($controller, $action)) {
-            //     throw new Exception(
-            //         "{$controller} does not respond to the {$action} action."
-            //     );
-            // }
-
-            //var_dump($controller);
-            //var_dump($uri);
-            var_dump('wp_ajax_wd-' . $this->url_prefix . "_{$uri}");
+            $controller = new $controller();
+            if (!method_exists($controller, $action)) {
+                throw new Exception(
+                    "{$controller} does not respond to the {$action} action."
+                );
+            }
 
             add_action(
-                'wp_ajax' . $this->url_prefix . "_{$uri}",
-                array(
+                'wp_ajax_' . $this->url_prefix . "_{$uri}",
+                [
                     $controller,
                     $action
-                )
+                ]
             );
         } catch (\Exception $e) {
             var_dump($e->getMessage());
