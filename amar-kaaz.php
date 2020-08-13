@@ -86,6 +86,8 @@ final class Amar_Kaaz
         if (is_admin()) {
             new Amar\Kaaz\Admin();
             if (defined('DOING_AJAX') && DOING_AJAX) {
+                //var_dump($_POST);
+                //die;
                 Router::load(__DIR__ . '/src/Routes/api.php')->direct($_GET['action'], $_SERVER['REQUEST_METHOD']);
             }
         }
