@@ -22,6 +22,7 @@ class Form {
     for (let property in this.originalData) {
       data[property] = this[property];
     }
+    data["_wpnonce"] = amarKaaz.nonce;
     return data;
   }
 

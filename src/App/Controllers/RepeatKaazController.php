@@ -3,6 +3,8 @@
 namespace Amar\Kaaz\App\Controllers;
 
 use Amar\Kaaz\App\Services\DB;
+use Amar\Kaaz\Core\Request;
+use Amar\Kaaz\Core\Response;
 
 /**
  * Rpeat kaaz controller class
@@ -19,16 +21,15 @@ class RepeatKaazController
 
     public function store()
     {
-        $d = $request->all();
-        var_dump($d);
-        die;
-        $data = json_decode(file_get_contents('php://input'), true);
-        print_r($data);
-        //$_POST = json_decode(file_get_contents('php://input'), true);
-        //var_dump($_POST);
-        die;
+        $request = Request::json();
 
-        wp_send_json_success([
+        if (!wp_verify_nonce($request['_wpnonce'], 'amar-kaaz-admin-nonce')) {
+            Response::error([
+                'message' => 'Nonce verification failed!'
+            ]);
+        }
+
+        Response::success([
             'message' => 'Dashboard api completed store'
         ]);
     }

@@ -5,8 +5,17 @@ namespace Amar\Kaaz\Core;
 use Exception;
 
 /**
- * Router handler class
+ * Request class
  */
 class Request
 {
+    /**
+     * Get json request payload
+     * 
+     * @return json
+     */
+    public static function json()
+    {
+        return json_decode(file_get_contents('php://input'), true);
+    }
 }
