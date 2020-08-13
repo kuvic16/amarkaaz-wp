@@ -18,7 +18,11 @@ class RepeatKaazController
     {
     }
 
-
+    /**
+     * Store the RepeatKaaz
+     * 
+     * @return json
+     */
     public function store()
     {
         $request = Request::json();
@@ -34,6 +38,11 @@ class RepeatKaazController
         ]);
     }
 
+    /**
+     * Update the RepeatKaaz
+     * 
+     * @return json
+     */
     public function update()
     {
         wp_send_json_success([
