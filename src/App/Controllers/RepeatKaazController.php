@@ -16,6 +16,11 @@ class RepeatKaazController
      */
     public function __construct()
     {
+        if (!current_user_can('manage_options')) {
+            Response::error([
+                'message' => __('You are not authorized!', 'amar-kaaz')
+            ]);
+        }
     }
 
     /**
