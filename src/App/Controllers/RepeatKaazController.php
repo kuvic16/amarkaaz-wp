@@ -3,6 +3,8 @@
 namespace Amar\Kaaz\App\Controllers;
 
 use Amar\Kaaz\App\Services\DB;
+use Amar\Kaaz\App\Services\Impl\RepeatKaazServiceImpl;
+use Amar\Kaaz\App\Services\RepeatKaazService;
 use Amar\Kaaz\Core\Request;
 use Amar\Kaaz\Core\Response;
 
@@ -11,6 +13,8 @@ use Amar\Kaaz\Core\Response;
  */
 class RepeatKaazController
 {
+    protected $repeatKaazService;
+
     /**
      * Class contstructor
      */
@@ -21,6 +25,8 @@ class RepeatKaazController
                 'message' => __('You are not authorized!', 'amar-kaaz')
             ]);
         }
+
+        $this->repeatKaazService = new RepeatKaazService();
     }
 
     /**
@@ -34,14 +40,16 @@ class RepeatKaazController
 
         if (!wp_verify_nonce($request['_wpnonce'], 'amar-kaaz-admin-nonce')) {
             Response::error([
-                'message' => 'Nonce verification failed!'
+                'message' => __('Nonce verification failed!', 'amar-kaaz')
             ]);
         }
 
 
+        $this->repeatKaazService->test();
+
 
         Response::success([
-            'message' => 'Dashboard api completed store'
+            'message' => __('Dashboard api completed store', 'amar-kaaz')
         ]);
     }
 
@@ -72,13 +80,24 @@ class RepeatKaazController
         $end_day = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
         $end_time = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
 
+        $this->errors = [];
         if (empty($name)) {
-            $this->errors['name'] = __('Please provide a name', 'plugin-dev');
+            $this->errors['name'] = __('Please provide a name', 'amar-kaaz');
         }
 
-        if (empty($phone)) {
-            $this->errors['phone'] = __('Please provide a number', 'plugin-dev');
+        if (empty($type)) {
+            $this->errors['type'] = __('Please provide a type', 'plugin-dev');
+        } elseif (!in_array($type, ['nice_have', 'must_have'])) {
+            $this->errors['type'] = __('Please provide a correct type', 'plugin-dev');
         }
+
+        if (empty($repeat_policy)) {
+            $this->errors['repeat_policy'] = __('Please provide a repeat policy', 'plugin-dev');
+        } elseif (in_array($repeat_policy, ['daily', 'weekday', 'weekend', 'monthly', 'yearly'])) {
+            $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
+        }
+
+        //if()
 
         if (!empty($this->errors)) {
             return;
