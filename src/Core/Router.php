@@ -90,12 +90,17 @@ class Router
     public function direct($uri, $requestType)
     {
         $uri = str_replace($this->url_prefix . "_", "",  $uri);
+        //var_dump($uri);
+        //var_dump($this->routes[$requestType][$uri]);
+
         if (array_key_exists($uri, $this->routes[$requestType])) {
             $this->callAction(
                 $uri,
                 ...explode('@', $this->routes[$requestType][$uri])
             );
         }
+        //var_dump("1");
+        //die;
     }
 
     /**
@@ -111,7 +116,12 @@ class Router
     {
         try {
             $controller = "Amar\\Kaaz\\App\\Controllers\\{$controller}";
+            //var_dump($controller);
+
             $controller = new $controller();
+            //var_dump($controller);
+            //die;
+
             if (!method_exists($controller, $action)) {
                 throw new Exception(
                     "{$controller} does not respond to the {$action} action."

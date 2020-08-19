@@ -13,7 +13,7 @@ use Amar\Kaaz\Core\Response;
  */
 class RepeatKaazController
 {
-    protected $repeatKaazService;
+    //protected $repeatKaazService;
 
     /**
      * Class contstructor
@@ -26,7 +26,7 @@ class RepeatKaazController
             ]);
         }
 
-        $this->repeatKaazService = new RepeatKaazService();
+        //$this->repeatKaazService = new RepeatKaazService();
     }
 
     /**
@@ -45,7 +45,7 @@ class RepeatKaazController
         }
 
 
-        $this->repeatKaazService->test();
+        //$this->repeatKaazService->test();
 
 
         Response::success([
@@ -67,46 +67,46 @@ class RepeatKaazController
 
     protected function validate($request)
     {
-        $id = isset($request['id']) ? intval($request['id']) : 0;
-        $name = isset($request['name']) ? sanitize_text_field($request['name']) : '';
-        $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
-        $repeat_policy = isset($request['repeat_policy']) ? sanitize_text_field($request['repeat_policy']) : '';
+        // $id = isset($request['id']) ? intval($request['id']) : 0;
+        // $name = isset($request['name']) ? sanitize_text_field($request['name']) : '';
+        // $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
+        // $repeat_policy = isset($request['repeat_policy']) ? sanitize_text_field($request['repeat_policy']) : '';
 
-        $start_month = isset($request['start_month']) ? sanitize_text_field($request['start_month']) : '';
-        $start_day = isset($request['start_day']) ? sanitize_text_field($request['start_day']) : '';
-        $start_time = isset($request['start_time']) ? sanitize_text_field($request['start_time']) : '';
+        // $start_month = isset($request['start_month']) ? sanitize_text_field($request['start_month']) : '';
+        // $start_day = isset($request['start_day']) ? sanitize_text_field($request['start_day']) : '';
+        // $start_time = isset($request['start_time']) ? sanitize_text_field($request['start_time']) : '';
 
-        $end_month = isset($request['end_month']) ? sanitize_text_field($request['end_month']) : '';
-        $end_day = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
-        $end_time = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
+        // $end_month = isset($request['end_month']) ? sanitize_text_field($request['end_month']) : '';
+        // $end_day = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
+        // $end_time = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
 
-        $this->errors = [];
-        if (empty($name)) {
-            $this->errors['name'] = __('Please provide a name', 'amar-kaaz');
-        }
+        // $this->errors = [];
+        // if (empty($name)) {
+        //     $this->errors['name'] = __('Please provide a name', 'amar-kaaz');
+        // }
 
-        if (empty($type)) {
-            $this->errors['type'] = __('Please provide a type', 'plugin-dev');
-        } elseif (!in_array($type, ['nice_have', 'must_have'])) {
-            $this->errors['type'] = __('Please provide a correct type', 'plugin-dev');
-        }
+        // if (empty($type)) {
+        //     $this->errors['type'] = __('Please provide a type', 'plugin-dev');
+        // } elseif (!in_array($type, ['nice_have', 'must_have'])) {
+        //     $this->errors['type'] = __('Please provide a correct type', 'plugin-dev');
+        // }
 
-        if (empty($repeat_policy)) {
-            $this->errors['repeat_policy'] = __('Please provide a repeat policy', 'plugin-dev');
-        } elseif (in_array($repeat_policy, ['daily', 'weekday', 'weekend', 'monthly', 'yearly'])) {
-            $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
-        }
+        // if (empty($repeat_policy)) {
+        //     $this->errors['repeat_policy'] = __('Please provide a repeat policy', 'plugin-dev');
+        // } elseif (in_array($repeat_policy, ['daily', 'weekday', 'weekend', 'monthly', 'yearly'])) {
+        //     $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
+        // }
 
-        //if()
+        // //if()
 
-        if (!empty($this->errors)) {
-            return;
-        }
+        // if (!empty($this->errors)) {
+        //     return;
+        // }
 
-        $args = [
-            'name' => $name,
-            'address' => $address,
-            'phone' => $phone
-        ];
+        // $args = [
+        //     'name' => $name,
+        //     'address' => $address,
+        //     'phone' => $phone
+        // ];
     }
 }
