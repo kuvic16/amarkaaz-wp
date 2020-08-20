@@ -13,20 +13,19 @@ use Amar\Kaaz\Core\Response;
  */
 class RepeatKaazController
 {
-    //protected $repeatKaazService;
+    protected $repeatKaazService;
 
     /**
      * Class contstructor
      */
-    public function __construct()
+    public function __construct(RepeatKaazService $repeatKaazService)
     {
+        //$this->repeatKaazService = $repeatKaazService;
         if (!current_user_can('manage_options')) {
             Response::error([
                 'message' => __('You are not authorized!', 'amar-kaaz')
             ]);
         }
-
-        //$this->repeatKaazService = new RepeatKaazService();
     }
 
     /**
