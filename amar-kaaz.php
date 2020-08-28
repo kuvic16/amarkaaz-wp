@@ -19,12 +19,6 @@ if (!defined('ABSPATH')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$containerBuilder = new ContainerBuilder();
-$containerBuilder->addDefinitions(__DIR__ . '/src/Config/di.php');
-$container = $containerBuilder->build();
-
-
-
 use Amar\Kaaz\Core\Router;
 
 /**
@@ -71,9 +65,9 @@ final class Amar_Kaaz
      */
     public function define_constants()
     {
-        define('WP_DEBUG', true);
-        define('WP_DEBUG_LOG', true);
-        define('WP_DEBUG_DISPLAY', true);
+        // define('WP_DEBUG', true);
+        // define('WP_DEBUG_LOG', true);
+        // define('WP_DEBUG_DISPLAY', true);
         define('AMAR_KAAZ_VERSION', self::version);
         define('AMAR_KAAZ_FILE', __FILE__);
         define('AMAR_KAAZ_PATH', __DIR__);
@@ -94,8 +88,6 @@ final class Amar_Kaaz
         if (is_admin()) {
             new Amar\Kaaz\Admin();
             if (defined('DOING_AJAX') && DOING_AJAX) {
-                //var_dump("test");
-                //die;
                 Router::load(__DIR__ . '/src/Routes/api.php')->direct($_GET['action'], $_SERVER['REQUEST_METHOD']);
             }
         }

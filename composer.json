@@ -10,9 +10,7 @@
     }
   ],
   "minimum-stability": "dev",
-  "require": {
-    "symfony/dependency-injection": "^5.2@dev"
-  },
+  "require": {},
   "autoload": {
     "psr-4": {
       "Amar\\Kaaz\\": "src/"
