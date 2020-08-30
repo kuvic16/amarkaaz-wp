@@ -2,6 +2,7 @@
 
 namespace Amar\Kaaz\App\Controllers;
 
+use Amar\Kaaz\App\Constants\IRepeatKaaz;
 use Amar\Kaaz\App\Services\DB;
 use Amar\Kaaz\App\Services\RepeatKaazService;
 use Amar\Kaaz\Core\Request;
@@ -81,7 +82,7 @@ class RepeatKaazController
 
         if (empty($type)) {
             $this->errors['type'] = __('Please provide a type', 'plugin-dev');
-        } elseif (!in_array($type, ['nice_have', 'must_have'])) {
+        } elseif (!in_array($type, [IRepeatKaaz::$TYPE_NICE_HAVE, IRepeatKaaz::$TYPE_MUST_HAVE])) {
             $this->errors['type'] = __('Please provide a correct type', 'plugin-dev');
         }
 
@@ -99,8 +100,11 @@ class RepeatKaazController
 
         $args = [
             'name' => $name,
-            'address' => $address,
-            'phone' => $phone
+        ];
+
+        return [
+            'errors' => $this->errors,
+            'args'   => $args
         ];
     }
 }
