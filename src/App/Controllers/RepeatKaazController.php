@@ -88,7 +88,7 @@ class RepeatKaazController
 
         if (empty($repeat_policy)) {
             $this->errors['repeat_policy'] = __('Please provide a repeat policy', 'plugin-dev');
-        } elseif (in_array($repeat_policy, ['daily', 'weekday', 'weekend', 'monthly', 'yearly'])) {
+        } elseif (in_array($repeat_policy, [IRepeatKaaz::$POLICY_DAILY, IRepeatKaaz::$POLICY_WEEKDAY, IRepeatKaaz::$POLICY_WEEKEND, IRepeatKaaz::$POLICY_MONTHLY, IRepeatKaaz::$POLICY_YEARLY])) {
             $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
         }
 
