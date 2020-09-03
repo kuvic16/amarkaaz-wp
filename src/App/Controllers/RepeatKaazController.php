@@ -41,6 +41,14 @@ class RepeatKaazController
             ]);
         }
 
+        $result = $this->validate($request);
+        if (count($result['errors']) > 0) {
+            Response::error([
+                'message' => __('Validation failed!', 'amar-kaaz'),
+                'errors'  => $result['errors']
+            ]);
+        }
+
 
 
         Response::success([
@@ -88,14 +96,24 @@ class RepeatKaazController
 
         if (empty($repeat_policy)) {
             $this->errors['repeat_policy'] = __('Please provide a repeat policy', 'plugin-dev');
-        } elseif (in_array($repeat_policy, [IRepeatKaaz::$POLICY_DAILY, IRepeatKaaz::$POLICY_WEEKDAY, IRepeatKaaz::$POLICY_WEEKEND, IRepeatKaaz::$POLICY_MONTHLY, IRepeatKaaz::$POLICY_YEARLY])) {
+        } elseif (!in_array($repeat_policy, [IRepeatKaaz::$POLICY_DAILY, IRepeatKaaz::$POLICY_WEEKDAY, IRepeatKaaz::$POLICY_WEEKEND, IRepeatKaaz::$POLICY_MONTHLY, IRepeatKaaz::$POLICY_YEARLY])) {
             $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
         }
 
-        //if()
+        $time_regex = '/[0-9]{2}:[0-9]{2}(am|pm)/';
+        if (empty($start_time)) {
+            $this->errors['start_time'] = __('Please provide a start time', 'plugin-dev');
+        } elseif (preg_match($time_regex, $start_time) == 0) {
+            $this->errors['start_time'] = __('Please provide a valid start time', 'plugin-dev');
+        }
 
-        if (!empty($this->errors)) {
-            return;
+        if (empty($end_time)) {
+            $this->errors['end_time'] = __('Please provide a end time', 'plugin-dev');
+        } elseif (preg_match($time_regex, $end_time) == 0) {
+            $this->errors['end_time'] = __('Please provide a valid end time', 'plugin-dev');
+        }
+
+        if ($repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
         }
 
         $args = [
