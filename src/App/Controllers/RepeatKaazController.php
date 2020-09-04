@@ -100,17 +100,28 @@ class RepeatKaazController
             $this->errors['repeat_policy'] = __('Please provide a currect repeat policy', 'plugin-dev');
         }
 
-        $time_regex = '/[0-9]{2}:[0-9]{2}(am|pm)/';
+        $time_regex = '/[0-9]{2}:(00|15|30|45)(am|pm)/';
+        $ampm_regex = '/am|pm/';
         if (empty($start_time)) {
             $this->errors['start_time'] = __('Please provide a start time', 'plugin-dev');
         } elseif (preg_match($time_regex, $start_time) == 0) {
             $this->errors['start_time'] = __('Please provide a valid start time', 'plugin-dev');
+        } else {
+            [$start_hour, $start_minute] = array_map('intval', explode(':', preg_replace($ampm_regex, '', $start_time)));
+            if ($start_hour <= 0 || $start_hour > 12 || !in_array($start_minute, [0, 15, 30, 45])) {
+                $this->errors['start_time'] = __('Please provide a valid start time', 'plugin-dev');
+            }
         }
 
         if (empty($end_time)) {
             $this->errors['end_time'] = __('Please provide a end time', 'plugin-dev');
         } elseif (preg_match($time_regex, $end_time) == 0) {
             $this->errors['end_time'] = __('Please provide a valid end time', 'plugin-dev');
+        } else {
+            [$end_hour, $end_minute] = array_map('intval', explode(':', preg_replace($ampm_regex, '', $end_time)));
+            if ($end_hour <= 0 || $end_hour > 12 || !in_array($end_minute, [0, 15, 30, 45])) {
+                $this->errors['end_time'] = __('Please provide a valid end time', 'plugin-dev');
+            }
         }
 
         if ($repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
