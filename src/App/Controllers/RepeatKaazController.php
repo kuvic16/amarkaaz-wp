@@ -124,7 +124,18 @@ class RepeatKaazController
             }
         }
 
-        if ($repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
+        if ($repeat_policy === IRepeatKaaz::$POLICY_MONTHLY || $repeat_policy === IRepeatKaaz::$POLICY_YEARLY) {
+            if (empty($start_day)) {
+                $this->errors['start_day'] = __('Please provide a start day', 'plugin-dev');
+            } elseif (intval($start_day) <= 0 || intval($start_day) > 31) {
+                $this->errors['end_time'] = __('Please provide correct start day', 'plugin-dev');
+            }
+
+            if (empty($end_day)) {
+                $this->errors['end_day'] = __('Please provide a end day', 'plugin-dev');
+            } elseif (intval($end_day) <= 0 || intval($end_day) > 31) {
+                $this->errors['end_day'] = __('Please provide correct end day', 'plugin-dev');
+            }
         }
 
         $args = [
