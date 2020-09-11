@@ -5,6 +5,9 @@ namespace Amar\kaaz\API;
 use WP_REST_Controller;
 use WP_REST_Server;
 
+/**
+ * Home controller class
+ */
 class HomeController extends WP_REST_Controller
 {
 
