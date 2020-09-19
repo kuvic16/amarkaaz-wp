@@ -141,7 +141,7 @@ class RepeatKaazController
         if ($repeat_policy === IRepeatKaaz::$POLICY_YEARLY) {
             if (empty($start_month)) {
                 $this->errors['start_month'] = __('Please provide a start month', 'plugin-dev');
-            } elseif (intval($start_day) <= 0 || intval($start_day) > 31) {
+            } elseif (intval($start_month) <= 0 || intval($start_month) > 31) {
                 $this->errors['end_time'] = __('Please provide correct start day', 'plugin-dev');
             }
 
