@@ -113,7 +113,7 @@
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
-              <option v-for="month in months" v-text="month"></option>
+              <option v-for="(month, key) in months" :value="key">{{month}}</option>
             </select>
           </div>
         </div>
@@ -170,7 +170,7 @@
               class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
             >
-              <option v-for="month in months" v-text="month"></option>
+              <option v-for="(month, key) in months" :value="key">{{month}}</option>
             </select>
           </div>
         </div>
@@ -281,27 +281,27 @@ export default {
         tags: "",
         type: "nice_have",
         repeat_policy: "daily",
-        start_month: moment().format("MMMM"),
+        start_month: parseInt(moment().format("M")),
         start_day: moment().format("D"),
         start_time: moment().format("hh:mm A"),
-        end_month: moment().format("MMMM"),
+        end_month: parseInt(moment().format("M")),
         end_day: moment().format("D"),
         end_time: moment().format("hh:mm A"),
       }),
-      months: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ],
+      months: {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December",
+      },
       days: [],
       start_times: [],
       end_times: [],
@@ -317,7 +317,7 @@ export default {
      * @return {void}
      */
     generateDaysOfMonth(month) {
-      this.populateDays(moment(month, "MMMM").daysInMonth());
+      this.populateDays(moment(month, "M").daysInMonth());
     },
 
     /**
@@ -487,6 +487,7 @@ export default {
       //console.log("end day: " + this.repeat_kaaz.end_day);
       //console.log("start day: " + this.repeat_kaaz.start_day);
       //console.log("repeat policy: " + this.repeat_kaaz.repeat_policy);
+      console.log("start month: " + this.repeat_kaaz.start_month);
 
       if (
         this.repeat_kaaz.repeat_policy == "yearly" &&

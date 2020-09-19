@@ -141,19 +141,28 @@ class RepeatKaazController
         if ($repeat_policy === IRepeatKaaz::$POLICY_YEARLY) {
             if (empty($start_month)) {
                 $this->errors['start_month'] = __('Please provide a start month', 'plugin-dev');
-            } elseif (intval($start_month) <= 0 || intval($start_month) > 31) {
-                $this->errors['end_time'] = __('Please provide correct start day', 'plugin-dev');
+            } elseif (intval($start_month) <= 0 || intval($start_month) > 12) {
+                $this->errors['start_month'] = __('Please provide correct start month', 'plugin-dev');
             }
 
-            if (empty($end_day)) {
-                $this->errors['end_day'] = __('Please provide a end day', 'plugin-dev');
-            } elseif (intval($end_day) <= 0 || intval($end_day) > 31) {
-                $this->errors['end_day'] = __('Please provide correct end day', 'plugin-dev');
+            if (empty($end_month)) {
+                $this->errors['end_month'] = __('Please provide a end month', 'plugin-dev');
+            } elseif (intval($end_month) <= 0 || intval($end_month) > 12) {
+                $this->errors['end_month'] = __('Please provide correct end month', 'plugin-dev');
             }
         }
 
         $args = [
-            'name' => $name,
+            'id'            => intval($id),
+            'name'          => $name,
+            'type'          => $type,
+            'repeat_policy' => $repeat_policy,
+            'start_month'   => intval($start_month),
+            'start_day'     => intval($start_day),
+            'start_time'    => $start_time,
+            'end_month'     => intval($end_month),
+            'end_day'       => intval($end_day),
+            'end_time'      => $end_time
         ];
 
         return [
