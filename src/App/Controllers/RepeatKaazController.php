@@ -49,6 +49,9 @@ class RepeatKaazController
             ]);
         }
 
+        // save repeat into database
+
+
 
 
         Response::success([
