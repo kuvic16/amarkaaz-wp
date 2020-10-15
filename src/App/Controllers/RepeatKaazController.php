@@ -7,6 +7,7 @@ use Amar\Kaaz\App\Services\DB;
 use Amar\Kaaz\App\Services\RepeatKaazService;
 use Amar\Kaaz\Core\Request;
 use Amar\Kaaz\Core\Response;
+use Exception;
 
 /**
  * Rpeat kaaz controller class
@@ -54,7 +55,12 @@ class RepeatKaazController
 
         // save repeat into database
         // construct the data
-
+        try{
+            $this->repeat_kaaz_service->create($result['args']);
+        } catch(Exception $ex) {
+            
+        }
+        
 
 
         Response::success([
