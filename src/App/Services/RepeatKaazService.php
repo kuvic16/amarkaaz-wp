@@ -8,104 +8,18 @@ namespace Amar\Kaaz\App\Services;
 class RepeatKaazService
 {
     /**
-     * Table name to operate database functions
-     * 
+     * Respected table name of the service
      * @var string
      */
-    protected $table_name;
-
+    protected static $table = "repeat_kaazs";
     /**
-     * Initialize the DB class
-     * 
-     * @param string $table_name
+     * Service class constructor
      */
-    public static function table($table_name)
+    public function __construct()
     {
-        static $instance = false;
-        if (!$instance) {
-            $instance = new self();
-        }
-        $instance->table_name = $table_name;
-        return $instance;
+        
     }
-
-    /**
-     * Get list of rows
-     * 
-     * @param array $args['number', 'offset', 'orderby', 'order']
-     * 
-     * @return array
-     * 
-     */
-    public function get($args = [])
-    {
-        global $wpdb;
-
-        $defaults = [
-            'number'  => 20,
-            'offset'  => 0,
-            'orderby' => 'id',
-            'order'   => 'ASC'
-        ];
-
-        $args = wp_parse_args($args, $defaults);
-        $items = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * from {$wpdb->prefix}{$this->table_name}
-            ORDER BY {$args['orderby']} {$args['order']}
-            LIMIT %d, %d",
-                $args['offset'],
-                $args['number']
-            )
-        );
-
-        return $items;
-    }
-
-    /**
-     * Get the count of total rows
-     * 
-     * @return int
-     */
-    function count()
-    {
-        global $wpdb;
-        return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
-    }
-
-    /**
-     * Fetch a single row
-     * 
-     * @param int $id
-     * 
-     * @return object
-     */
-    function detail($id)
-    {
-        global $wpdb;
-        return $wpdb->get_row(
-            $wpdb->prepare("SELECT *FROM {$wpdb->prefix}{$this->table_name} WHERE id=%d", $id)
-        );
-    }
-
-    /**
-     * Delete an row
-     * 
-     * @param int $id
-     * 
-     * @return int|boolean
-     */
-    function delete($id)
-    {
-        global $wpdb;
-
-        return $wpdb->delete(
-            $wpdb->prefix . $this->table_name,
-            ['id' => $id],
-            ['%d']
-        );
-    }
-
+    
     /**
      * Create or Update the records
      * 
@@ -116,13 +30,6 @@ class RepeatKaazService
     function save($args = [])
     {
         global $wpdb;
-
-        if (empty($args['name'])) {
-            return new \WP_Error(
-                'no-name',
-                __('You must provide a name', 'plugin-dev')
-            );
-        }
 
         $defaults = [
             'created_by' => get_current_user_id(),
@@ -135,7 +42,7 @@ class RepeatKaazService
             $id = $data['id'];
             unset($data['id']);
             $updated = $wpdb->update(
-                $wpdb->prefix . 'pd_addresses',
+                $wpdb->prefix . self::$table,
                 $data,
                 ['id' => $id],
                 [
@@ -150,7 +57,7 @@ class RepeatKaazService
             return $updated;
         } else {
             $inserted = $wpdb->insert(
-                "{$wpdb->prefix}pd_addresses",
+                $wpdb->prefix . self::$table,
                 $data,
                 [
                     '%s',
@@ -164,7 +71,7 @@ class RepeatKaazService
             if (!$inserted) {
                 return new \WP_Error(
                     'failed-to-insert',
-                    __('Failed to insert data', 'plugin-dev')
+                    __('Failed to insert data', 'amar-kaaz')
                 );
             }
         }

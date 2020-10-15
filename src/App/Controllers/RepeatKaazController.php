@@ -13,6 +13,7 @@ use Amar\Kaaz\Core\Response;
  */
 class RepeatKaazController
 {
+    protected $repeat_kaaz_service;
 
     /**
      * Class contstructor
@@ -24,6 +25,8 @@ class RepeatKaazController
                 'message' => __('You are not authorized!', 'amar-kaaz')
             ]);
         }
+
+        $this->repeat_kaaz_service = new RepeatKaazService();
     }
 
     /**
