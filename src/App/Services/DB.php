@@ -50,18 +50,20 @@ class DB
      * @param array $args
      * @return object
      */
-    public function finBy($args)
+    public function find_by($args)
     {
-        $params = [];
-        $where = [];
+        $params_array = [];
+        $where_array = [];
         foreach($args as $key => $value) {
-            array_push($params, $value);
-
+            array_push($params_array, $value);
+            array_push($where_array, "$key = " . $this->get_type($value));
         }
+
+        $where = implode(" and ", $where_array);
 
         global $wpdb;
         return $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id = %d", $id)
+            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $params_array)
         );
     }
 
@@ -72,7 +74,7 @@ class DB
      * @param obj $data
      * @return string
      */
-    public function getType($data) {
+    public function get_type($data) {
         $type = gettype($data);
         if($type === 'integer') return '%d';
         if($type === 'double')  return '%f';

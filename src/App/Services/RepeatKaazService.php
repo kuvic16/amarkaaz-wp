@@ -30,6 +30,13 @@ class RepeatKaazService
     function create($args = [])
     {
         var_dump($args);
+
+        $list = DB::table('amrkz_repeat_kaazs')->find_by([
+               'name' => $args['name'],
+
+            ]);
+        var_dump($list);
+
         die;
         global $wpdb;
 
