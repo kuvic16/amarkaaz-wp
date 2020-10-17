@@ -16,6 +16,27 @@ class DB
     protected $table_name;
 
     /**
+     * Params array
+     * 
+     * @var array
+     */
+    protected $params_array;
+
+    /**
+     * Where array
+     * 
+     * @var array
+     */
+    protected $where_array;
+
+    /**
+     * Select array
+     * 
+     * @var array
+     */
+    protected $select_array;
+
+    /**
      * Initialize the DB class
      * 
      * @param string $table_name
@@ -27,8 +48,75 @@ class DB
             $instance = new self();
         }
         $instance->table_name = $table_name;
+        $instance->clear();
         return $instance;
     }
+
+    /**
+     * Clear all the parameters those are used to every query
+     * 
+     * @return void
+     */
+    private function clear()
+    {
+        $this->params_array = [];
+        $this->where_array = [];
+        $this->select_array = [];
+    } 
+
+    /**
+     * Set the where and param values
+     * 
+     * @param array $args
+     * @return 
+     */
+    public function where($args)
+    {
+        foreach($args as $key => $value) {
+            array_push($this->params_array, $value);
+            array_push($this->where_array, "$key = " . $this->get_type($value));
+        }
+        return $this;
+    }
+
+    /**
+     * Set the select columns into array
+     * 
+     * @param array $args
+     * @return null
+     */
+    public function select($args = [])
+    {
+        foreach($args as $value) {
+            array_push($this->select_array, $value);
+        }   
+        return $this;
+    }
+
+    /**
+     * Find the first row
+     * 
+     * @return object
+     */
+    public function first()
+    {
+        $where = "";
+        if(count($this->where_array) > 0) {
+            $where = implode(" and ", $this->where_array);
+        }
+        
+        $select = "*";
+        if(count($this->select_array) > 0) {
+            $select = implode(" , ", $this->select_array);
+        }
+        
+        global $wpdb;
+        return $wpdb->get_row(
+            $wpdb->prepare("SELECT $select FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $this->params_array)
+        );
+        return $this;
+    }
+    
 
     /**
      * Find by id

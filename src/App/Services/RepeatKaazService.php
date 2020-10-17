@@ -3,7 +3,7 @@
 namespace Amar\Kaaz\App\Services;
 
 /**
- * Repeat kaaz service interface
+ * Repeat kaaz service
  */
 class RepeatKaazService
 {
@@ -11,7 +11,7 @@ class RepeatKaazService
      * Respected table name of the service
      * @var string
      */
-    protected static $table = "repeat_kaazs";
+    protected static $table_name = "amrkz_repeat_kaazs";
     /**
      * Service class constructor
      */
@@ -29,12 +29,12 @@ class RepeatKaazService
      */
     function create($args = [])
     {
-        var_dump($args);
+        //var_dump($args);
 
-        $list = DB::table('amrkz_repeat_kaazs')->find_by([
-               'name' => $args['name'],
-
-            ]);
+        $list = DB::table(self::$table_name)
+                ->where([
+                    'name' => $args['name']
+                ])->first();
         var_dump($list);
 
         die;
