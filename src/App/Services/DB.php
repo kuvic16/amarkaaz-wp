@@ -31,6 +31,57 @@ class DB
     }
 
     /**
+     * Find by id
+     * 
+     * @param int $id
+     * @return object
+     */
+    function finById($id)
+    {
+        global $wpdb;
+        return $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id = %d", $id)
+        );
+    }
+
+    /**
+     * Find by id
+     * 
+     * @param array $args
+     * @return object
+     */
+    public function finBy($args)
+    {
+        $params = [];
+        $where = [];
+        foreach($args as $key => $value) {
+            array_push($params, $value);
+
+        }
+
+        global $wpdb;
+        return $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id = %d", $id)
+        );
+    }
+
+
+    /**
+     * Get mysql data type based on data 
+     * 
+     * @param obj $data
+     * @return string
+     */
+    public function getType($data) {
+        $type = gettype($data);
+        if($type === 'integer') return '%d';
+        if($type === 'double')  return '%f';
+        else return '%s';
+    }
+
+
+
+    /**
      * Get list of rows
      * 
      * @param array $args['number', 'offset', 'orderby', 'order']
@@ -85,7 +136,7 @@ class DB
     {
         global $wpdb;
         return $wpdb->get_row(
-            $wpdb->prepare("SELECT *FROM {$wpdb->prefix}{$this->table_name} WHERE id=%d", $id)
+            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id=%d", $id)
         );
     }
 
