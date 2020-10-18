@@ -11,7 +11,7 @@ class KaazTypeService
      * Respected table name of the service
      * @var string
      */
-    protected static $table_name = "repeat_kaazs";
+    protected static $table_name = "amrkz_kaaz_types";
     
     /**
      * Service class constructor

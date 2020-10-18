@@ -27,7 +27,7 @@ class RepeatKaazController
      * 
      * @var App\Services\KaazTypeService $kaaz_type_service
      */
-    protected $kaaz_type_serice;
+    protected $kaaz_type_service;
 
     /**
      * Class contstructor
@@ -41,7 +41,7 @@ class RepeatKaazController
         }
 
         $this->repeat_kaaz_service = new RepeatKaazService();
-        $this->kaaz_type_serice = new KaazTypeService();
+        $this->kaaz_type_service = new KaazTypeService();
     }
 
     /**
@@ -51,7 +51,10 @@ class RepeatKaazController
      */
     public function init()
     {
-
+        $kaaz_type_list = $this->kaaz_type_service->get_all();
+        Response::success([
+            'kaaz_type_list' => $kaaz_type_list
+        ]);
     }
 
     /**

@@ -274,6 +274,14 @@ export default {
     var amPm = moment().format("a");
     this.getPossibleCurrentTime(hour, minute, amPm);
   },
+  created() {
+    axios
+      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/init")
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data.data.kaaz_type_list[0].name);
+      });
+  },
   data: function () {
     return {
       repeat_kaaz: new Form({
