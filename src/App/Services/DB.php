@@ -169,6 +169,34 @@ class DB
         else return '%s';
     }
 
+    /**
+     * Get list of all rows
+     * 
+     * @param array $args['orderby', 'order']
+     * 
+     * @return array
+     * 
+     */
+    public function get_all($args = [])
+    {
+        global $wpdb;
+
+        $defaults = [
+            'orderby' => 'id',
+            'order'   => 'ASC'
+        ];
+
+        $args = wp_parse_args($args, $defaults);
+        $items = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT * from {$wpdb->prefix}{$this->table_name}
+                ORDER BY {$args['orderby']} {$args['order']}"
+            )
+        );
+
+        return $items;
+    }
+
 
 
     /**

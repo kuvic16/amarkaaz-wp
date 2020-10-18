@@ -4,6 +4,7 @@ namespace Amar\Kaaz\App\Controllers;
 
 use Amar\Kaaz\App\Constants\IRepeatKaaz;
 use Amar\Kaaz\App\Services\DB;
+use Amar\Kaaz\App\Services\KaazTypeService;
 use Amar\Kaaz\App\Services\RepeatKaazService;
 use Amar\Kaaz\Core\Request;
 use Amar\Kaaz\Core\Response;
@@ -14,7 +15,19 @@ use Exception;
  */
 class RepeatKaazController
 {
+    /**
+     * Repeat kaaz service
+     * 
+     * @var App\Services\RepeatKaazService $repeat_kaaz_service
+     */
     protected $repeat_kaaz_service;
+
+    /**
+     * Repeat kaaz service
+     * 
+     * @var App\Services\KaazTypeService $kaaz_type_service
+     */
+    protected $kaaz_type_serice;
 
     /**
      * Class contstructor
@@ -28,6 +41,17 @@ class RepeatKaazController
         }
 
         $this->repeat_kaaz_service = new RepeatKaazService();
+        $this->kaaz_type_serice = new KaazTypeService();
+    }
+
+    /**
+     * Get the all initial data require for RepeatKaaz page
+     * 
+     * @return obj
+     */
+    public function init()
+    {
+
     }
 
     /**

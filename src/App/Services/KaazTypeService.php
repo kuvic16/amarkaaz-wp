@@ -20,9 +20,20 @@ class KaazTypeService
     {
     }
 
+    public function get_all()
+    {
+        return DB::table(self::$table_name)->get_all(['orderby' => 'name', 'order' => 'asc']);
+    }
+
+    /**
+     * Find by name
+     * 
+     * @param string $name
+     * @return obj
+     */
     public function find_by_name($name)
     {
-        DB::table(self::$table_name)->find_by(['name' => $name]);
+        return DB::table(self::$table_name)->where(['name' => $name])->first();
     }
     
     
