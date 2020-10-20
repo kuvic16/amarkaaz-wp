@@ -53,6 +53,9 @@ class RepeatKaazService
             unset($data['id']);
         }
 
+        var_dump($data);
+        die;
+
         $inserted = $wpdb->insert(
             $wpdb->prefix . self::$table,
             $data,
