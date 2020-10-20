@@ -109,18 +109,18 @@ class RepeatKaazController
 
     protected function validate($request)
     {
-        $id = isset($request['id']) ? intval($request['id']) : 0;
-        $name = isset($request['name']) ? sanitize_text_field($request['name']) : '';
-        $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
+        $id            = isset($request['id']) ? intval($request['id']) : 0;
+        $name          = isset($request['name']) ? sanitize_text_field($request['name']) : '';
+        $kaaz_type_id  = isset($request['type_id']) ? intval($request['type_id']) : 0;
         $repeat_policy = isset($request['repeat_policy']) ? sanitize_text_field($request['repeat_policy']) : '';
 
-        $start_month = isset($request['start_month']) ? sanitize_text_field($request['start_month']) : '';
-        $start_day = isset($request['start_day']) ? sanitize_text_field($request['start_day']) : '';
-        $start_time = isset($request['start_time']) ? sanitize_text_field($request['start_time']) : '';
+        $start_month   = isset($request['start_month']) ? sanitize_text_field($request['start_month']) : '';
+        $start_day     = isset($request['start_day']) ? sanitize_text_field($request['start_day']) : '';
+        $start_time    = isset($request['start_time']) ? sanitize_text_field($request['start_time']) : '';
 
-        $end_month = isset($request['end_month']) ? sanitize_text_field($request['end_month']) : '';
-        $end_day = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
-        $end_time = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
+        $end_month     = isset($request['end_month']) ? sanitize_text_field($request['end_month']) : '';
+        $end_day       = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
+        $end_time      = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
 
         $this->errors = [];
         if (empty($name)) {
@@ -194,7 +194,7 @@ class RepeatKaazController
         $args = [
             'id'            => intval($id),
             'name'          => $name,
-            'type'          => $type,
+            'kaaz_type_id'  => intval($kaaz_type_id),
             'repeat_policy' => $repeat_policy,
             'start_month'   => intval($start_month),
             'start_day'     => intval($start_day),
