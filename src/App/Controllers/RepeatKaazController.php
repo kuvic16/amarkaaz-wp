@@ -66,12 +66,14 @@ class RepeatKaazController
     {
         $request = Request::json();
 
+        // Nonce verification
         if (!wp_verify_nonce($request['_wpnonce'], 'amar-kaaz-admin-nonce')) {
             Response::error([
                 'message' => __('Nonce verification failed!', 'amar-kaaz')
             ]);
         }
 
+        // request validation
         $result = $this->validate($request);
         if (count($result['errors']) > 0) {
             Response::error([
@@ -80,13 +82,16 @@ class RepeatKaazController
             ]);
         }
 
-        // save repeat into database
-        // construct the data
+        // save the request
         try{
             $this->repeat_kaaz_service->create($result['args']);
-        } catch(Exception $ex) {
-            
+        } 
+        catch(Exception $ex) {
+            Response::error([
+                'message' => $ex->getMessage()
+            ]);
         }
+        
         
 
 
@@ -127,10 +132,8 @@ class RepeatKaazController
             $this->errors['name'] = __('Please provide a name', 'amar-kaaz');
         }
 
-        if (empty($type)) {
-            $this->errors['type'] = __('Please provide a type', 'plugin-dev');
-        } elseif (!in_array($type, [IRepeatKaaz::$TYPE_NICE_HAVE, IRepeatKaaz::$TYPE_MUST_HAVE])) {
-            $this->errors['type'] = __('Please provide a correct type', 'plugin-dev');
+        if (empty($kaaz_type_id)) {
+            $this->errors['kaaz_type_id'] = __('Please provide a type', 'plugin-dev');
         }
 
         if (empty($repeat_policy)) {

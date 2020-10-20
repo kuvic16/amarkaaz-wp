@@ -7,10 +7,9 @@ use Exception;
 /**
  * Already exist exception
  */
-class AlreadyExistException extends ServiceException
+class AlreadyExistException extends Exception
 {
-    public function __construct()
-    {
-        parent::__construct(__('Already exist!', 'amar-kaaz'));
+    public function errorMessage() {
+        return "test";
     }
 }

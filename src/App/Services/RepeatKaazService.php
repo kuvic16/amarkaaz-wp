@@ -2,6 +2,10 @@
 
 namespace Amar\Kaaz\App\Services;
 
+use Amar\Kaaz\App\Controllers\AlreadyExistException;
+use Amar\Kaaz\App\Controllers\ServiceException;
+use Exception;
+
 /**
  * Repeat kaaz service
  */
@@ -29,16 +33,12 @@ class RepeatKaazService
      */
     function create($args = [])
     {
-        //var_dump($args);
-
-        $list = DB::table(self::$table_name)
-                ->where([
-                    'name' => $args['name']
-                ])->first();
-        var_dump($list);
-
-        die;
-        global $wpdb;
+        $exist = DB::table(self::$table_name)
+                ->where(['name' => $args['name']])->first();
+        
+        if($exist) {
+            throw new Exception(__('Already exist!', 'amar-kaaz'));
+        }
 
         $defaults = [
             'created_by' => get_current_user_id(),
