@@ -51,32 +51,15 @@
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-task-type"
           >Type</label>
-          <div>
-            <label>
-              <input
-                value="nice_have"
-                v-model="repeat_kaaz.type"
-                class
-                id="grid-city"
-                type="radio"
-                name="task-type"
-              />
-              Nice to have
-            </label>
-          </div>
-          <div class="mt-2">
-            <label>
-              <input
-                value="must_have"
-                v-model="repeat_kaaz.type"
-                class
-                id="grid-city"
-                type="radio"
-                name="task-type"
-              />
-              Must have
-            </label>
-          </div>
+          <div class="relative">
+            <select
+              v-model="repeat_kaaz.type_id"
+              class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+            >
+              <option v-for="kaaz_type in kaaz_type_list" v-bind:value="kaaz_type.id" v-text="kaaz_type.name"></option>            
+            </select>
+          </div>          
         </div>
         <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4">
           <label
@@ -272,14 +255,18 @@ export default {
     var minute = parseInt(moment().format("mm"));
     var hour = parseInt(moment().format("hh"));
     var amPm = moment().format("a");
-    this.getPossibleCurrentTime(hour, minute, amPm);
+    this.getPossibleCurrentTime(hour, minute, amPm);    
   },
   created() {
     axios
       .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/init")
       .then((response) => response.data)
       .then((data) => {
-        console.log(data.data.kaaz_type_list[0].name);
+        this.kaaz_type_list = data.data.kaaz_type_list;
+        if(this.kaaz_type_list.length > 0) {
+          this.repeat_kaaz.type_id = this.kaaz_type_list[0].id;
+          console.log(this.type_id);
+        }
       });
   },
   data: function () {
@@ -287,7 +274,7 @@ export default {
       repeat_kaaz: new Form({
         name: "",
         tags: "",
-        type: "nice_have",
+        type_id: "0",
         repeat_policy: "daily",
         start_month: parseInt(moment().format("M")),
         start_day: moment().format("D"),
@@ -315,6 +302,7 @@ export default {
       end_times: [],
       token: "",
       message: "",
+      kaaz_type_list: []
     };
   },
   methods: {
