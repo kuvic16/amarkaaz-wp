@@ -22,8 +22,10 @@ class Router
      * @var array
      */
     public $routes = [
-        'GET'  => [],
-        'POST' => []
+        'GET'    => [],
+        'POST'   => [],
+        'PUT'    => [],
+        'DELETE' => [],
     ];
 
     /**
@@ -77,6 +79,32 @@ class Router
     public function post($uri, $controller)
     {
         $this->routes['POST'][$uri] = $controller;
+    }
+
+    /**
+     * Set put request uri
+     * 
+     * @param string $uri
+     * @param string $controller
+     * 
+     * @return void
+     */
+    public function put($uri, $controller)
+    {
+        $this->routes['PUT'][$uri] = $controller;
+    }
+
+    /**
+     * Set delete request uri
+     * 
+     * @param string $uri
+     * @param string $controller
+     * 
+     * @return void
+     */
+    public function delete($uri, $controller)
+    {
+        $this->routes['DELETE'][$uri] = $controller;
     }
 
     /**

@@ -9,20 +9,15 @@ use Exception;
 /**
  * Repeat kaaz service
  */
-class RepeatKaazService
+class RepeatKaazService extends AbstractService
 {
-    /**
-     * Respected table name of the service
-     * @var string
-     */
-    protected static $table_name = "amrkz_repeat_kaazs";
     /**
      * Service class constructor
      */
     public function __construct()
     {
-        
-    }
+        parent::__construct("amrkz_repeat_kaazs");
+    }    
     
     /**
      * Create the repeat_kaazs

@@ -47,13 +47,26 @@ class RepeatKaazController
     /**
      * Get the all initial data require for RepeatKaaz page
      * 
-     * @return obj
+     * @return json
      */
     public function init()
     {
         $kaaz_type_list = $this->kaaz_type_service->get_all();
         Response::success([
             'kaaz_type_list' => $kaaz_type_list
+        ]);
+    }
+
+    /**
+     * Get the list of repeat kaaz
+     * 
+     * @return json
+     */
+    public function list()
+    {
+        $list = $this->repeat_kaaz_service->get_all();
+        Response::success([
+            'repeat_kaaz_list' => $list
         ]);
     }
 

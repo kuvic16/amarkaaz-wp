@@ -258,16 +258,8 @@ export default {
     this.getPossibleCurrentTime(hour, minute, amPm);    
   },
   created() {
-    axios
-      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/init")
-      .then((response) => response.data)
-      .then((data) => {
-        this.kaaz_type_list = data.data.kaaz_type_list;
-        if(this.kaaz_type_list.length > 0) {
-          this.repeat_kaaz.type_id = this.kaaz_type_list[0].id;
-          console.log(this.type_id);
-        }
-      });
+    this.loadInitData();
+    this.gitList();
   },
   data: function () {
     return {
@@ -564,6 +556,36 @@ export default {
       //console.log(this.repeat_kaaz);
     },
 
+    /**
+     * Load init repeat kaaz data
+     */
+    loadInitData() {
+      axios
+      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/init")
+      .then((response) => response.data)
+      .then((data) => {
+        this.kaaz_type_list = data.data.kaaz_type_list;
+        if(this.kaaz_type_list.length > 0) {
+          this.repeat_kaaz.type_id = this.kaaz_type_list[0].id;
+        }
+      });
+    },
+
+    /**
+     * Get the list of repeat kaaz
+     */
+    gitList() {
+      axios
+      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+      });
+    },
+
+    /**
+     * Save the new repeat kaaz
+     */
     onSubmit() {
       this.repeat_kaaz
         .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
