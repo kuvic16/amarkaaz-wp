@@ -47,34 +47,17 @@ class RepeatKaazService
             'updated_at' => current_time('mysql')
         ];
 
-
         $data = wp_parse_args($args, $defaults);
         if (isset($data['id'])) {
             unset($data['id']);
         }
 
-        var_dump($data);
-        die;
+        $id = DB::table(self::$table_name)->create($data);        
 
-        $inserted = $wpdb->insert(
-            $wpdb->prefix . self::$table,
-            $data,
-            [
-                '%s',
-                '%s',
-                '%s',
-                '%d',
-                '%s'
-            ]
-        );
-
-        if (!$inserted) {
-            return new \WP_Error(
-                'failed-to-insert',
-                __('Failed to insert data', 'amar-kaaz')
-            );
+        if ($id === null) {
+            throw new Exception(__('Failed to insert data!', 'amar-kaaz'));            
         }
-        return $wpdb->insert_id;
+        return $id;
     }
 
     /**

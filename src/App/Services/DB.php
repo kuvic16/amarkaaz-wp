@@ -277,68 +277,28 @@ class DB
     }
 
     /**
-     * Create or Update the records
+     * Create the records
      * 
      * @param array $args
      * 
      * @return int|WP_Error
      */
-    function create($args = [])
+    function create($data)
     {
         global $wpdb;
 
-        if (empty($args['name'])) {
-            return new \WP_Error(
-                'no-name',
-                __('You must provide a name', 'plugin-dev')
-            );
-        }
+        $type = [];
+        foreach($data as $key => $value) {
+            array_push($type, $this->get_type($value));
+        }        
 
-        $defaults = [
-            'created_by' => get_current_user_id(),
-            'created_at' => current_time('mysql')
-        ];
+        $inserted = $wpdb->insert(
+            $wpdb->prefix . $this->table_name,
+            $data,
+            $type
+        );
 
-
-        $data = wp_parse_args($args, $defaults);
-        if (isset($data['id'])) {
-            $id = $data['id'];
-            unset($data['id']);
-            $updated = $wpdb->update(
-                $wpdb->prefix . 'pd_addresses',
-                $data,
-                ['id' => $id],
-                [
-                    '%s',
-                    '%s',
-                    '%s',
-                    '%d',
-                    '%s'
-                ],
-                ['%d']
-            );
-            return $updated;
-        } else {
-            $inserted = $wpdb->insert(
-                "{$wpdb->prefix}pd_addresses",
-                $data,
-                [
-                    '%s',
-                    '%s',
-                    '%s',
-                    '%d',
-                    '%s'
-                ]
-            );
-
-            if (!$inserted) {
-                return new \WP_Error(
-                    'failed-to-insert',
-                    __('Failed to insert data', 'plugin-dev')
-                );
-            }
-        }
-        return $wpdb->insert_id;
+        return $inserted ? $wpdb->insert_id : null;
     }
 
     /**

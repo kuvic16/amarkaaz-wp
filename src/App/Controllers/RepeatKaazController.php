@@ -85,15 +85,11 @@ class RepeatKaazController
         // save the request
         try{
             $this->repeat_kaaz_service->create($result['args']);
-        } 
-        catch(Exception $ex) {
+        } catch(Exception $ex) {
             Response::error([
                 'message' => $ex->getMessage()
             ]);
         }
-        
-        
-
 
         Response::success([
             'message' => __('Dashboard api completed store', 'amar-kaaz')
