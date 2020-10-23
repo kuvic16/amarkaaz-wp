@@ -238,6 +238,7 @@ import Form from "../core/Form.js";
 
 export default {
   mounted() {
+    //this.repeat_kaaz = this.new_repeat_kaaz_form();
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
     var minute = parseInt(moment().format("mm"));
@@ -287,6 +288,21 @@ export default {
     };
   },
   methods: {
+    new_repeat_kaaz_form() {
+      this.repeat_kaaz = new Form({
+        name: "",
+        tags: "",
+        type_id: "0",
+        repeat_policy: "daily",
+        start_month: parseInt(moment().format("M")),
+        start_day: moment().format("D"),
+        start_time: moment().format("hh:mm A"),
+        end_month: parseInt(moment().format("M")),
+        end_day: moment().format("D"),
+        end_time: moment().format("hh:mm A"),
+      });
+    },
+
     /**
      * Generate days list of specific month using moment
      *
@@ -581,7 +597,7 @@ export default {
         .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
           this.getList();
-          this.repeat_kaaz.reset();
+          this.new_repeat_kaaz_form();
         })
         .catch((errors) => console.log(errors));
     },
