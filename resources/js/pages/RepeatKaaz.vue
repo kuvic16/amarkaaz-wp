@@ -218,24 +218,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="border px-4 py-2">Fazar</td>
-                <td class="border px-4 py-2">Daily</td>
-                <td class="border px-4 py-2">4:00 AM</td>
-                <td class="border px-4 py-2">4:30 AM</td>
-              </tr>
-              <tr class="bg-gray-100">
-                <td class="border px-4 py-2">Johor</td>
-                <td class="border px-4 py-2">Weekend</td>
-                <td class="border px-4 py-2">1:00 PM</td>
-                <td class="border px-4 py-2">2:00 PM</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2">Asor</td>
-                <td class="border px-4 py-2">Weekday</td>
-                <td class="border px-4 py-2">4:00 PM</td>
-                <td class="border px-4 py-2">5:00 PM</td>
-              </tr>
+              <tr v-for="rk in repeat_kaaz_list">
+                <td class="border px-4 py-2">{{rk.name}}</td>
+                <td class="border px-4 py-2">{{rk.repeat_policy}}</td>
+                <td class="border px-4 py-2">{{rk.start_time}}</td>
+                <td class="border px-4 py-2">{{rk.end_time}}</td>
+              </tr>              
             </tbody>
           </table>
         </div>
@@ -259,7 +247,7 @@ export default {
   },
   created() {
     this.loadInitData();
-    this.gitList();
+    this.getList();
   },
   data: function () {
     return {
@@ -294,7 +282,8 @@ export default {
       end_times: [],
       token: "",
       message: "",
-      kaaz_type_list: []
+      kaaz_type_list: [],
+      repeat_kaaz_list: [],
     };
   },
   methods: {
@@ -574,12 +563,13 @@ export default {
     /**
      * Get the list of repeat kaaz
      */
-    gitList() {
+    getList() {
       axios
       .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
+        this.repeat_kaaz_list = data.data.repeat_kaaz_list;
       });
     },
 
@@ -589,7 +579,10 @@ export default {
     onSubmit() {
       this.repeat_kaaz
         .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
-        .then((data) => console.log(data))
+        .then((data) => {
+          this.getList();
+          this.repeat_kaaz.reset();
+        })
         .catch((errors) => console.log(errors));
     },
   },
