@@ -197,6 +197,22 @@ class DB
         return $items;
     }
 
+    /**
+     * Execute get query
+     * 
+     * @param array $query
+     * @param array $params
+     * @return array|null
+     */
+    public function get_query($query, $params)
+    {
+        global $wpdb;
+
+        return $wpdb->get_results(
+            $wpdb->prepare($query, $params)
+        );
+    }
+
 
 
     /**

@@ -17,7 +17,18 @@ class RepeatKaazService extends AbstractService
     public function __construct()
     {
         parent::__construct("amrkz_repeat_kaazs");
-    }    
+    }
+
+     /**
+     * Get all the records of repeat kaaz
+     * 
+     * @return array|null
+     */
+    public function get_all()
+    {
+        $query = "";
+        return DB::table(self::$table_name)->get_all();
+    }
     
     /**
      * Create the repeat_kaazs
