@@ -221,8 +221,21 @@
             <div class="px-4 py-5 bg-white sm:p-6">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                  <label for="city" class="block text-sm font-medium leading-5 text-gray-700">City</label>
-                  <input id="city" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                  <label for="task-name" class="block text-sm font-medium leading-5 text-gray-700">Task Name</label>
+                  <input id="task-name" 
+                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                    placeholder="Ex. Exercise"
+                    v-model="repeat_kaaz.name"
+                    required
+                    >
+                  <!-- <input
+                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                    id="task-name"
+                    type="text"
+                    placeholder="Ex. Exercise"
+                    v-model="repeat_kaaz.name"
+                    required
+                  /> -->
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -237,9 +250,9 @@
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+              <router-link to="/repeat-kaaz" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 shadow-sm hover:bg-gray-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
                 Cancel
-              </button>
+              </router-link>
               <button class="ml-2 py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
                 Save
               </button>
