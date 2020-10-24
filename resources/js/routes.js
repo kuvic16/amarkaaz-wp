@@ -2,7 +2,8 @@ import Home from "./pages/Home";
 import TodayKaaz from "./pages/TodayKaaz";
 import PreviousKaaz from "./pages/PreviousKaaz";
 import UpcomingKaaz from "./pages/UpcomingKaaz";
-import RepeatKaaz from "./pages/RepeatKaaz";
+import RepeatKaaz from "./pages/RepeatKaaz/Index";
+import RepeatKaazForm from "./pages/RepeatKaaz/Form";
 import CalenderGraph from "./pages/CalenderGraph";
 import Insight from "./pages/Insight";
 import KaazCategory from "./pages/KaazCategory";
@@ -39,6 +40,10 @@ export default {
     {
       path: "/repeat-kaaz",
       component: RepeatKaaz,
+    },
+    {
+      path: "/repeat-kaaz/form",
+      component: RepeatKaazForm,
     },
     {
       path: "/calender-graph",

@@ -1,15 +1,7 @@
 <template>
-  <div :id="name" class="overlay text-left">
-    <!-- <a href="#" class="cancel">X</a> -->
-
-    <div class="modal">
+  <div :id="name" class="form-modal-overlay text-left">
+    <div class="form-modal">
       <slot></slot>
-
-      <footer class="flex mt-8">
-        <slot name="footer"></slot>
-      </footer>
-
-      <!-- <a href="#" class="close">X</a> -->
     </div>
   </div>
 </template>
@@ -21,7 +13,7 @@ export default {
 </script>
 
 <style>
-.overlay {
+.form-modal-overlay {
   visibility: hidden;
   position: absolute;
   top: 0;
@@ -36,36 +28,28 @@ export default {
   opacity: 0;
 }
 
-.overlay:target {
+.form-modal-overlay:target {
   visibility: visible;
   opacity: 1;
 }
 
-.modal {
+.form-modal {
   position: relative;
-  width: 500px;
+  width: 600px;
+  height: 500px;
   max-width: 80%;
   background: white;
   border-radius: 4px;
-  padding: 2.5em;
+  padding: 2px;
   box-shadow: 0 5px 11px rgba(36, 37, 38, 0.08);
+  overflow-y: auto;
 }
 
-.modal .close {
+.form-modal .close {
   position: absolute;
   top: 15px;
   right: 15px;
   color: grey;
   text-decoration: none;
-}
-
-.overlay .cancel {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-footer:empty {
-  display: none;
 }
 </style>

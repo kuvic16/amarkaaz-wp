@@ -10,6 +10,8 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 window.moment = moment;
 
 Vue.use(VueRouter);
+// Vue.component("modal", Modal)
+// Vue.component("form-modal", FormModal)
 
 // make wordpress value as global
 Vue.mixin({
