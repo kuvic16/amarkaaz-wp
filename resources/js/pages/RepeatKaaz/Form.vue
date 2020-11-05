@@ -232,8 +232,14 @@
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                   <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Type</label>
-                  <input id="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                  <div class="px-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4"></div>
+                  <!-- <input id="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"> -->
+                  <select
+                    v-model="repeat_kaaz.type_id"
+                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                    id="grid-state"
+                  >
+                    <option v-for="kaaz_type in kaaz_type_list" v-bind:value="kaaz_type.id" v-text="kaaz_type.name"></option>            
+                  </select>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
