@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <form
+    <form
       class="mt-10"
       @submit.prevent="onSubmit"
       @keydown="repeat_kaaz.errors.clear($event.target.name)"
@@ -199,7 +199,7 @@
           >Save</button>
         </div>
       </div>
-    </form> -->
+    </form>
     
 
     <div class="flex flex-col">
