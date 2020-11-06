@@ -637,6 +637,12 @@ export default {
 </script>
 <style lang="">
   .rk-select{
-    padding: 0px !important;
+    line-height: 16px !important; 
+    padding: 8px 12px 12px 8px !important;
+
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0.375rem !important;
+    color: rgb(68, 68, 68) !important;
+    border-color: rgba(226, 232, 240, var(--border-opacity)) !important;
   }
 </style>
