@@ -235,7 +235,7 @@
                   <!-- <input id="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"> -->
                   <select
                     v-model="repeat_kaaz.type_id"
-                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                    class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                     id="grid-state"
                   >
                     <option v-for="kaaz_type in kaaz_type_list" v-bind:value="kaaz_type.id" v-text="kaaz_type.name"></option>            
@@ -635,3 +635,8 @@ export default {
   },
 };
 </script>
+<style lang="">
+  .rk-select{
+    padding: 0px !important;
+  }
+</style>
