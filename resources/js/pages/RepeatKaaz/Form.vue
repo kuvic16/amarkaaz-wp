@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form
+    <!-- <form
       class="mt-10"
       @submit.prevent="onSubmit"
       @keydown="repeat_kaaz.errors.clear($event.target.name)"
@@ -199,67 +199,161 @@
           >Save</button>
         </div>
       </div>
-    </form>
+    </form> -->
     
+    <form
+      class="mt-10"
+      @submit.prevent="onSubmit"
+      @keydown="repeat_kaaz.errors.clear($event.target.name)"
+    >
+      <div class="flex flex-col">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <div class="px-4 py-5 border-b border-gray-200 sm:px-6 bg-blueviolet">
+                <div class="flex mb-4">
+                  <div class="w-1/2">
+                    <h3 class="text-lg leading-6 font-medium text-white">
+                      New Repeat Task
+                    </h3>
+                    <p class="mt-1 max-w-2xl text-sm leading-5 text-white">
+                      The task you do periodically
+                    </p>
+                  </div>              
+                </div>
+              </div>          
+              <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                    <label for="task-name" class="block text-sm font-medium leading-5 text-gray-700">Task Name</label>
+                    <input id="task-name" 
+                      class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      placeholder="Ex. Exercise"
+                      v-model="repeat_kaaz.name"
+                      required
+                      >                
+                  </div>
 
-    <div class="flex flex-col">
-      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <div class="px-4 py-5 border-b border-gray-200 sm:px-6 bg-blueviolet">
-              <div class="flex mb-4">
-                <div class="w-1/2">
-                  <h3 class="text-lg leading-6 font-medium text-white">
-                    New Repeat Task
-                  </h3>
-                  <p class="mt-1 max-w-2xl text-sm leading-5 text-white">
-                    The task you do periodically
-                  </p>
-                </div>              
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="kaaz-type" class="block text-sm font-medium leading-5 text-gray-700">Type</label>
+                    <select
+                      v-model="repeat_kaaz.type_id"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="kaaz-type"
+                    >
+                      <option v-for="kaaz_type in kaaz_type_list" v-bind:value="kaaz_type.id" v-text="kaaz_type.name"></option>            
+                    </select>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="kaaz-policy" class="block text-sm font-medium leading-5 text-gray-700">Repeat Policy</label>
+                    <select
+                      v-model="repeat_kaaz.repeat_policy"
+                      @change="onPolicyChangeListener($event)"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="kaaz-policy"
+                    >
+                      <option value="weekday">Weekday</option>
+                      <option value="daily">Daily</option>
+                      <option value="weekend">Weekend</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="yearly">Yearly</option>
+                    </select>
+                  </div>
+
+                  <div v-if="repeat_kaaz.repeat_policy == 'yearly'"
+                    class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="start-month" class="block text-sm font-medium leading-5 text-gray-700">Start Month</label>
+                    <select
+                      v-model="repeat_kaaz.start_month"
+                      @change="onStartMonthChangeListener(repeat_kaaz.start_month)"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="start-month"
+                    >
+                      <option v-for="(month, key) in months" :value="key">{{month}}</option>
+                    </select>
+                  </div>
+
+                  <div v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+                    class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="start-day" class="block text-sm font-medium leading-5 text-gray-700">Start Day</label>
+                    <select
+                      v-model="repeat_kaaz.start_day"
+                      @change="onStartDayChangeListener(repeat_kaaz.start_day)"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="start-day"
+                    >
+                      <option v-for="day in days" v-text="day"></option>
+                    </select>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="start-time" class="block text-sm font-medium leading-5 text-gray-700">Start Time</label>
+                    <select
+                      v-model="repeat_kaaz.start_time"
+                      @change="onStartTimeChangeListener()"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="start-time"
+                    >
+                      <option v-for="time in start_times" v-text="time"></option>
+                    </select>
+                  </div>
+
+                  <div v-if="repeat_kaaz.repeat_policy == 'yearly'"
+                    class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="end-month" class="block text-sm font-medium leading-5 text-gray-700">End Month</label>
+                    <select
+                      v-model="repeat_kaaz.end_month"
+                      @change="onEndMonthChangeListener(repeat_kaaz.end_month)"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="end-month"
+                    >
+                      <option v-for="(month, key) in months" :value="key">{{month}}</option>
+                    </select>
+                  </div>
+
+                  <div v-if="repeat_kaaz.repeat_policy == 'yearly' || repeat_kaaz.repeat_policy == 'monthly'"
+                    class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="end-day" class="block text-sm font-medium leading-5 text-gray-700">End Day</label>
+                    <select
+                      v-model="repeat_kaaz.end_day"
+                      @change="onEndDayChangeListener(repeat_kaaz.end_day)"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="end-day"
+                    >
+                      <option v-for="day in days" v-text="day"></option>
+                    </select>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="end-time" class="block text-sm font-medium leading-5 text-gray-700">End Time</label>
+                    <select
+                      v-model="repeat_kaaz.end_time"
+                      @change="onEndTimeChangeListener()"
+                      class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      id="end-time"
+                    >
+                      <option v-for="time in end_times" v-text="time"></option>
+                    </select>
+                  </div>
+
+                </div>
               </div>
-            </div>          
-            <div class="px-4 py-5 bg-white sm:p-6">
-              <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                  <label for="task-name" class="block text-sm font-medium leading-5 text-gray-700">Task Name</label>
-                  <input id="task-name" 
-                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                    placeholder="Ex. Exercise"
-                    v-model="repeat_kaaz.name"
-                    required
-                    >                
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Type</label>
-                  <!-- <input id="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"> -->
-                  <select
-                    v-model="repeat_kaaz.type_id"
-                    class="rk-select mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                    id="grid-state"
-                  >
-                    <option v-for="kaaz_type in kaaz_type_list" v-bind:value="kaaz_type.id" v-text="kaaz_type.name"></option>            
-                  </select>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="postal_code" class="block text-sm font-medium leading-5 text-gray-700">ZIP / Postal</label>
-                  <input id="postal_code" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                </div>
+              <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <router-link to="/repeat-kaaz" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 shadow-sm hover:bg-gray-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+                  Cancel
+                </router-link>
+                <button class="ml-2 py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+                  Save
+                </button>
               </div>
-            </div>
-            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <router-link to="/repeat-kaaz" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 shadow-sm hover:bg-gray-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
-                Cancel
-              </router-link>
-              <button class="ml-2 py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
-                Save
-              </button>
-            </div>
-          </div>      
-        </div>
-      </div>      
-    </div>
+            </div>      
+          </div>
+        </div>      
+      </div>
+    </form>
+
+
   </div>  
 </template>
 
@@ -637,12 +731,16 @@ export default {
 </script>
 <style lang="">
   .rk-select{
-    line-height: 16px !important; 
-    padding: 8px 12px 12px 8px !important;
+    line-height: 20px !important; 
+    padding: 8px 12px 8px 12px !important;
 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
     border-radius: 0.375rem !important;
     color: rgb(68, 68, 68) !important;
     border-color: rgba(226, 232, 240, var(--border-opacity)) !important;
+  }
+
+  .rk-select:focus {
+    border-color: #90cdf4 !important;
   }
 </style>
