@@ -4,12 +4,14 @@ import routes from "./routes";
 import axios from "axios";
 import App from "./App.vue";
 import moment from "moment";
+import ErrorAlert from "./components/alerts/Error";
 
 window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 window.moment = moment;
 
 Vue.use(VueRouter);
+Vue.component("ErrorAlert", ErrorAlert);
 // Vue.component("modal", Modal)
 // Vue.component("form-modal", FormModal)
 
