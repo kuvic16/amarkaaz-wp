@@ -250,7 +250,7 @@
                     </svg>
                   </span>
                 </div> -->
-                <ErrorAlert message="errorMessage" />
+                <ErrorAlert v-if="isError" message="errorMessage" />
                 <div class="grid grid-cols-6 gap-6">
                   <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                     <label
