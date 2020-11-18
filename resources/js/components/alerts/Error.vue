@@ -23,6 +23,9 @@
 
 <script>
 export default {
+  mounted() {
+    console.log("this is just test");
+  },
   props: {
     message: "",
   },
