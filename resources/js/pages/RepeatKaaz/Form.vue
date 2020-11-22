@@ -229,7 +229,7 @@
                 </div>
               </div>
               <div class="px-4 py-5 bg-white sm:p-6">
-                <ErrorAlert v-if="isError" message="errorMessage" />
+                <ErrorAlert v-if="isError" :message="errorMessage" />
                 <div class="grid grid-cols-6 gap-6">
                   <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                     <label
@@ -803,6 +803,7 @@ export default {
           } else {
             this.isError = true;
             this.errorMessage = data.data.message;
+            console.log(this.errorMessage);
           }
         })
         .catch((errors) => console.log(errors));
