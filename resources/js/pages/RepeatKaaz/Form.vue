@@ -793,6 +793,7 @@ export default {
      * Save the new repeat kaaz
      */
     onSubmit() {
+      this.isError = false;
       this.repeat_kaaz
         .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
