@@ -204,7 +204,7 @@ class DB
      * @param array $params
      * @return array|null
      */
-    public function get_query($query, $params)
+    public static function get_query($query, $params)
     {
         global $wpdb;
 

@@ -3,6 +3,7 @@
 namespace Amar\Kaaz\App\Controllers;
 
 use Amar\Kaaz\App\Services\DB;
+use Amar\Kaaz\Core\Response;
 
 /**
  * Home controller class
@@ -21,8 +22,11 @@ class HomeController
      */
     public function dashboard()
     {
-        $list = DB::table('amrkz_kaazs')->get();
-        wp_send_json_success([
+        global $wpdb;
+        $sql = "select * from {$wpdb->prefix}amrkz_kaazs";
+        $param = [];
+        $list = DB::get_query($sql, $param);
+        Response::success([
             'message' => 'Dashboard api completed',
             'list' => $list
         ]);
