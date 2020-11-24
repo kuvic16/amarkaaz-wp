@@ -66,7 +66,7 @@ class RepeatKaazController
     {
         $list = $this->repeat_kaaz_service->get_all();
         Response::success([
-            'repeat_kaaz_list' => []
+            'repeat_kaaz_list' => $list
         ]);
     }
 

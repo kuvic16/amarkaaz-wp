@@ -26,8 +26,9 @@ class RepeatKaazService extends AbstractService
      */
     public function get_all()
     {
+        global $wpdb;
         $table_name = self::$table_name;
-        $sql = "select * from {$table_name}amrkz_kaazs";
+        $sql = "select * from {$wpdb->prefix}{$table_name}";
         $param = [];
         $list = DB::get_query($sql, $param);
         //return DB::table(self::$table_name)->get_all();
