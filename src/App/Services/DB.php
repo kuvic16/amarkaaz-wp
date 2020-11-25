@@ -61,6 +61,19 @@ class DB
     }
 
     /**
+     * Set the inner join table
+     * 
+     * @param string $join_query join table on query
+     * 
+     * @return 
+     */
+    public function inner_join($join_query)
+    {
+        array_push($this->from_array, $join_query);
+        return $this;
+    }
+
+    /**
      * Clear all the parameters those are used to every query
      * 
      * @return void
