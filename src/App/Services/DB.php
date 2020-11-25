@@ -37,6 +37,13 @@ class DB
     protected $select_array;
 
     /**
+     * From array
+     * 
+     * @var array
+     */
+    protected $from_array;
+
+    /**
      * Initialize the DB class
      * 
      * @param string $table_name
@@ -49,6 +56,7 @@ class DB
         }
         $instance->table_name = $table_name;
         $instance->clear();
+        array_push($instance->from_array, $table_name);
         return $instance;
     }
 
@@ -59,9 +67,10 @@ class DB
      */
     private function clear()
     {
+        $this->from_array = [];
         $this->params_array = [];
         $this->where_array = [];
-        $this->select_array = [];
+        $this->select_array = [];        
     } 
 
     /**
