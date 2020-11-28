@@ -7,7 +7,7 @@ namespace Amar\Kaaz\App\Services;
  */
 class DB2
 {
-
+    
     /**
      * Table name to operate database functions
      * 
@@ -37,11 +37,18 @@ class DB2
     protected $select_array;
 
     /**
-     * From array
+     * Inner join array
      * 
      * @var array
      */
-    protected $from_array;
+    protected $inner_join_array;
+
+    /**
+     * Left join array
+     * 
+     * @var array
+     */
+    protected $left_join_array;
 
     /**
      * order by string
@@ -68,22 +75,36 @@ class DB2
         if (!$instance) {
             $instance = new self();
         }
-        $instance->table_name = $table_name;
+        $instance->table_name = $instance->get_table($table_name);
         $instance->clear();
-        array_push($instance->from_array, $table_name);
         return $instance;
+    }
+
+    /**
+     * Get table with wordpress prefix
+     * 
+     * @param string $table_name
+     * 
+     * @return string
+     */
+    private function get_table($table_name) 
+    {
+        global $wpdb;
+        return $wpdb->prefix . $table_name;
     }
 
     /**
      * Set the inner join table
      * 
-     * @param string $join_query join table on query
+     * @param string $join_table_name
+     * @param string $onn_query join table on query
      * 
-     * @return 
+     * @return this
      */
-    public function inner_join($join_query)
+    public function inner_join($join_table_name, $on_query)
     {
-        array_push($this->from_array, $join_query);
+        $join_table = $this->get_table($join_table_name);
+        array_push($this->inner_join_array, $join_table . ' on ' . $on_query);
         return $this;
     }
 
@@ -147,6 +168,14 @@ class DB2
         if(count($this->where_array) > 0) {
             $where = implode(" and ", $this->where_array);
         }
+        
+        //$wpdb->prepare("FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $this->params_array)
+    }
+
+    public function count()
+    {
+        global $wpdb;
+        return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
     }
 
     /**
@@ -309,11 +338,11 @@ class DB2
      * 
      * @return int
      */
-    function count()
-    {
-        global $wpdb;
-        return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
-    }
+    // function count()
+    // {
+    //     global $wpdb;
+    //     return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
+    // }
 
     /**
      * Fetch a single row
