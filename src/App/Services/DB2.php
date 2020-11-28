@@ -65,6 +65,14 @@ class DB2
     protected $group_by;
 
     /**
+     * having string
+     * 
+     * @var string
+     */
+    protected $having;
+    
+
+    /**
      * Initialize the DB class
      * 
      * @param string $table_name
@@ -78,6 +86,21 @@ class DB2
         $instance->table_name = $instance->get_table($table_name);
         $instance->clear();
         return $instance;
+    }
+
+    /**
+     * Clear all the parameters those are used to every query
+     * 
+     * @return void
+     */
+    private function clear()
+    {
+        $this->from_array = [];
+        $this->params_array = [];
+        $this->where_array = [];
+        $this->select_array = [];
+        $this->order_by = "";
+        $this->group_by = "";
     }
 
     /**
@@ -97,7 +120,7 @@ class DB2
      * Set the inner join table
      * 
      * @param string $join_table_name
-     * @param string $onn_query join table on query
+     * @param string $on_query on query
      * 
      * @return this
      */
@@ -109,25 +132,25 @@ class DB2
     }
 
     /**
-     * Clear all the parameters those are used to every query
+     * Set the left join table
      * 
-     * @return void
+     * @param string $join_table_name
+     * @param string $on_query on query
+     * 
+     * @return this
      */
-    private function clear()
+    public function left_join($join_table_name, $on_query)
     {
-        $this->from_array = [];
-        $this->params_array = [];
-        $this->where_array = [];
-        $this->select_array = [];
-        $this->order_by = "";
-        $this->group_by = "";
-    } 
-
+        $join_table = $this->get_table($join_table_name);
+        array_push($this->left_join_array, $join_table . ' on ' . $on_query);
+        return $this;
+    }
+     
     /**
      * Set the where and param values
      * 
      * @param array $args
-     * @return 
+     * @return this
      */
     public function where($args)
     {
@@ -142,7 +165,7 @@ class DB2
      * Set the select columns into array
      * 
      * @param array $args
-     * @return null
+     * @return this
      */
     public function select($args = [])
     {
