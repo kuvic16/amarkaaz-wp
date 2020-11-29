@@ -175,6 +175,17 @@ class DB2
         return $this;
     }
 
+    /**
+     * Set the group by query
+     * 
+     * @param string $query
+     * 
+     * @return this
+     */
+    public function group_by($query) {
+        $this->group_by = $query;
+    }
+
     public function prepare_query()
     {
         $select = "*";
