@@ -184,6 +184,31 @@ class DB2
      */
     public function group_by($query) {
         $this->group_by = $query;
+        return $this;
+    }
+
+    /**
+     * Set the order by query
+     * 
+     * @param string $query
+     * 
+     * @return this
+     */
+    public function order_by($query) {
+        $this->order_by = $query;
+        return $this;
+    }
+
+    /**
+     * Set the having query
+     * 
+     * @param string $query
+     * 
+     * @return this
+     */
+    public function having($query) {
+        $this->having = $query;
+        return $this;
     }
 
     public function prepare_query()
