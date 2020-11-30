@@ -220,30 +220,30 @@ class DB2
      */
     private function prepare_query()
     {
-        $query = 'from ' . $this->table_name;
+        $query = $this->table_name;
         
         // collect inner join
-        $inner_join_query = "";
+        $inner_join_query = '';
         if(count($this->inner_join_array) > 0) {
-            $inner_join_query = implode(" inner join  ", $this->inner_join_array);
+            $inner_join_query = implode(' inner join  ', $this->inner_join_array);
         }
         if(!empty($inner_join_query)) {
             $query = $query . ' inner join' . $inner_join_query;
         }
 
         // collect left join
-        $left_join_query = "";
+        $left_join_query = '';
         if(count($this->left_join_array) > 0) {
-            $left_join_query = implode(" left join  ", $this->left_join_array);
+            $left_join_query = implode(' left join  ', $this->left_join_array);
         }
         if(!empty($left_join_query)) {
             $query = $query . ' left join' . $left_join_query;
         }
 
         // collect where condition
-        $where = "";
+        $where = '';
         if(count($this->where_array) > 0) {
-            $where = implode(" and ", $this->where_array);
+            $where = implode(' and ', $this->where_array);
         }
         if(!empty($where)) {
             $query = $query . ' where' . $where;
@@ -252,10 +252,18 @@ class DB2
         return $query;
     }
 
-    public function count()
+    /**
+     * Count by column
+     * 
+     * @param string $column_name - default 'id'
+     * 
+     * @return int
+     */
+    public function count($column_name = 'id')
     {
         global $wpdb;
-        return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
+        $query = $this->prepare_query();
+        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$this->query}");
     }
 
     /**
