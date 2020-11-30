@@ -213,6 +213,21 @@ class DB2
         return $this;
     }
 
+
+    /**
+     * Prepare select query based on select array
+     * 
+     * @return string
+     */
+    private function prepare_select_query()
+    {
+        $select = "*";
+        if(count($this->select_array) > 0) {
+            $select = implode(" , ", $this->select_array);
+        }
+        return $select;
+    }
+
     /**
      * Prepare query except select
      * 
@@ -263,7 +278,7 @@ class DB2
     {
         global $wpdb;
         $query = $this->prepare_query();
-        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$this->query}");
+        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$this->query}", $this->params_array);
     }
 
     /**
@@ -272,20 +287,13 @@ class DB2
      * @return object
      */
     public function first()
-    {
-        $where = "";
-        if(count($this->where_array) > 0) {
-            $where = implode(" and ", $this->where_array);
-        }
-        
-        $select = "*";
-        if(count($this->select_array) > 0) {
-            $select = implode(" , ", $this->select_array);
-        }
-        
+    {                
+        $select = $this->prepare_select_query();
+        $query = $this->prepare_query();
+
         global $wpdb;
         return $wpdb->get_row(
-            $wpdb->prepare("SELECT $select FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $this->params_array)
+            $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
         );
         return $this;
     }
