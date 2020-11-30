@@ -95,12 +95,14 @@ class DB2
      */
     private function clear()
     {
-        $this->from_array = [];
+        $this->inner_join_array = [];
+        $this->left_join_array = [];
         $this->params_array = [];
         $this->where_array = [];
         $this->select_array = [];
         $this->order_by = "";
         $this->group_by = "";
+        $this->having = "";
     }
 
     /**
@@ -211,24 +213,43 @@ class DB2
         return $this;
     }
 
-    public function prepare_query()
+    /**
+     * Prepare query except select
+     * 
+     * @return string
+     */
+    private function prepare_query()
     {
-        $select = "*";
-        if(count($this->select_array) > 0) {
-            $select = implode(" , ", $this->select_array);
+        $query = 'from ' . $this->table_name;
+        
+        // collect inner join
+        $inner_join_query = "";
+        if(count($this->inner_join_array) > 0) {
+            $inner_join_query = implode(" inner join  ", $this->inner_join_array);
+        }
+        if(!empty($inner_join_query)) {
+            $query = $query . ' inner join' . $inner_join_query;
         }
 
-        $from = "";
-        if(count($this->from_array) > 0) {
-            $from = implode("  ", $this->from_array);
+        // collect left join
+        $left_join_query = "";
+        if(count($this->left_join_array) > 0) {
+            $left_join_query = implode(" left join  ", $this->left_join_array);
+        }
+        if(!empty($left_join_query)) {
+            $query = $query . ' left join' . $left_join_query;
         }
 
+        // collect where condition
         $where = "";
         if(count($this->where_array) > 0) {
             $where = implode(" and ", $this->where_array);
         }
-        
-        //$wpdb->prepare("FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $this->params_array)
+        if(!empty($where)) {
+            $query = $query . ' where' . $where;
+        }
+
+        return $query;
     }
 
     public function count()
