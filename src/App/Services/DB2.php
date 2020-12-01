@@ -278,7 +278,7 @@ class DB2
     {
         global $wpdb;
         $query = $this->prepare_query();
-        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$this->query}", $this->params_array);
+        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
     }
 
     /**
