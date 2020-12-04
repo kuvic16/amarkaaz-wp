@@ -295,7 +295,39 @@ class DB2
         return $wpdb->get_row(
             $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
         );
-        return $this;
+    }
+
+    /**
+     * Get list of rows
+     * 
+     * @param array $args['number', 'offset', 'orderby', 'order']
+     * 
+     * @return array
+     * 
+     */
+    public function get()
+    {
+        global $wpdb;
+
+        $defaults = [
+            'number'  => 20,
+            'offset'  => 0,
+            'orderby' => 'id',
+            'order'   => 'ASC'
+        ];
+
+        $args = wp_parse_args($args, $defaults);
+        $items = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT * from {$wpdb->prefix}{$this->table_name}
+            ORDER BY {$args['orderby']} {$args['order']}
+            LIMIT %d, %d",
+                $args['offset'],
+                $args['number']
+            )
+        );
+
+        return $items;
     }
     
 
@@ -396,38 +428,7 @@ class DB2
 
 
 
-    /**
-     * Get list of rows
-     * 
-     * @param array $args['number', 'offset', 'orderby', 'order']
-     * 
-     * @return array
-     * 
-     */
-    public function get($args = [])
-    {
-        global $wpdb;
-
-        $defaults = [
-            'number'  => 20,
-            'offset'  => 0,
-            'orderby' => 'id',
-            'order'   => 'ASC'
-        ];
-
-        $args = wp_parse_args($args, $defaults);
-        $items = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * from {$wpdb->prefix}{$this->table_name}
-            ORDER BY {$args['orderby']} {$args['order']}
-            LIMIT %d, %d",
-                $args['offset'],
-                $args['number']
-            )
-        );
-
-        return $items;
-    }
+    
 
     /**
      * Get the count of total rows
