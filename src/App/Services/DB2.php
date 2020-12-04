@@ -302,6 +302,21 @@ class DB2
             $query = $query . ' where' . $where;
         }
 
+        // prepare order by
+        if(!empty($this->order_by)) {
+            $query = $query . ' order by ' . $this->order_by;
+        }
+
+        // prepare group by
+        if(!empty($this->group_by)) {
+            $query = $query . ' group by ' . $this->group_by;
+        }
+
+        // prepare having by
+        if(!empty($this->having)) {
+            $query = $query . ' having ' . $this->having;
+        }
+    
         return $query;
     }
 
