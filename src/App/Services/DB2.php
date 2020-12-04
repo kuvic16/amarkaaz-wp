@@ -321,6 +321,24 @@ class DB2
     }
 
     /**
+     * Prepare pagination query
+     * 
+     * @return string
+     */
+    private function prepare_pagination_query() {
+        $query = "";
+        if($this->limit != null && $this->page == null) {
+            $query = " limit {$this->limit}";
+        }
+
+        if($this->limit != null && $this->page != null) {
+            $offset = $this->limit * ($this->page - 1);
+            $query = " limit $offset, {$this->limit}";
+        }
+        return $query;
+    }
+
+    /**
      * Count by column
      * 
      * @param string $column_name - default 'id'
@@ -353,15 +371,17 @@ class DB2
     /**
      * Get list of rows
      * 
-     * @param array $args['number', 'offset', 'orderby', 'order']
-     * 
      * @return array
      * 
      */
     public function get()
     {
-        $select = $this->prepare_select_query();
-        $query = $this->prepare_query();
+        $select           = $this->prepare_select_query();
+        $query            = $this->prepare_query();
+        $pagination_query = $this->prepare_pagination_query();
+        if(!empty($pagination_query)) {
+            $query = "$query $pagination_query";
+        }
 
         global $wpdb;
         return $wpdb->get_results(
