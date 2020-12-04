@@ -70,7 +70,20 @@ class DB2
      * @var string
      */
     protected $having;
-    
+
+    /**
+     * result limit
+     * 
+     * @var int
+     */
+    protected $limit;
+
+    /**
+     * result page
+     * 
+     * @var int
+     */
+    protected $page;
 
     /**
      * Initialize the DB class
@@ -103,6 +116,8 @@ class DB2
         $this->order_by = "";
         $this->group_by = "";
         $this->having = "";
+        $this->limit = null;
+        $this->page = null;
     }
 
     /**
@@ -213,6 +228,29 @@ class DB2
         return $this;
     }
 
+    /**
+     * Set the page number
+     * 
+     * @param int $number
+     * 
+     * @return this
+     */
+    public function page($number) {
+        $this->page = $number;
+        return $this;
+    }
+
+    /**
+     * Set the result limit
+     * 
+     * @param int $limit
+     * 
+     * @return this
+     */
+    public function limit($limit) {
+        $this->limit = $limit;
+        return $this;
+    }
 
     /**
      * Prepare select query based on select array
@@ -307,27 +345,13 @@ class DB2
      */
     public function get()
     {
+        $select = $this->prepare_select_query();
+        $query = $this->prepare_query();
+
         global $wpdb;
-
-        $defaults = [
-            'number'  => 20,
-            'offset'  => 0,
-            'orderby' => 'id',
-            'order'   => 'ASC'
-        ];
-
-        $args = wp_parse_args($args, $defaults);
-        $items = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * from {$wpdb->prefix}{$this->table_name}
-            ORDER BY {$args['orderby']} {$args['order']}
-            LIMIT %d, %d",
-                $args['offset'],
-                $args['number']
-            )
+        return $wpdb->get_results(
+            $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
         );
-
-        return $items;
     }
     
 
