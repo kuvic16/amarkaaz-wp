@@ -394,39 +394,16 @@ class DB2
      * Find by id
      * 
      * @param int $id
-     * @return object
-     */
-    function finById($id)
-    {
-        global $wpdb;
-        return $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id = %d", $id)
-        );
-    }
-
-    /**
-     * Find by id
      * 
-     * @param array $args
      * @return object
      */
-    public function find_by($args)
+    function find_by_id($id)
     {
-        $params_array = [];
-        $where_array = [];
-        foreach($args as $key => $value) {
-            array_push($params_array, $value);
-            array_push($where_array, "$key = " . $this->get_type($value));
-        }
-
-        $where = implode(" and ", $where_array);
-
         global $wpdb;
         return $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE " . $where, $params_array)
+            $wpdb->prepare("SELECT * FROM {$this->table_name} WHERE id = %d", $id)
         );
     }
-
 
     /**
      * Get mysql data type based on data 
@@ -442,76 +419,19 @@ class DB2
     }
 
     /**
-     * Get list of all rows
-     * 
-     * @param array $args['orderby', 'order']
-     * 
-     * @return array
-     * 
-     */
-    public function get_all($args = [])
-    {
-        global $wpdb;
-
-        $defaults = [
-            'orderby' => 'id',
-            'order'   => 'ASC'
-        ];
-
-        $args = wp_parse_args($args, $defaults);
-        $items = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * from {$wpdb->prefix}{$this->table_name}
-                ORDER BY {$args['orderby']} {$args['order']}"
-            )
-        );
-
-        return $items;
-    }
-
-    /**
-     * Execute get query
+     * Execute native query to get the results
      * 
      * @param array $query
      * @param array $params
+     * 
      * @return array|null
      */
-    public static function get_query($query, $params)
+    public static function get_by_native_query($query, $params)
     {
         global $wpdb;
 
         return $wpdb->get_results(
             $wpdb->prepare($query, $params)
-        );
-    }
-
-
-
-    
-
-    /**
-     * Get the count of total rows
-     * 
-     * @return int
-     */
-    // function count()
-    // {
-    //     global $wpdb;
-    //     return (int) $wpdb->get_var("SELECT count(id) from {$wpdb->prefox}{$this->table_name}");
-    // }
-
-    /**
-     * Fetch a single row
-     * 
-     * @param int $id
-     * 
-     * @return object
-     */
-    function detail($id)
-    {
-        global $wpdb;
-        return $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM {$wpdb->prefix}{$this->table_name} WHERE id=%d", $id)
         );
     }
 
@@ -525,12 +445,7 @@ class DB2
     function delete($id)
     {
         global $wpdb;
-
-        return $wpdb->delete(
-            $wpdb->prefix . $this->table_name,
-            ['id' => $id],
-            ['%d']
-        );
+        return $wpdb->delete($this->table_name, ['id' => $id], ['%d']);
     }
 
     /**
