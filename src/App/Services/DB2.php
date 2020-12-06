@@ -474,37 +474,29 @@ class DB2
     }
 
     /**
-     * Create or Update the records
+     * Update the records
      * 
-     * @param array $args
+     * @param array $data
      * 
-     * @return int|WP_Error
+     * @return int
      */
-    function save($args = [])
+    function save($data = [])
     {
         global $wpdb;
 
-        $defaults = [
-            'created_by' => get_current_user_id(),
-            'created_at' => current_time('mysql')
-        ];
+        $types = [];
+        foreach($data as $key => $value) {
+            array_push($types, $this->get_type($value));
+        }
 
-
-        $data = wp_parse_args($args, $defaults);
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
             $updated = $wpdb->update(
-                $wpdb->prefix . 'pd_addresses',
+                $this->table_name,
                 $data,
                 ['id' => $id],
-                [
-                    '%s',
-                    '%s',
-                    '%s',
-                    '%d',
-                    '%s'
-                ],
+                $types,
                 ['%d']
             );
             return $updated;
