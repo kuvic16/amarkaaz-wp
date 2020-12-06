@@ -501,5 +501,6 @@ class DB2
             );
             return $updated;
         }
+        return 0;
     }
 }
