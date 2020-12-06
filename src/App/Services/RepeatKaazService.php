@@ -27,16 +27,10 @@ class RepeatKaazService extends AbstractService
      */
     public function get_all()
     {
-        // global $wpdb;
-        // $table_name = self::$table_name;
-        // $sql = "select * from {$wpdb->prefix}{$table_name}";
-        // $param = [];
-        // $list = DB::get_query($sql, $param);
-        //return DB::table(self::$table_name)->get_all();
-        $list = DB2::table(self::$table_name)
-        //->inner_join(ITables::$KAAZ_TYPES, "")
-        ->get();
-        return $list;
+        return DB2::table(self::$table_name, 'rk')
+                ->inner_join(ITables::$KAAZ_TYPES, 'kt', 'kt.id = rk.kaaz_type_id')
+                ->select(['rk.*', 'kt.name as kaaz_type_name'])
+                ->get();
     }
     
     /**

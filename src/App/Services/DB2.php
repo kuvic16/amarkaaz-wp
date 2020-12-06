@@ -89,14 +89,17 @@ class DB2
      * Initialize the DB class
      * 
      * @param string $table_name
+     * @param string $as
+     * 
+     * @return this
      */
-    public static function table($table_name)
+    public static function table($table_name, $as = null)
     {
         static $instance = false;
         if (!$instance) {
             $instance = new self();
         }
-        $instance->table_name = $instance->get_table($table_name);
+        $instance->table_name = $instance->get_table($table_name) . ' ' . $as;
         $instance->clear();
         return $instance;
     }
@@ -137,14 +140,15 @@ class DB2
      * Set the inner join table
      * 
      * @param string $join_table_name
+     * @param string $as
      * @param string $on_query on query
      * 
      * @return this
      */
-    public function inner_join($join_table_name, $on_query)
+    public function inner_join($join_table_name, $as = null, $on_query)
     {
         $join_table = $this->get_table($join_table_name);
-        array_push($this->inner_join_array, $join_table . ' on ' . $on_query);
+        array_push($this->inner_join_array, $join_table . ' ' . $as . ' on ' . $on_query);
         return $this;
     }
 
@@ -281,7 +285,7 @@ class DB2
             $inner_join_query = implode(' inner join  ', $this->inner_join_array);
         }
         if(!empty($inner_join_query)) {
-            $query = $query . ' inner join' . $inner_join_query;
+            $query = $query . ' inner join ' . $inner_join_query;
         }
 
         // collect left join
@@ -290,7 +294,7 @@ class DB2
             $left_join_query = implode(' left join  ', $this->left_join_array);
         }
         if(!empty($left_join_query)) {
-            $query = $query . ' left join' . $left_join_query;
+            $query = $query . ' left join ' . $left_join_query;
         }
 
         // collect where condition
