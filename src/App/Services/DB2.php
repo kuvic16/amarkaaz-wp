@@ -509,6 +509,5 @@ class DB2
             );
             return $updated;
         }
-        return $wpdb->insert_id;
     }
 }
