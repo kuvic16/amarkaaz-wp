@@ -326,14 +326,11 @@
 import moment from "moment";
 
 export default {
-  mounted() {
-
-  },
+  mounted() {},
   created() {
-    this.loadInitData();
     this.getList();
   },
-  data: function () {
+  data: function() {
     return {
       kaaz_type_list: [],
       repeat_kaaz_list: [],
@@ -345,12 +342,13 @@ export default {
      */
     getList() {
       axios
-      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
-      .then((response) => response.data)
-      .then((data) => {
-        console.log(data);
-        this.repeat_kaaz_list = data.data.repeat_kaaz_list;
-      });
+        .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
+        .then((response) => response.data)
+        .then((data) => {
+          console.log(data);
+          this.repeat_kaaz_list = data.data.repeat_kaaz_list;
+        });
     },
+  },
 };
 </script>
