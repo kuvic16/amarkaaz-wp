@@ -81,6 +81,7 @@ class Installer
             `created_by` INTEGER UNSIGNED NO NULL,
             `updated_at` DATETIME NOT NULL,
             `updated_by` INTEGER UNSIGNED NO NULL,
+            `active` TINYINT(1) UNSIGNED DEFAULT 0,
             PRIMARY KEY (`id`)
           )$charset_collate";
 

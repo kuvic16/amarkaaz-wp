@@ -74,28 +74,36 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
+                <tr v-for="repeat_kaaz in repeat_kaaz_list">
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="flex items-center">
                       <div class="">
                         <div
                           class="text-sm leading-5 font-medium text-gray-900"
                         >
-                          Exercise
+                          {{ repeat_kaaz.name }}
                         </div>
                         <div class="text-sm leading-5 text-gray-500">
-                          Nice To have
+                          {{ repeat_kaaz.kaaz_type_name }}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">10:00am</div>
-                    <div class="text-sm leading-5 text-gray-500">Daily</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      {{ repeat_kaaz.start_time }}
+                    </div>
+                    <div class="text-sm leading-5 text-gray-500">
+                      {{ repeat_kaaz.repeat_policy }}
+                    </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">11:00am</div>
-                    <div class="text-sm leading-5 text-gray-500">Daily</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      {{ repeat_kaaz.start_time }}
+                    </div>
+                    <div class="text-sm leading-5 text-gray-500">
+                      {{ repeat_kaaz.repeat_policy }}
+                    </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <span
@@ -321,7 +329,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import moment from "moment";
 
@@ -332,7 +339,6 @@ export default {
   },
   data: function() {
     return {
-      kaaz_type_list: [],
       repeat_kaaz_list: [],
     };
   },
