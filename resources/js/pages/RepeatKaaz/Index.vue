@@ -3,8 +3,12 @@
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <div class="px-4 py-5 border-b border-gray-200 sm:px-6 bg-cadetblue">
+          <div
+            class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+          >
+            <div
+              class="px-4 py-5 border-b border-gray-200 sm:px-6 bg-cadetblue"
+            >
               <div class="flex mb-4">
                 <div class="w-1/2">
                   <h3 class="text-lg leading-6 font-medium text-white">
@@ -16,30 +20,54 @@
                 </div>
                 <div class="w-1/2 text-right">
                   <span class="inline-flex rounded-md shadow-sm">
-                    <router-link to="/repeat-kaaz/form" class="inline-flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                    <router-link
+                      to="/repeat-kaaz/form"
+                      class="inline-flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+                    >
+                      <svg
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        class="bi bi-plus-circle mr-2"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                        ></path>
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        ></path>
                       </svg>
                       Create
-                    </router-link>                    
+                    </router-link>
                   </span>
                 </div>
-              </div>              
+              </div>
             </div>
             <table class="min-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
-                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Name
                   </th>
-                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Start
                   </th>
-                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     End
                   </th>
-                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Status
                   </th>
                   <th class="px-6 py-3 bg-gray-50"></th>
@@ -50,11 +78,13 @@
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="flex items-center">
                       <div class="">
-                        <div class="text-sm leading-5 font-medium text-gray-900">
+                        <div
+                          class="text-sm leading-5 font-medium text-gray-900"
+                        >
                           Exercise
                         </div>
                         <div class="text-sm leading-5 text-gray-500">
-                            Nice To have                          
+                          Nice To have
                         </div>
                       </div>
                     </div>
@@ -68,87 +98,127 @@
                     <div class="text-sm leading-5 text-gray-500">Daily</div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
                       Active
                     </span>
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <td
+                    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                  >
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                      >Edit</a
+                    >
                   </td>
                 </tr>
                 <tr>
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="flex items-center">
                       <div class="">
-                        <div class="text-sm leading-5 font-medium text-gray-900">
+                        <div
+                          class="text-sm leading-5 font-medium text-gray-900"
+                        >
                           Akash Bill Payment
                         </div>
                         <div class="text-sm leading-5 text-gray-500">
-                            Must have                          
+                          Must have
                         </div>
                       </div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">24th 12:00am</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      24th 12:00am
+                    </div>
                     <div class="text-sm leading-5 text-gray-500">Monthly</div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">24th 11:45pm</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      24th 11:45pm
+                    </div>
                     <div class="text-sm leading-5 text-gray-500">Monthly</div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
                       Active
                     </span>
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <td
+                    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                  >
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                      >Edit</a
+                    >
                   </td>
                 </tr>
                 <tr>
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="flex items-center">
                       <div class="">
-                        <div class="text-sm leading-5 font-medium text-gray-900">
+                        <div
+                          class="text-sm leading-5 font-medium text-gray-900"
+                        >
                           Marriage anniversary tour
                         </div>
                         <div class="text-sm leading-5 text-gray-500">
-                            Must have                          
+                          Must have
                         </div>
                       </div>
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">September, 28th 12:00am</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      September, 28th 12:00am
+                    </div>
                     <div class="text-sm leading-5 text-gray-500">Yearly</div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">Septebmer, 31st 11:45pm</div>
+                    <div class="text-sm leading-5 text-gray-900">
+                      Septebmer, 31st 11:45pm
+                    </div>
                     <div class="text-sm leading-5 text-gray-500">Yearly</div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
                       Active
                     </span>
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <td
+                    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                  >
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                      >Edit</a
+                    >
                   </td>
                 </tr>
                 <!-- More rows... -->
               </tbody>
             </table>
-            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+            <div
+              class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+            >
               <div class="flex-1 flex justify-between sm:hidden">
-                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                <a
+                  href="#"
+                  class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                >
                   Previous
                 </a>
-                <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                <a
+                  href="#"
+                  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                >
                   Next
                 </a>
               </div>
-              <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+              <div
+                class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+              >
                 <div>
                   <p class="text-sm leading-5 text-gray-700">
                     Showing
@@ -162,37 +232,83 @@
                 </div>
                 <div>
                   <nav class="relative z-0 inline-flex shadow-sm">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="Previous">
+                    <a
+                      href="#"
+                      class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                      aria-label="Previous"
+                    >
                       <!-- Heroicon name: chevron-left -->
-                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      <svg
+                        class="h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
                       </svg>
                     </a>
-                    <a href="#" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       1
                     </a>
-                    <a href="#" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       2
                     </a>
-                    <a href="#" class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       3
                     </a>
-                    <span class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700">
+                    <span
+                      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700"
+                    >
                       ...
                     </span>
-                    <a href="#" class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       8
                     </a>
-                    <a href="#" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       9
                     </a>
-                    <a href="#" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    <a
+                      href="#"
+                      class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    >
                       10
                     </a>
-                    <a href="#" class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="Next">
+                    <a
+                      href="#"
+                      class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                      aria-label="Next"
+                    >
                       <!-- Heroicon name: chevron-right -->
-                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      <svg
+                        class="h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clip-rule="evenodd"
+                        />
                       </svg>
                     </a>
                   </nav>
@@ -201,25 +317,17 @@
             </div>
           </div>
         </div>
-          
-        </div>
-      </div>      
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
-import Form from "../../core/Form.js";
 
 export default {
   mounted() {
-    //this.repeat_kaaz = this.new_repeat_kaaz_form();
-    this.populateDays(moment().daysInMonth());
-    this.populateTimes();
-    var minute = parseInt(moment().format("mm"));
-    var hour = parseInt(moment().format("hh"));
-    var amPm = moment().format("a");
-    this.getPossibleCurrentTime(hour, minute, amPm);    
+
   },
   created() {
     this.loadInitData();
@@ -227,330 +335,11 @@ export default {
   },
   data: function () {
     return {
-      repeat_kaaz: new Form({
-        name: "",
-        tags: "",
-        type_id: "0",
-        repeat_policy: "daily",
-        start_month: parseInt(moment().format("M")),
-        start_day: moment().format("D"),
-        start_time: moment().format("hh:mm A"),
-        end_month: parseInt(moment().format("M")),
-        end_day: moment().format("D"),
-        end_time: moment().format("hh:mm A"),
-      }),
-      months: {
-        1: "January",
-        2: "February",
-        3: "March",
-        4: "April",
-        5: "May",
-        6: "June",
-        7: "July",
-        8: "August",
-        9: "September",
-        10: "October",
-        11: "November",
-        12: "December",
-      },
-      days: [],
-      start_times: [],
-      end_times: [],
-      token: "",
-      message: "",
       kaaz_type_list: [],
       repeat_kaaz_list: [],
     };
   },
   methods: {
-    new_repeat_kaaz_form() {
-      this.repeat_kaaz = new Form({
-        name: "",
-        tags: "",
-        type_id: "0",
-        repeat_policy: "daily",
-        start_month: parseInt(moment().format("M")),
-        start_day: moment().format("D"),
-        start_time: moment().format("hh:mm A"),
-        end_month: parseInt(moment().format("M")),
-        end_day: moment().format("D"),
-        end_time: moment().format("hh:mm A"),
-      });
-    },
-
-    /**
-     * Generate days list of specific month using moment
-     *
-     * @param {int} month
-     * @return {void}
-     */
-    generateDaysOfMonth(month) {
-      this.populateDays(moment(month, "M").daysInMonth());
-    },
-
-    /**
-     * Populate array list from number of days
-     *
-     * @param {int} noOfDays
-     * @return {void}
-     */
-    populateDays(noOfDays) {
-      this.days = [];
-      for (var i = 1; i <= noOfDays; i++) {
-        this.days.push(i);
-      }
-    },
-
-    /**
-     * Get possible current time to adjust in time dropdown
-     *
-     * @return {void}
-     */
-    getPossibleCurrentTime(hour, minute, amPm) {
-      if (minute > 0 && minute < 15) minute = 15;
-      if (minute > 15 && minute < 30) minute = 30;
-      if (minute > 30 && minute < 45) minute = 45;
-      if (minute > 45) {
-        if (hour == 11) {
-          amPm = amPm == "am" ? "pm" : "am";
-        }
-        if (hour == 12) {
-          hour = 1;
-        } else {
-          hour += 1;
-          minute = 0;
-        }
-        minute = 0;
-      }
-      this.repeat_kaaz.start_time =
-        this.pad(hour) + ":" + this.pad(minute) + amPm;
-
-      this.populateEndTime(minute, hour, amPm);
-
-      // console.log("Start Time: " + this.repeat_kaaz.start_time);
-    },
-
-    populateEndTime(minute, hour, amPm) {
-      minute += 15;
-      if (minute > 0 && minute < 15) minute = 15;
-      if (minute > 15 && minute < 30) minute = 30;
-      if (minute > 30 && minute < 45) minute = 45;
-      if (minute > 45) {
-        if (hour == 11) {
-          amPm = amPm == "am" ? "pm" : "am";
-        }
-        if (hour == 12) {
-          hour = 1;
-        } else {
-          hour += 1;
-          minute = 0;
-        }
-      }
-
-      this.repeat_kaaz.end_time =
-        this.pad(hour) + ":" + this.pad(minute) + amPm;
-
-      //console.log("End Time: " + this.repeat_kaaz.end_time);
-    },
-
-    /**
-     * Populate times array of the current day
-     *
-     * @return {void}
-     */
-    populateTimes() {
-      this.start_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
-      for (var i = 1; i < 12; i++) {
-        this.start_times.push(this.pad(i) + ":00am");
-        this.start_times.push(this.pad(i) + ":15am");
-        this.start_times.push(this.pad(i) + ":30am");
-        this.start_times.push(this.pad(i) + ":45am");
-      }
-
-      this.start_times.push("12:00pm", "12:15pm", "12:30pm", "12:45pm");
-      for (var i = 1; i < 12; i++) {
-        this.start_times.push(this.pad(i) + ":00pm");
-        this.start_times.push(this.pad(i) + ":15pm");
-        this.start_times.push(this.pad(i) + ":30pm");
-        this.start_times.push(this.pad(i) + ":45pm");
-      }
-
-      this.end_times = ["12:00am", "12:15am", "12:30am", "12:45am"];
-      for (var i = 1; i < 12; i++) {
-        this.end_times.push(this.pad(i) + ":00am");
-        this.end_times.push(this.pad(i) + ":15am");
-        this.end_times.push(this.pad(i) + ":30am");
-        this.end_times.push(this.pad(i) + ":45am");
-      }
-
-      this.end_times.push("12:00pm", "12:15pm", "12:30pm", "12:45pm");
-      for (var i = 1; i < 12; i++) {
-        this.end_times.push(this.pad(i) + ":00pm");
-        this.end_times.push(this.pad(i) + ":15pm");
-        this.end_times.push(this.pad(i) + ":30pm");
-        this.end_times.push(this.pad(i) + ":45pm");
-      }
-    },
-
-    /**
-     * Padding 0 of any single disit number
-     *
-     * @param {int} number
-     * @return {int}
-     */
-    pad(number) {
-      return number < 10 ? "0" + number : number;
-    },
-
-    /**
-     * On policy on change listener
-     *
-     * @param {event} event
-     * @return {void}
-     */
-    onPolicyChangeListener(event) {},
-
-    /**
-     * On Start month change listener method
-     *
-     * @param {int} month
-     * @return {void}
-     */
-    onStartMonthChangeListener(month) {
-      this.generateDaysOfMonth(month);
-      this.repeat_kaaz.end_month = month;
-    },
-
-    /**
-     * On Last month change listener method
-     *
-     * @param {int} month
-     * @return {void}
-     */
-    onEndMonthChangeListener(month) {
-      this.generateDaysOfMonth(month);
-      if (this.repeat_kaaz.end_month < this.repeat_kaaz.start_month) {
-        this.repeat_kaaz.start_month = month;
-      }
-    },
-
-    /**
-     * On Start day change listener method
-     *
-     * @param {int} day
-     * @return {void}
-     */
-    onStartDayChangeListener(day) {
-      this.repeat_kaaz.end_day = day;
-    },
-
-    /**
-     * On Last day change listener method
-     *
-     * @param {int} day
-     * @return {void}
-     */
-    onEndDayChangeListener(day) {
-      //console.log("day: " + day);
-      //console.log("end day: " + this.repeat_kaaz.end_day);
-      //console.log("start day: " + this.repeat_kaaz.start_day);
-      //console.log("repeat policy: " + this.repeat_kaaz.repeat_policy);
-      console.log("start month: " + this.repeat_kaaz.start_month);
-
-      if (
-        this.repeat_kaaz.repeat_policy == "yearly" &&
-        parseInt(this.repeat_kaaz.end_month) ==
-          parseInt(this.repeat_kaaz.start_month) &&
-        parseInt(this.repeat_kaaz.end_day) <
-          parseInt(this.repeat_kaaz.start_day)
-      ) {
-        this.repeat_kaaz.start_day = day;
-      }
-
-      if (
-        this.repeat_kaaz.repeat_policy == "monthly" &&
-        parseInt(this.repeat_kaaz.end_day) <
-          parseInt(this.repeat_kaaz.start_day)
-      ) {
-        this.repeat_kaaz.start_day = day;
-      }
-    },
-
-    /**
-     * On Start time change listener method
-     *
-     * @param {string} time
-     * @return {void}
-     */
-    onStartTimeChangeListener() {
-      var selectedTime = this.repeat_kaaz.start_time;
-      if (selectedTime) {
-        var minute = parseInt(selectedTime.slice(3, 5));
-        var hour = parseInt(selectedTime.slice(0, 2));
-        var amPm = selectedTime.slice(5, 7);
-        this.populateEndTime(minute, hour, amPm);
-      }
-    },
-
-    /**
-     * On End time change listener method
-     *
-     * @param {string} time
-     * @return {void}
-     */
-    onEndTimeChangeListener(time) {
-      var selectedStartTime = this.repeat_kaaz.start_time;
-      var selectedEndTime = this.repeat_kaaz.end_time;
-      //console.log("s: " + selectedStartTime);
-      //console.log("e: " + selectedEndTime);
-
-      if (selectedEndTime && selectedStartTime) {
-        var endMinute = parseInt(selectedEndTime.slice(3, 5));
-        var endHour = parseInt(selectedEndTime.slice(0, 2));
-        var endAmPm = selectedEndTime.slice(5, 7);
-
-        var selectedStartTime = this.repeat_kaaz.start_time;
-        var startMinute = parseInt(selectedStartTime.slice(3, 5));
-        var startHour = parseInt(selectedStartTime.slice(0, 2));
-        var startAmPm = selectedStartTime.slice(5, 7);
-
-        //console.log(startHour + "-" + startMinute + "-" + startAmPm);
-        //console.log(endHour + "-" + endMinute + "-" + endAmPm);
-
-        if (
-          endHour < startHour ||
-          (endHour == startHour && endMinute < startMinute)
-        ) {
-          this.repeat_kaaz.start_time =
-            this.pad(endHour) + ":" + this.pad(endMinute) + endAmPm;
-        }
-      }
-    },
-
-    /**
-     * Save repeat kaaz
-     *
-     * @return {void}
-     */
-    saveRepeatKaaz() {
-      //console.log(this.repeat_kaaz);
-    },
-
-    /**
-     * Load init repeat kaaz data
-     */
-    loadInitData() {
-      axios
-      .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/init")
-      .then((response) => response.data)
-      .then((data) => {
-        this.kaaz_type_list = data.data.kaaz_type_list;
-        if(this.kaaz_type_list.length > 0) {
-          this.repeat_kaaz.type_id = this.kaaz_type_list[0].id;
-        }
-      });
-    },
-
     /**
      * Get the list of repeat kaaz
      */
@@ -563,19 +352,5 @@ export default {
         this.repeat_kaaz_list = data.data.repeat_kaaz_list;
       });
     },
-
-    /**
-     * Save the new repeat kaaz
-     */
-    onSubmit() {
-      this.repeat_kaaz
-        .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
-        .then((data) => {
-          this.getList();
-          this.new_repeat_kaaz_form();
-        })
-        .catch((errors) => console.log(errors));
-    },
-  },
 };
 </script>
