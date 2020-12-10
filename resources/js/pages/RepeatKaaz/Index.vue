@@ -17,6 +17,9 @@
                   <p class="mt-1 max-w-2xl text-sm leading-5 text-white">
                     The task you do periodically
                   </p>
+                  <p class="mt-1 max-w-2xl text-sm leading-5 text-white">
+                    Total: {{ repeat_kaaz_list.length }}
+                  </p>
                 </div>
                 <div class="w-1/2 text-right">
                   <span class="inline-flex rounded-md shadow-sm">
@@ -74,7 +77,10 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="repeat_kaaz in repeat_kaaz_list">
+                <tr
+                  v-for="repeat_kaaz in repeat_kaaz_list"
+                  :key="repeat_kaaz.id"
+                >
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="flex items-center">
                       <div class="">
