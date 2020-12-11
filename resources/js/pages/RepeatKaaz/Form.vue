@@ -407,6 +407,17 @@
                       <option v-for="time in end_times" v-text="time"></option>
                     </select>
                   </div>
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label
+                      for="end-time"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                      >Active</label
+                    >
+                    <toggle-button
+                      class="form-input block w-full py-2 px-3"
+                      v-model="repeat_kaaz.active"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -433,8 +444,12 @@
 <script>
 import moment from "moment";
 import Form from "../../core/Form.js";
+import { ToggleButton } from "vue-js-toggle-button";
 
 export default {
+  components: {
+    ToggleButton,
+  },
   mounted() {
     //this.repeat_kaaz = this.new_repeat_kaaz_form();
     this.populateDays(moment().daysInMonth());
@@ -461,6 +476,7 @@ export default {
         end_month: parseInt(moment().format("M")),
         end_day: moment().format("D"),
         end_time: moment().format("hh:mm A"),
+        active: true,
       }),
       months: {
         1: "January",
@@ -500,6 +516,7 @@ export default {
         end_month: parseInt(moment().format("M")),
         end_day: moment().format("D"),
         end_time: moment().format("hh:mm A"),
+        active: true,
       });
     },
 
