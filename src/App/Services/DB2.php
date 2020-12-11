@@ -16,6 +16,13 @@ class DB2
     protected $table_name;
 
     /**
+     * Table alias
+     * 
+     * @var string
+     */
+    protected $table_as;
+
+    /**
      * Params array
      * 
      * @var array
@@ -99,6 +106,7 @@ class DB2
         if (!$instance) {
             $instance = new self();
         }
+        $instance->table_as = $as;
         $instance->table_name = $instance->get_table($table_name) . ' ' . $as;
         $instance->clear();
         return $instance;
@@ -353,6 +361,9 @@ class DB2
     {
         global $wpdb;
         $query = $this->prepare_query();
+        var_dump($this->params_array);
+        $t = $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
+        var_dump($t); die;
         return (int) $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
     }
 
@@ -391,6 +402,41 @@ class DB2
         return $wpdb->get_results(
             $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
         );
+    }
+
+
+    /**
+     * Get list with pagination
+     * 
+     * @return array
+     * 
+     */
+    public function pagination()
+    {
+        $total = $this->count("{$this->table_as}.id");
+        var_dump($total); die;
+
+        $select           = $this->prepare_select_query();
+        $query            = $this->prepare_query();
+        $pagination_query = $this->prepare_pagination_query();
+        if(!empty($pagination_query)) {
+            $query = "$query $pagination_query";
+        }
+
+        global $wpdb;
+        $data = $wpdb->get_results(
+            $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
+        );
+
+        return [
+            'total'       => $total,
+            'data'        => $data,
+            'page'        => $this->page,
+            'from'        => (($this->page - 1) * $this->limit) + 1,
+            'to'          => (($this->page - 1) * $this->limit) + count($data),
+            'has_next'    => $total > ($this->page * $this->limit),
+            'has_prev'    => ($this->page - 1) > 0
+        ];
     }
     
 

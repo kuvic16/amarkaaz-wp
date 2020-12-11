@@ -33,6 +33,25 @@ class RepeatKaazService extends AbstractService
                 ->order_by('rk.created_at desc')
                 ->get();
     }
+
+    /**
+     * Get the records based on parameters
+     * 
+     * @param int $page - default 1
+     * @param int $limit - default 10
+     * 
+     * @return array|null
+     */
+    public function get_by($page = 1, $limit = 10)
+    {
+        return DB2::table(self::$table_name, 'rk')
+                ->inner_join(ITables::$KAAZ_TYPES, 'kt', 'kt.id = rk.kaaz_type_id')
+                ->select(['rk.*', 'kt.name as kaaz_type_name'])
+                ->order_by('rk.created_at desc')
+                ->page($page)
+                ->limit($limit)
+                ->pagination();
+    }
     
     /**
      * Create the repeat_kaazs

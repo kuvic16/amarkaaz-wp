@@ -113,9 +113,16 @@
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                      v-if="repeat_kaaz.active == 1"
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-800 text-white"
                     >
-                      {{ repeat_kaaz.active == 1 ? "Active" : "Inactive" }}
+                      Active
+                    </span>
+                    <span
+                      v-if="repeat_kaaz.active == 0"
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-500 text-white"
+                    >
+                      Inactive
                     </span>
                   </td>
                   <td
@@ -123,6 +130,9 @@
                   >
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
                       >Edit</a
+                    >
+                    <a href="#" class="text-red-600 hover:text-red-900"
+                      >Delete</a
                     >
                   </td>
                 </tr>
