@@ -361,10 +361,12 @@ class DB2
     {
         global $wpdb;
         $query = $this->prepare_query();
-        var_dump($this->params_array);
-        $t = $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
-        var_dump($t); die;
-        return (int) $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
+        $query = "SELECT count({$column_name}) as count from {$query}";
+        $result = $wpdb->get_row(
+            $wpdb->prepare($query, $this->params_array)
+        );
+        return $result->count;
+        //return (int) $wpdb->get_var("SELECT count({$column_name}) from {$query}", $this->params_array);
     }
 
     /**
@@ -414,8 +416,7 @@ class DB2
     public function pagination()
     {
         $total = $this->count("{$this->table_as}.id");
-        var_dump($total); die;
-
+        
         $select           = $this->prepare_select_query();
         $query            = $this->prepare_query();
         $pagination_query = $this->prepare_pagination_query();
