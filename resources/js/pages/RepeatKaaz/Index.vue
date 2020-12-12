@@ -152,11 +152,11 @@
                   <div>
                     <p class="text-sm leading-5 text-gray-700">
                       Showing
-                      <span class="font-medium">1</span>
+                      <span class="font-medium">{{ repeat_kaaz.from }}</span>
                       to
-                      <span class="font-medium">10</span>
+                      <span class="font-medium">{{ repeat_kaaz.to }}</span>
                       of
-                      <span class="font-medium">97</span>
+                      <span class="font-medium">{{ repeat_kaaz.total }}</span>
                       results
                     </p>
                   </div>
