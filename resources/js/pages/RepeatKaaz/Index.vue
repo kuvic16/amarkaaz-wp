@@ -99,7 +99,7 @@
                     <div class="text-sm leading-5 text-gray-900">
                       {{ repeat_kaaz.start_time }}
                     </div>
-                    <div class="text-sm leading-5 text-gray-500">
+                    <div class="text-sm leading-5 text-gray-500 capitalize">
                       {{ repeat_kaaz.repeat_policy }}
                     </div>
                   </td>
@@ -107,7 +107,7 @@
                     <div class="text-sm leading-5 text-gray-900">
                       {{ repeat_kaaz.start_time }}
                     </div>
-                    <div class="text-sm leading-5 text-gray-500">
+                    <div class="text-sm leading-5 text-gray-500 capitalize">
                       {{ repeat_kaaz.repeat_policy }}
                     </div>
                   </td>
