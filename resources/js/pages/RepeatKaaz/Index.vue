@@ -18,7 +18,7 @@
                     The task you do periodically
                   </p>
                   <p class="mt-1 max-w-2xl text-sm leading-5 text-white">
-                    Total: {{ repeat_kaaz_list.length }}
+                    Total: {{ repeat_kaaz.total }}
                   </p>
                 </div>
                 <div class="w-1/2 text-right">
@@ -73,12 +73,12 @@
                   >
                     Status
                   </th>
-                  <th class="px-6 py-3 bg-gray-50"></th>
+                  <th class="px-6 py-3 bg-gray-50">Action</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr
-                  v-for="repeat_kaaz in repeat_kaaz_list"
+                  v-for="repeat_kaaz in repeat_kaaz.data"
                   :key="repeat_kaaz.id"
                 >
                   <td class="px-6 py-4 whitespace-no-wrap">
@@ -126,7 +126,7 @@
                     </span>
                   </td>
                   <td
-                    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                    class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium"
                   >
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
                       >Edit</a
@@ -185,7 +185,15 @@ export default {
   },
   data: function() {
     return {
-      repeat_kaaz_list: [],
+      repeat_kaaz: {
+        total: 0,
+        data: [],
+        page: 1,
+        from: 1,
+        to: 6,
+        has_next: false,
+        has_prev: false,
+      },
     };
   },
   methods: {
@@ -197,8 +205,8 @@ export default {
         .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((response) => response.data)
         .then((data) => {
-          console.log(data);
-          this.repeat_kaaz_list = data.data.repeat_kaaz_list;
+          //console.log(data);
+          this.repeat_kaaz = data.data.repeat_kaaz;
         });
     },
   },

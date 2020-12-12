@@ -64,9 +64,9 @@ class RepeatKaazController
      */
     public function list()
     {
-        $list = $this->repeat_kaaz_service->get_by(1, 10);
+        $repeat_kaaz = $this->repeat_kaaz_service->get_by(1, 10);
         Response::success([
-            'repeat_kaaz_list' => $list
+            'repeat_kaaz' => $repeat_kaaz
         ]);
     }
 
