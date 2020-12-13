@@ -177,6 +177,7 @@
 </template>
 <script>
 import moment from "moment";
+import ConfirmButton from "./components/ConfirmButton";
 
 export default {
   mounted() {},
