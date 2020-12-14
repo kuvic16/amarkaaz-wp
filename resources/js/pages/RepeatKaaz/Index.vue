@@ -46,7 +46,7 @@
                       </svg>
                       Create
                     </router-link>
-                    <form action="/api/typography" method="POST">
+                    <!-- <form action="/api/typography" method="POST">
                       <confirm-button
                         message="Are you sure you want to cancel your account?"
                         cancel-button="Go Back"
@@ -54,7 +54,7 @@
                         class="bg-blue-500 hover:bg-blue-600 py-2 px-4 text-white rounded-lg mt-5"
                         >Option 2</confirm-button
                       >
-                    </form>
+                    </form> -->
                   </span>
                 </div>
               </div>
@@ -186,10 +186,12 @@
 </template>
 <script>
 import moment from "moment";
+import Modal from "../../components/Modal";
 import ConfirmButton from "../../components/ConfirmButton";
 
 export default {
   components: {
+    Modal,
     ConfirmButton,
   },
   mounted() {},
