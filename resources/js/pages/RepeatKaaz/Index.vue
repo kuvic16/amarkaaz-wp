@@ -190,13 +190,11 @@ import moment from "moment";
 import Modal from "../../components/Modal";
 import ConfirmButton from "../../components/ConfirmButton";
 import PlusIcon from "../../components/icons/PlusIcon.vue";
-import PlusIcon from '../../components/icons/PlusIcon.vue';
 
 export default {
   components: {
-    Plus,
     Modal,
-    ConfirmButton
+    ConfirmButton,
     PlusIcon,
   },
   mounted() {},
