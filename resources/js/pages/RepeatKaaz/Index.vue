@@ -27,7 +27,7 @@
                       to="/repeat-kaaz/form"
                       class="inline-flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
                     >
-                      <svg
+                      <!-- <svg
                         width="1em"
                         height="1em"
                         viewBox="0 0 16 16"
@@ -43,7 +43,8 @@
                           fill-rule="evenodd"
                           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
                         ></path>
-                      </svg>
+                      </svg> -->
+                      <plus-icon></plus-icon>
                       Create
                     </router-link>
                     <!-- <form action="/api/typography" method="POST">
@@ -188,11 +189,15 @@
 import moment from "moment";
 import Modal from "../../components/Modal";
 import ConfirmButton from "../../components/ConfirmButton";
+import PlusIcon from "../../components/icons/PlusIcon.vue";
+import PlusIcon from '../../components/icons/PlusIcon.vue';
 
 export default {
   components: {
+    Plus,
     Modal,
-    ConfirmButton,
+    ConfirmButton
+    PlusIcon,
   },
   mounted() {},
   created() {
