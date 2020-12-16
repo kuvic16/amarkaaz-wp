@@ -159,6 +159,7 @@
               <div class="flex-1 flex justify-between">
                 <button
                   :disabled="!repeat_kaaz.has_prev"
+                  v-bind:class="{ 'not-allowed': !repeat_kaaz.has_prev }"
                   @click="prev()"
                   class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                 >
@@ -179,8 +180,9 @@
                 </div>
                 <button
                   :disabled="!repeat_kaaz.has_next"
+                  v-bind:class="{ 'not-allowed': !repeat_kaaz.has_next }"
                   @click="next()"
-                  class="disabled ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                 >
                   Next
                 </button>
@@ -260,3 +262,8 @@ export default {
   },
 };
 </script>
+<style>
+.not-allowed {
+  cursor: not-allowed;
+}
+</style>
