@@ -27,23 +27,6 @@
                       to="/repeat-kaaz/form"
                       class="inline-flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
                     >
-                      <!-- <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 16 16"
-                        class="bi bi-plus-circle mr-2"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                        ></path>
-                        <path
-                          fill-rule="evenodd"
-                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                        ></path>
-                      </svg> -->
                       <plus-icon></plus-icon>
                       Create
                     </router-link>
@@ -108,6 +91,17 @@
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="text-sm leading-5 text-gray-900">
                       {{ repeat_kaaz.start_time }}
+                      {{
+                        repeat_kaaz.repeat_policy == "yearly" ||
+                        repeat_kaaz.repeat_policy == "monthly"
+                          ? " at " + repeat_kaaz.start_day
+                          : ""
+                      }}
+                      {{
+                        repeat_kaaz.repeat_policy == "yearly"
+                          ? months[repeat_kaaz.start_month]
+                          : ""
+                      }}
                     </div>
                     <div class="text-sm leading-5 text-gray-500 capitalize">
                       {{ repeat_kaaz.repeat_policy }}
@@ -115,7 +109,18 @@
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap">
                     <div class="text-sm leading-5 text-gray-900">
-                      {{ repeat_kaaz.start_time }}
+                      {{ repeat_kaaz.end_time }}
+                      {{
+                        repeat_kaaz.repeat_policy == "yearly" ||
+                        repeat_kaaz.repeat_policy == "monthly"
+                          ? " at " + repeat_kaaz.end_day
+                          : ""
+                      }}
+                      {{
+                        repeat_kaaz.repeat_policy == "yearly"
+                          ? months[repeat_kaaz.end_month]
+                          : ""
+                      }}
                     </div>
                     <div class="text-sm leading-5 text-gray-500 capitalize">
                       {{ repeat_kaaz.repeat_policy }}
@@ -213,6 +218,20 @@ export default {
         to: 6,
         has_next: false,
         has_prev: false,
+      },
+      months: {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December",
       },
     };
   },
