@@ -144,7 +144,7 @@
                     class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium"
                   >
                     <router-link
-                      v-bind:to="'/repeat-kaaz/form/' + repeat_kaaz.id"
+                      v-bind:to="'/repeat-kaaz/form?id=' + repeat_kaaz.id"
                       class="text-indigo-600 hover:text-indigo-900"
                       >Edit</router-link
                     >

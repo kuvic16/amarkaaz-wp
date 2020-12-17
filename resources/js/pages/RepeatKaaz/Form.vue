@@ -473,6 +473,7 @@ export default {
     ToggleButton,
   },
   mounted() {
+    console.log(this.$route.query.id);
     //this.repeat_kaaz = this.new_repeat_kaaz_form();
     this.populateDays(moment().daysInMonth());
     this.populateTimes();

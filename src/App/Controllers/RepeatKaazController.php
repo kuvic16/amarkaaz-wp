@@ -52,8 +52,13 @@ class RepeatKaazController
     public function init()
     {
         $kaaz_type_list = $this->kaaz_type_service->get_all();
+        $id = $_GET['id'];
+        if(intval($id) > 0) {
+            
+        }
         Response::success([
-            'kaaz_type_list' => $kaaz_type_list
+            'kaaz_type_list' => $kaaz_type_list,
+            'id' => $id
         ]);
     }
 
