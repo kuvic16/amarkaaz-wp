@@ -143,9 +143,12 @@
                   <td
                     class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium"
                   >
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit</a
+                    <router-link
+                      v-bind:to="'/repeat-kaaz/form/' + repeat_kaaz.id"
+                      class="text-indigo-600 hover:text-indigo-900"
+                      >Edit</router-link
                     >
+
                     <a href="#" class="text-red-600 hover:text-red-900"
                       >Delete</a
                     >
