@@ -67,7 +67,7 @@ class RepeatKaazController
      * 
      * @return json
      */
-    public function list()
+    public function _list()
     {
         $repeat_kaaz = $this->repeat_kaaz_service->get_by(1, 10);
         Response::success([
