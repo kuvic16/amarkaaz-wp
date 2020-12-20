@@ -77,6 +77,25 @@ class RepeatKaazController
     }
 
     /**
+     * Get the details of specific item
+     * 
+     * @return json
+     */
+    public function details()
+    {
+        $id = intval($_GET['id']);
+        if ($id <= 0) {
+            Response::error([
+                'message' => __('Please provide valid id!', 'amar-kaaz')
+            ]);
+        }
+        $repeat_kaaz = $this->repeat_kaaz_service->get_by($page, 10);
+        Response::success([
+            //'repeat_kaaz' => $repeat_kaaz
+        ]);
+    }
+
+    /**
      * Store the RepeatKaaz
      * 
      * @return json
