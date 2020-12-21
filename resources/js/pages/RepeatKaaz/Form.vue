@@ -473,7 +473,11 @@ export default {
     ToggleButton,
   },
   mounted() {
-    console.log(this.$route.query.id);
+    var repeatKaazId = this.$route.query.id;
+    console.log("test");
+    if (repeatKaazId !== undefined && repeatKaazId.length > 0) {
+      console.log("id: " + repeatKaazId);
+    }
     //this.repeat_kaaz = this.new_repeat_kaaz_form();
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
@@ -484,7 +488,6 @@ export default {
   },
   created() {
     this.loadInitData();
-    this.getList();
   },
   data: function() {
     return {
@@ -817,15 +820,30 @@ export default {
     },
 
     /**
-     * Get the list of repeat kaaz
+     * Get the details of selected repeat kaaz
+     *
+     * @param int id
+     *
+     * @return void
      */
-    getList() {
+    getRepeatKaazDetails(id) {
       axios
-        .get(this.wp_url + "?action=amar_kaaz_repeatkaaz")
+        .get(this.wp_url + "?action=amar_kaaz_repeatkaaz/details&id=" + id)
         .then((response) => response.data)
         .then((data) => {
-          console.log(data);
-          this.repeat_kaaz_list = data.data.repeat_kaaz_list;
+          var repeatKaaz = data.data.repeat_kaaz;
+          // this.repeat_kaaz.name = repeatKaaz.name,
+          //   tags: "",
+          //   type_id: "0",
+          //   repeat_policy: "daily",
+          //   start_month: parseInt(moment().format("M")),
+          //   start_day: moment().format("D"),
+          //   start_time: moment().format("hh:mm A"),
+          //   end_month: parseInt(moment().format("M")),
+          //   end_day: moment().format("D"),
+          //   end_time: moment().format("hh:mm A"),
+          //   active: true,
+          // });
         });
     },
 
