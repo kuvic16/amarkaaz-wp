@@ -28,6 +28,18 @@ abstract class AbstractService
     }
 
     /**
+     * Find by id
+     * 
+     * @param int $id
+     * 
+     * @return obj
+     */
+    public function find_by_id($id)
+    {
+        return DB2::table(self::$table_name)->find_by_id($id);
+    }
+
+    /**
      * Get all the records of respoected table
      * @return
      */
