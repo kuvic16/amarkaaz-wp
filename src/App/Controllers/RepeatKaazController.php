@@ -89,9 +89,9 @@ class RepeatKaazController
                 'message' => __('Please provide valid id!', 'amar-kaaz')
             ]);
         }
-        $repeat_kaaz = $this->repeat_kaaz_service->get_by($page, 10);
+        $details = $this->repeat_kaaz_service->find_by_id($id);
         Response::success([
-            //'repeat_kaaz' => $repeat_kaaz
+            'repeat_kaaz' => $details
         ]);
     }
 
