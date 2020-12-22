@@ -832,6 +832,18 @@ export default {
         .then((response) => response.data)
         .then((data) => {
           var repeatKaaz = data.data.repeat_kaaz;
+          this.repeat_kaaz = new Form({
+            name: repeatKaaz.name,
+            type_id: repeatKaaz.kaaz_type_id,
+            repeat_policy: repeatKaaz.repeat_policy,
+            start_month: repeatKaaz.start_month,
+            start_day: repeatKaaz.start_day,
+            start_time: repeatKaaz.start_time,
+            end_month: repeatKaaz.end_month,
+            end_day: repeatKaaz.end_day,
+            end_time: repeatKaaz.end_time,
+            active: repeatKaaz.active,
+          });
           // this.repeat_kaaz.name = repeatKaaz.name,
           //   tags: "",
           //   type_id: "0",
