@@ -488,6 +488,10 @@ export default {
   },
   created() {
     this.loadInitData();
+    var repeatKaazId = this.$route.query.id;
+    if (repeatKaazId !== undefined && repeatKaazId.length > 0) {
+      this.getRepeatKaazDetails(repeatKaazId);
+    }
   },
   data: function() {
     return {
@@ -833,6 +837,7 @@ export default {
         .then((data) => {
           var repeatKaaz = data.data.repeat_kaaz;
           this.repeat_kaaz = new Form({
+            id: parseInt(repeatKaaz.id),
             name: repeatKaaz.name,
             type_id: repeatKaaz.kaaz_type_id,
             repeat_policy: repeatKaaz.repeat_policy,
@@ -842,20 +847,8 @@ export default {
             end_month: repeatKaaz.end_month,
             end_day: repeatKaaz.end_day,
             end_time: repeatKaaz.end_time,
-            active: repeatKaaz.active,
+            active: parseInt(repeatKaaz.active) == 1 ? true : false,
           });
-          // this.repeat_kaaz.name = repeatKaaz.name,
-          //   tags: "",
-          //   type_id: "0",
-          //   repeat_policy: "daily",
-          //   start_month: parseInt(moment().format("M")),
-          //   start_day: moment().format("D"),
-          //   start_time: moment().format("hh:mm A"),
-          //   end_month: parseInt(moment().format("M")),
-          //   end_day: moment().format("D"),
-          //   end_time: moment().format("hh:mm A"),
-          //   active: true,
-          // });
         });
     },
 
