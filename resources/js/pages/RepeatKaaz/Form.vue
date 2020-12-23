@@ -860,7 +860,6 @@ export default {
       this.repeat_kaaz
         .submit("post", this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
-          console.log(data);
           if (data.success == true) {
             this.getList();
             this.new_repeat_kaaz_form();
