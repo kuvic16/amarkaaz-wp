@@ -856,15 +856,13 @@ export default {
      * Save the new repeat kaaz
      */
     onSubmit() {
-      console.log(this.repeat_kaaz);
-      return;
       var method = "post";
       if (this.repeat_kaaz.id != undefined && this.repeat_kaaz > 0) {
         method = "put";
       }
       this.isError = false;
       this.repeat_kaaz
-        .submit($method, this.wp_url + "?action=amar_kaaz_repeatkaaz")
+        .submit(method, this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
           if (data.success == true) {
             this.getList();
