@@ -130,7 +130,7 @@ class RepeatKaazController
         }
 
         Response::success([
-            'message' => __('Dashboard api completed store', 'amar-kaaz')
+            'message' => __('New Repeat Kaaz Created Successfully', 'amar-kaaz')
         ]);
     }
 
@@ -141,8 +141,35 @@ class RepeatKaazController
      */
     public function update()
     {
-        wp_send_json_success([
-            'message' => 'Dashboard api completed update'
+        $request = Request::json();
+
+        // Nonce verification
+        if (!wp_verify_nonce($request['_wpnonce'], 'amar-kaaz-admin-nonce')) {
+            Response::error([
+                'message' => __('Nonce verification failed!', 'amar-kaaz')
+            ]);
+        }
+
+        // request validation
+        $result = $this->validate($request);
+        if (count($result['errors']) > 0) {
+            Response::error([
+                'message' => __('Validation failed!', 'amar-kaaz'),
+                'errors'  => $result['errors']
+            ]);
+        }
+
+        // save the request
+        try{
+            $this->repeat_kaaz_service->create($result['args']);
+        } catch(Exception $ex) {
+            Response::error([
+                'message' => $ex->getMessage()
+            ]);
+        }
+
+        Response::success([
+            'message' => __('Dashboard api completed store', 'amar-kaaz')
         ]);
     }
 

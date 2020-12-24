@@ -857,7 +857,7 @@ export default {
      */
     onSubmit() {
       var method = "post";
-      if (this.repeat_kaaz.id != undefined && this.repeat_kaaz > 0) {
+      if (this.repeat_kaaz.id != undefined && this.repeat_kaaz.id > 0) {
         method = "put";
       }
       this.isError = false;
