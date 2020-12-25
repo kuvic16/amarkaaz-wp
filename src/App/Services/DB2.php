@@ -183,9 +183,14 @@ class DB2
      */
     public function where($args)
     {
-        foreach($args as $key => $value) {
-            array_push($this->params_array, $value);
-            array_push($this->where_array, "$key = " . $this->get_type($value));
+        if ($this->is_associative($args)) {
+            foreach ($args as $key => $value) {
+                array_push($this->params_array, $value);
+                array_push($this->where_array, "$key = " . $this->get_type($value));
+            }
+        } else if(count($args) == 3) {
+            array_push($this->where_array, "{$args[0]} {$args[1]} " . $this->get_type($args[2]));
+            array_push($this->params_array, $args[2]);
         }
         return $this;
     }
@@ -467,6 +472,11 @@ class DB2
         if($type === 'integer') return '%d';
         if($type === 'double')  return '%f';
         else return '%s';
+    }
+
+    public function is_associative(array $args) {
+        if (array() === $args) return false;
+        return array_keys($args) !== range(0, count($args) - 1);
     }
 
     /**

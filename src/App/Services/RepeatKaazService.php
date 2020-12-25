@@ -71,9 +71,7 @@ class RepeatKaazService extends AbstractService
 
         $defaults = [
             'created_by' => get_current_user_id(),
-            'created_at' => current_time('mysql'),
-            'updated_by' => get_current_user_id(),
-            'updated_at' => current_time('mysql')
+            'created_at' => current_time('mysql')
         ];
 
         $data = wp_parse_args($args, $defaults);
@@ -99,15 +97,15 @@ class RepeatKaazService extends AbstractService
     function update($args = [])
     {
         $exist = DB2::table(self::$table_name)
-                ->where(['name' => $args['name', 'id' ]])->first();
+                ->where(['name' => $args['name']])
+                ->where(['id', '!=', $args['id']])
+                ->first();
         
         if($exist) {
             throw new Exception(__('Already exist!', 'amar-kaaz'));
         }
 
         $defaults = [
-            'created_by' => get_current_user_id(),
-            'created_at' => current_time('mysql'),
             'updated_by' => get_current_user_id(),
             'updated_at' => current_time('mysql')
         ];
@@ -117,7 +115,7 @@ class RepeatKaazService extends AbstractService
             unset($data['id']);
         }
 
-        $id = DB::table(self::$table_name)->create($data);        
+        $id = DB2::table(self::$table_name)->save($data);        
 
         if ($id === null) {
             throw new Exception(__('Failed to insert data!', 'amar-kaaz'));            
