@@ -161,7 +161,7 @@ class RepeatKaazController
 
         // save the request
         try{
-            $this->repeat_kaaz_service->create($result['args']);
+            $this->repeat_kaaz_service->update($result['args']);
         } catch(Exception $ex) {
             Response::error([
                 'message' => $ex->getMessage()
@@ -169,7 +169,7 @@ class RepeatKaazController
         }
 
         Response::success([
-            'message' => __('Dashboard api completed store', 'amar-kaaz')
+            'message' => __('Repeat Kaaz Updated Successfully', 'amar-kaaz')
         ]);
     }
 

@@ -109,17 +109,8 @@ class RepeatKaazService extends AbstractService
             'updated_by' => get_current_user_id(),
             'updated_at' => current_time('mysql')
         ];
-
         $data = wp_parse_args($args, $defaults);
-        if (isset($data['id'])) {
-            unset($data['id']);
-        }
 
-        $id = DB2::table(self::$table_name)->save($data);        
-
-        if ($id === null) {
-            throw new Exception(__('Failed to insert data!', 'amar-kaaz'));            
-        }
-        return $id;
+        DB2::table(self::$table_name)->save($data);
     }
 }
