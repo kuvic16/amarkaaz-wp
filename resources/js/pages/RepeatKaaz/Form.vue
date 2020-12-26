@@ -870,7 +870,6 @@ export default {
           } else {
             this.isError = true;
             this.errorMessage = data.data.message;
-            console.log(this.errorMessage);
           }
         })
         .catch((errors) => console.log(errors));
