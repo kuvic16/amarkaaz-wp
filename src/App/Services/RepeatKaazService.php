@@ -96,7 +96,7 @@ class RepeatKaazService extends AbstractService
      */
     function update($args = [])
     {
-        $exist = DB2::table(self::$table_name)
+        $exist = DB2::table(self::$table_name, 'rk')
                 ->where(['name' => $args['name']])
                 ->where(['id', '!=', $args['id']])
                 ->first();

@@ -316,7 +316,7 @@ class DB2
             $where = implode(' and ', $this->where_array);
         }
         if(!empty($where)) {
-            $query = $query . ' where' . $where;
+            $query = $query . ' where ' . $where;
         }
 
         // prepare order by
@@ -384,9 +384,13 @@ class DB2
         $select = $this->prepare_select_query();
         $query = $this->prepare_query();
 
+        $final_query = "SELECT {$select} FROM {$query}";
+        //var_dump($final_query);
+        //die;
+
         global $wpdb;
         return $wpdb->get_row(
-            $wpdb->prepare("SELECT {$select} FROM {$query}", $this->params_array)
+            $wpdb->prepare($final_query, $this->params_array)
         );
     }
 
