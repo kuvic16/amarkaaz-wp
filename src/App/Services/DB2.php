@@ -107,7 +107,10 @@ class DB2
             $instance = new self();
         }
         $instance->table_as = $as;
-        $instance->table_name = $instance->get_table($table_name) . ' ' . $as;
+        $instance->table_name = $instance->get_table($table_name);
+        if(!empty($as)) {
+            $instance->table_name .=  ' ' . $as;
+        }
         $instance->clear();
         return $instance;
     }
