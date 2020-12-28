@@ -552,6 +552,8 @@ class DB2
     {
         global $wpdb;
 
+        var_dump("1");
+
         $types = [];
         foreach($data as $key => $value) {
             array_push($types, $this->get_type($value));
@@ -560,6 +562,7 @@ class DB2
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
+            var_dump($data);
             $updated = $wpdb->update(
                 $this->table_name,
                 $data,
