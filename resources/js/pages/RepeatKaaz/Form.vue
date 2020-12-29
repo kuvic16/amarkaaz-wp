@@ -800,15 +800,6 @@ export default {
     },
 
     /**
-     * Save repeat kaaz
-     *
-     * @return {void}
-     */
-    saveRepeatKaaz() {
-      //console.log(this.repeat_kaaz);
-    },
-
-    /**
      * Load init repeat kaaz data
      */
     loadInitData() {
@@ -865,7 +856,6 @@ export default {
         .submit(method, this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
           if (data.success == true) {
-            this.getList();
             this.new_repeat_kaaz_form();
           } else {
             this.isError = true;
