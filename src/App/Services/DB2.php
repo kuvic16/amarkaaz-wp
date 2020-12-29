@@ -476,7 +476,7 @@ class DB2
      */
     public function get_type($data) {
         $type = gettype($data);
-        if($type === 'integer') return '%d';
+        if($type === 'integer' || $type === 'boolean') return '%d';
         if($type === 'double')  return '%f';
         else return '%s';
     }
