@@ -856,7 +856,8 @@ export default {
         .submit(method, this.wp_url + "?action=amar_kaaz_repeatkaaz")
         .then((data) => {
           if (data.success == true) {
-            this.new_repeat_kaaz_form();
+            this.$router.push({ name: "RepeatKaaz" });
+            //this.new_repeat_kaaz_form();
           } else {
             this.isError = true;
             this.errorMessage = data.data.message;

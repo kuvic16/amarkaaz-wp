@@ -38,6 +38,7 @@ export default {
       component: UpcomingKaaz,
     },
     {
+      name: "RepeatKaaz",
       path: "/repeat-kaaz",
       component: RepeatKaaz,
     },
