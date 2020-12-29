@@ -555,8 +555,7 @@ class DB2
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
-            //var_dump($data); die;
-
+            
             $types = [];
             foreach($data as $key => $value) {
                 array_push($types, $this->get_type($value));
