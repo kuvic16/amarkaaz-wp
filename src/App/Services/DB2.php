@@ -552,8 +552,6 @@ class DB2
     {
         global $wpdb;
 
-        var_dump("1");
-
         $types = [];
         foreach($data as $key => $value) {
             array_push($types, $this->get_type($value));
