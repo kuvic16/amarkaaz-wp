@@ -485,6 +485,7 @@ export default {
     var hour = parseInt(moment().format("hh"));
     var amPm = moment().format("a");
     this.getPossibleCurrentTime(hour, minute, amPm);
+    this.repeat_kaaz.active = false;
   },
   created() {
     this.loadInitData();
@@ -492,6 +493,7 @@ export default {
     if (repeatKaazId !== undefined && repeatKaazId.length > 0) {
       this.getRepeatKaazDetails(repeatKaazId);
     }
+    console.log(this.repeat_kaaz.active);
   },
   data: function() {
     return {
@@ -842,6 +844,8 @@ export default {
           });
           console.log("we are here");
           console.log(this.repeat_kaaz);
+          console.log(this.repeat_kaaz.active);
+          this.repeat_kaaz.active = false;
         });
     },
 
