@@ -12,8 +12,6 @@ window.moment = moment;
 
 Vue.use(VueRouter);
 Vue.component("ErrorAlert", ErrorAlert);
-// Vue.component("modal", Modal)
-// Vue.component("form-modal", FormModal)
 
 // make wordpress value as global
 Vue.mixin({

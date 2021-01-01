@@ -28,8 +28,8 @@ export default {
       params: {
         message: "Are you sure?",
         confirmButton: "Continue",
-        cancelButton: "Cancel"
-      }
+        cancelButton: "Cancel",
+      },
     };
   },
   beforeMount() {
@@ -37,7 +37,7 @@ export default {
     // listen for that event
     // fetch the process
     // and assign it to the data object
-    Modal.events.$on("show", params => {
+    Modal.events.$on("show", (params) => {
       //this.message = params.message;
       Object.assign(this.params, params);
     });
@@ -47,7 +47,7 @@ export default {
       Modal.events.$emit("clicked", confirmed);
 
       this.$modal.hide();
-    }
-  }
+    },
+  },
 };
 </script>

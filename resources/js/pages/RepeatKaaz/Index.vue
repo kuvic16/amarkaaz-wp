@@ -30,15 +30,6 @@
                       <plus-icon></plus-icon>
                       Create
                     </router-link>
-                    <!-- <form action="/api/typography" method="POST">
-                      <confirm-button
-                        message="Are you sure you want to cancel your account?"
-                        cancel-button="Go Back"
-                        confirm-button="Continue on"
-                        class="bg-blue-500 hover:bg-blue-600 py-2 px-4 text-white rounded-lg mt-5"
-                        >Option 2</confirm-button
-                      >
-                    </form> -->
                   </span>
                 </div>
               </div>
@@ -149,7 +140,10 @@
                       >Edit</router-link
                     >
 
-                    <a href="#" class="text-red-600 hover:text-red-900"
+                    <a
+                      href="#"
+                      v-on:click="openDeleteDialog()"
+                      class="text-red-600 hover:text-red-900"
                       >Delete</a
                     >
                   </td>
@@ -199,14 +193,12 @@
 </template>
 <script>
 import moment from "moment";
-import Modal from "../../components/Modal";
-import ConfirmButton from "../../components/ConfirmButton";
+import Modal from "../../plugins/modal/ModalPlugin";
 import PlusIcon from "../../components/icons/PlusIcon.vue";
 
 export default {
   components: {
     Modal,
-    ConfirmButton,
     PlusIcon,
   },
   mounted() {},
@@ -261,6 +253,9 @@ export default {
     prev: function() {
       this.repeat_kaaz.page -= 1;
       this.getList();
+    },
+    openDeleteDialog: function() {
+      alert("test");
     },
   },
 };
