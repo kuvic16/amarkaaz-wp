@@ -437,6 +437,7 @@
                     >
                     <toggle-button
                       class="form-input block w-full py-2 px-3"
+                      :sync="true"
                       v-model="repeat_kaaz.active"
                     />
                   </div>
