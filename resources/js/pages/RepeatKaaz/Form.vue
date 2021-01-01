@@ -840,6 +840,8 @@ export default {
             end_time: repeatKaaz.end_time,
             active: parseInt(repeatKaaz.active) == 1 ? true : false,
           });
+          console.log("we are here");
+          console.log(this.repeat_kaaz);
         });
     },
 
