@@ -560,9 +560,7 @@ class DB2
             foreach($data as $key => $value) {
                 array_push($types, $this->get_type($value));
             }
-            var_dump($data);
-            die;
-
+            
             $updated = $wpdb->update(
                 $this->table_name,
                 $data,

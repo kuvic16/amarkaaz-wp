@@ -187,6 +187,7 @@ class RepeatKaazController
         $end_month     = isset($request['end_month']) ? sanitize_text_field($request['end_month']) : '';
         $end_day       = isset($request['end_day']) ? sanitize_text_field($request['end_day']) : '';
         $end_time      = isset($request['end_time']) ? sanitize_text_field($request['end_time']) : '';
+        $active        = isset($request['active']) ? boolval($request['active']) : false;
 
         $this->errors = [];
         if (empty($name)) {
@@ -265,7 +266,8 @@ class RepeatKaazController
             'start_time'    => $start_time,
             'end_month'     => intval($end_month),
             'end_day'       => intval($end_day),
-            'end_time'      => $end_time
+            'end_time'      => $end_time,
+            'active'        => $active
         ];
 
         return [

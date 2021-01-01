@@ -475,18 +475,16 @@ export default {
   },
   mounted() {
     var repeatKaazId = this.$route.query.id;
-    console.log("test");
     if (repeatKaazId !== undefined && repeatKaazId.length > 0) {
       console.log("id: " + repeatKaazId);
     }
-    //this.repeat_kaaz = this.new_repeat_kaaz_form();
+
     this.populateDays(moment().daysInMonth());
     this.populateTimes();
     var minute = parseInt(moment().format("mm"));
     var hour = parseInt(moment().format("hh"));
     var amPm = moment().format("a");
     this.getPossibleCurrentTime(hour, minute, amPm);
-    this.repeat_kaaz.active = false;
   },
   created() {
     this.loadInitData();
@@ -494,7 +492,6 @@ export default {
     if (repeatKaazId !== undefined && repeatKaazId.length > 0) {
       this.getRepeatKaazDetails(repeatKaazId);
     }
-    console.log(this.repeat_kaaz.active);
   },
   data: function() {
     return {
@@ -843,10 +840,6 @@ export default {
             end_time: repeatKaaz.end_time,
             active: parseInt(repeatKaaz.active) == 1 ? true : false,
           });
-          console.log("we are here");
-          console.log(this.repeat_kaaz);
-          console.log(this.repeat_kaaz.active);
-          this.repeat_kaaz.active = false;
         });
     },
 
