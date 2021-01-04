@@ -33,12 +33,7 @@ export default {
     };
   },
   beforeMount() {
-    // $vm0.confirm('Are you there?');
-    // listen for that event
-    // fetch the process
-    // and assign it to the data object
     Modal.events.$on("show", (params) => {
-      //this.message = params.message;
       Object.assign(this.params, params);
     });
   },
