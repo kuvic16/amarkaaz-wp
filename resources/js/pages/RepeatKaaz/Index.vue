@@ -256,6 +256,9 @@ export default {
     },
     openDeleteDialog: function() {
       alert("test");
+      Modal.events.$on("show", (params) => {
+        Object.assign(this.params, params);
+      });
     },
   },
 };
