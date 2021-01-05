@@ -202,7 +202,7 @@ class RepeatKaazController
         
         // delete the request
         try{
-            $this->repeat_kaaz_service->update($result['args']);
+            $this->repeat_kaaz_service->delete($id);
         } catch(Exception $ex) {
             Response::error([
                 'message' => $ex->getMessage()

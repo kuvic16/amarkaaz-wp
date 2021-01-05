@@ -113,4 +113,20 @@ class RepeatKaazService extends AbstractService
 
         DB2::table(self::$table_name)->save($data);
     }
+
+    /**
+     * delete the repeat_kaazs
+     * 
+     * @param integer $id
+     * 
+     * @return int|WP_Error
+     */
+    function delete($id)
+    {
+        $exist = DB2::table(self::$table_name)->find_by_id($id);
+        if(!$exist) {
+            throw new Exception(__('Not found!', 'amar-kaaz'));
+        }
+        DB2::table(self::$table_name)->delete($id);
+    }
 }
