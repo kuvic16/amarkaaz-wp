@@ -8,3 +8,4 @@ $router->get('repeatkaaz', 'RepeatKaazController@_list');
 $router->get('repeatkaaz/details', 'RepeatKaazController@details');
 $router->put('repeatkaaz', 'RepeatKaazController@update');
 $router->post('repeatkaaz', 'RepeatKaazController@store');
+$router->delete('repeatkaaz', 'RepeatKaazController@delete');

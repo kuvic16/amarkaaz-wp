@@ -173,6 +173,47 @@ class RepeatKaazController
         ]);
     }
 
+    /**
+     * Delete the RepeatKaaz
+     * 
+     * @return json
+     */
+    public function delete()
+    {
+        $request = Request::json();
+
+        // Nonce verification
+        if (!wp_verify_nonce($request['_wpnonce'], 'amar-kaaz-admin-nonce')) {
+            Response::error([
+                'message' => __('Nonce verification failed!', 'amar-kaaz')
+            ]);
+        }
+
+        // request validation
+        $id = isset($request['id']) ? intval($request['id']) : 0;
+        $errors = [];
+        if ($id <= 0) {
+            $errors['id'] = __('Please provide a id', 'amar-kaaz');
+            Response::error([
+                'message' => __('Validation failed!', 'amar-kaaz'),
+                'errors'  => $errors
+            ]);
+        }
+        
+        // delete the request
+        try{
+            $this->repeat_kaaz_service->update($result['args']);
+        } catch(Exception $ex) {
+            Response::error([
+                'message' => $ex->getMessage()
+            ]);
+        }
+
+        Response::success([
+            'message' => __('Repeat Kaaz Deleted Successfully', 'amar-kaaz')
+        ]);
+    }
+
     protected function validate($request)
     {
         $id            = isset($request['id']) ? intval($request['id']) : 0;
