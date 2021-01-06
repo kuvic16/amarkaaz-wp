@@ -254,7 +254,10 @@ export default {
       this.repeat_kaaz.page -= 1;
       this.getList();
     },
-    openDeleteDialog: function() {},
+    openDeleteDialog: function() {
+      if (r == confirm("Are you sure to delete?")) {
+      }
+    },
   },
 };
 </script>
