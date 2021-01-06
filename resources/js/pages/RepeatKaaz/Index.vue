@@ -254,12 +254,7 @@ export default {
       this.repeat_kaaz.page -= 1;
       this.getList();
     },
-    openDeleteDialog: function() {
-      alert("test");
-      Modal.events.$on("show", (params) => {
-        Object.assign(this.params, params);
-      });
-    },
+    openDeleteDialog: function() {},
   },
 };
 </script>
