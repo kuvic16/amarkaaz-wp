@@ -142,7 +142,7 @@
 
                     <a
                       href="#"
-                      v-on:click="openDeleteDialog()"
+                      v-on:click="openDeleteDialog(repeat_kaaz.id)"
                       class="text-red-600 hover:text-red-900"
                       >Delete</a
                     >
@@ -255,7 +255,7 @@ export default {
       this.getList();
     },
     openDeleteDialog: function(id) {
-      if (r == confirm("Are you sure to delete?")) {
+      if (confirm("Are you sure to delete?")) {
         var params = "&id=" + id;
         axios
           .delete(this.wp_url + "?action=amar_kaaz_repeatkaaz" + params)
