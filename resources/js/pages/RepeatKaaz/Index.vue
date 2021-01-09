@@ -254,8 +254,15 @@ export default {
       this.repeat_kaaz.page -= 1;
       this.getList();
     },
-    openDeleteDialog: function() {
+    openDeleteDialog: function(id) {
       if (r == confirm("Are you sure to delete?")) {
+        var params = "&id=" + id;
+        axios
+          .delete(this.wp_url + "?action=amar_kaaz_repeatkaaz" + params)
+          .then((response) => response.data)
+          .then((data) => {
+            this.getList();
+          });
       }
     },
   },
