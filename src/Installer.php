@@ -98,6 +98,8 @@ class Installer
             `start_time` DATETIME,
             `end_time` DATETIME,
             `repeat_kaaz_id` INTEGER NOT NULL,
+            `is_completed` TINYINT(1) UNSIGNED DEFAULT 0,
+            `completed_at` DATETIME NULL,
             `created_at` DATETIME NOT NULL,
             `created_by` INTEGER UNSIGNED NO NULL,
             `updated_at` DATETIME NOT NULL,
