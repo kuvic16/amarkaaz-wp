@@ -20,6 +20,18 @@ class KaazService extends AbstractService
         parent::__construct(ITables::$KAAZS);
     }
 
+    /**
+     * Generate upcoming kaaz
+     * 
+     * @param string
+     * 
+     * @return void
+     */
+    public function upcoming_kaaz()
+    {
+
+    }
+
      /**
      * Get all the records of repeat kaaz
      * 
