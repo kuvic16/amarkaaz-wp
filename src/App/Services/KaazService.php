@@ -13,11 +13,19 @@ use Exception;
 class KaazService extends AbstractService
 {
     /**
+     * Repeat kaaz service
+     * 
+     * @var App\Services\RepeatKaazService $repeat_kaaz_service
+     */
+    protected $repeat_kaaz_service;
+
+    /**
      * Service class constructor
      */
     public function __construct()
     {
         parent::__construct(ITables::$KAAZS);
+        $this->repeat_kaaz_service = new RepeatKaazService();
     }
 
     /**
