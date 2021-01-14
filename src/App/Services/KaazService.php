@@ -37,7 +37,7 @@ class KaazService extends AbstractService
      */
     public function upcoming_kaaz()
     {
-
+        $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
     }
 
      /**
