@@ -39,7 +39,7 @@ class KaazService extends AbstractService
     {
         $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
         foreach($repeat_kaaz_list as $repeat_kaaz) {
-            
+            // create a daily kaaz based on repeat kaaz
         }
     }
 
