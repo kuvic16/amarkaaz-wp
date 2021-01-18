@@ -4,6 +4,7 @@ namespace Amar\Kaaz\App\Controllers;
 
 use Amar\Kaaz\App\Constants\IRepeatKaaz;
 use Amar\Kaaz\App\Services\DB;
+use Amar\Kaaz\App\Services\KaazService;
 use Amar\Kaaz\App\Services\KaazTypeService;
 use Amar\Kaaz\App\Services\RepeatKaazService;
 use Amar\Kaaz\Core\Request;
@@ -30,6 +31,13 @@ class RepeatKaazController
     protected $kaaz_type_service;
 
     /**
+     * kaaz service
+     * 
+     * @var App\Services\KaazService $kaaz_service
+     */
+    protected $kaaz_service;
+
+    /**
      * Class contstructor
      */
     public function __construct()
@@ -41,7 +49,8 @@ class RepeatKaazController
         }
 
         $this->repeat_kaaz_service = new RepeatKaazService();
-        $this->kaaz_type_service = new KaazTypeService();
+        $this->kaaz_type_service   = new KaazTypeService();
+        $this->kaaz_service        = new KaazService();
     }
 
     /**
@@ -69,6 +78,7 @@ class RepeatKaazController
      */
     public function _list()
     {
+        $this->kaaz_service->upcoming_kaaz();
         $page = intval($_GET['page']) > 0 ? intval($_GET['page']) : 1;
         $repeat_kaaz = $this->repeat_kaaz_service->get_by($page, 10);
         Response::success([
