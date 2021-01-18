@@ -2,6 +2,7 @@
 
 namespace Amar\Kaaz\App\Services;
 
+use Amar\Kaaz\App\Constants\IRepeatKaaz;
 use Amar\Kaaz\App\Constants\ITables;
 use Amar\Kaaz\App\Controllers\AlreadyExistException;
 use Amar\Kaaz\App\Controllers\ServiceException;
@@ -40,7 +41,18 @@ class KaazService extends AbstractService
         $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
         foreach($repeat_kaaz_list as $repeat_kaaz) {
             // create a daily kaaz based on repeat kaaz
-            var_dump($repeat_kaaz->id);
+            if($repeat_kaaz->repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
+                $n_daily_kaaz = [
+                    'name'           => $repeat_kaaz->name,
+                    'kaaz_type_id'   => $repeat_kaaz->kaaz_type_id,
+                    'repeat_kaaz_id' => $repeat_kaaz->id,
+                    'start_time'     => '',
+                    'end_time'       => '',
+                    'active'         => ''
+                ];
+                var_dump($n_daily_kaaz);
+                die;
+            }
         }
         var_dump("test");
         die;
