@@ -94,7 +94,6 @@ class Installer
             `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(250) NOT NULL,
             `kaaz_type_id` INTEGER NOT NULL,
-            `date` DATE NOT NULL,
             `start_time` DATETIME,
             `end_time` DATETIME,
             `repeat_kaaz_id` INTEGER NOT NULL,

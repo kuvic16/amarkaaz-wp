@@ -6,6 +6,7 @@ use Amar\Kaaz\App\Constants\IRepeatKaaz;
 use Amar\Kaaz\App\Constants\ITables;
 use Amar\Kaaz\App\Controllers\AlreadyExistException;
 use Amar\Kaaz\App\Controllers\ServiceException;
+use DateTime;
 use Exception;
 
 /**
@@ -40,18 +41,33 @@ class KaazService extends AbstractService
     {
         $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
         foreach($repeat_kaaz_list as $repeat_kaaz) {
-            // create a daily kaaz based on repeat kaaz
-            if($repeat_kaaz->repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
-                $n_daily_kaaz = [
-                    'name'           => $repeat_kaaz->name,
-                    'kaaz_type_id'   => $repeat_kaaz->kaaz_type_id,
-                    'repeat_kaaz_id' => $repeat_kaaz->id,
-                    'start_time'     => '',
-                    'end_time'       => '',
-                    'active'         => ''
-                ];
-                var_dump($n_daily_kaaz);
-                die;
+            try {
+                // create a daily kaaz based on repeat kaaz
+                if ($repeat_kaaz->repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
+                    $start_time = date("Y-m-d");
+                    $start_time .= " " . $repeat_kaaz->start_time;
+
+                    $end_time = date("Y-m-d");
+                    $end_time .= " " . $repeat_kaaz->end_time;
+                            
+                    $n_daily_kaaz = [
+                        'name'           => $repeat_kaaz->name,
+                        'kaaz_type_id'   => $repeat_kaaz->kaaz_type_id,
+                        'repeat_kaaz_id' => $repeat_kaaz->id,
+                        'start_time'     => new DateTime($start_time),
+                        'end_time'       => new DateTime($end_time),
+                        'is_completed'   => false
+                    ];
+                    $this->create($n_daily_kaaz);
+
+                    //$dateString = '08/04/2014 10:30am';
+                    //$dateObject = new DateTime($dateString);
+                    //echo $dateObject->format('Y-m-d h:i A');
+                    var_dump($n_daily_kaaz);
+                    die;
+                }
+            }catch(\Exception $ex) {
+                var_dump($ex->getMessage());
             }
         }
         var_dump("test");
@@ -100,8 +116,11 @@ class KaazService extends AbstractService
      */
     function create($args = [])
     {
+        var_dump(self::$table_name);
+        die;
         $exist = DB::table(self::$table_name)
-                ->where(['name' => $args['name']])->first();
+                ->where(['name' => $args['name']])
+                ->first();
         
         if($exist) {
             throw new Exception(__('Already exist!', 'amar-kaaz'));
