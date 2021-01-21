@@ -60,9 +60,6 @@ class KaazService extends AbstractService
                     ];
                     $this->create($n_daily_kaaz);
 
-                    //$dateString = '08/04/2014 10:30am';
-                    //$dateObject = new DateTime($dateString);
-                    //echo $dateObject->format('Y-m-d h:i A');
                     var_dump($n_daily_kaaz);
                     die;
                 }
