@@ -58,17 +58,12 @@ class KaazService extends AbstractService
                         'end_time'       => new DateTime($end_time),
                         'is_completed'   => false
                     ];
-                    $this->create($n_daily_kaaz);
-
-                    var_dump($n_daily_kaaz);
-                    die;
+                    $this->create($n_daily_kaaz);                    
                 }
             }catch(\Exception $ex) {
                 var_dump($ex->getMessage());
             }
         }
-        var_dump("test");
-        die;
     }
 
      /**
