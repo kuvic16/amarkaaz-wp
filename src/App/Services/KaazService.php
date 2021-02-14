@@ -12,8 +12,14 @@ use Exception;
 /**
  * Repeat kaaz service
  */
-class KaazService extends AbstractService
+class KaazService
 {
+    /**
+     * Respected table name of the service
+     * @var string
+     */
+    public static $table_name;
+
     /**
      * Repeat kaaz service
      * 
@@ -26,7 +32,10 @@ class KaazService extends AbstractService
      */
     public function __construct()
     {
-        parent::__construct(ITables::$KAAZS);
+        //var_dump(ITables::$KAAZS);
+        //parent::__construct(ITables::$KAAZS);
+        self::$table_name = ITables::$KAAZS;
+        //var_dump(self::$table_name);
         $this->repeat_kaaz_service = new RepeatKaazService();
     }
 
@@ -109,15 +118,9 @@ class KaazService extends AbstractService
      */
     function create($args = [])
     {
-        var_dump(self::$table_name);
-        //var_dump($args['name']);
-        //die;
         $exist = DB2::table(self::$table_name)
                 ->where(['name' => $args['name']])
                 ->first();
-
-                var_dump($exist);
-                die;
         
         if($exist) {
             throw new Exception(__('Already exist!', 'amar-kaaz'));
