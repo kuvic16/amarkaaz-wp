@@ -109,7 +109,7 @@ class KaazService extends AbstractService
      */
     function create($args = [])
     {
-        //var_dump(self::$table_name);
+        var_dump(self::$table_name);
         //var_dump($args['name']);
         //die;
         $exist = DB2::table(self::$table_name)
