@@ -107,6 +107,7 @@ class DB2
             $instance = new self();
         }
         $instance->table_as = $as;
+        var_dump($table_name);
         $instance->table_name = $instance->get_table($table_name);
         if(!empty($as)) {
             $instance->table_name .=  ' ' . $as;

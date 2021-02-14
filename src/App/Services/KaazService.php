@@ -58,7 +58,8 @@ class KaazService extends AbstractService
                         'end_time'       => new DateTime($end_time),
                         'is_completed'   => false
                     ];
-                    $this->create($n_daily_kaaz);                    
+                    $this->create($n_daily_kaaz);  
+                    die;                  
                 }
             }catch(\Exception $ex) {
                 var_dump($ex->getMessage());
@@ -108,11 +109,15 @@ class KaazService extends AbstractService
      */
     function create($args = [])
     {
-        var_dump(self::$table_name);
-        die;
-        $exist = DB::table(self::$table_name)
+        //var_dump(self::$table_name);
+        //var_dump($args['name']);
+        //die;
+        $exist = DB2::table(self::$table_name)
                 ->where(['name' => $args['name']])
                 ->first();
+
+                var_dump($exist);
+                die;
         
         if($exist) {
             throw new Exception(__('Already exist!', 'amar-kaaz'));
