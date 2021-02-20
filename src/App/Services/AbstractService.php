@@ -16,7 +16,7 @@ abstract class AbstractService
      * Respected table name of the service
      * @var string
      */
-    public static $table_name;
+    protected static $table_name;
 
     /**
      * Constructor of abstract service
