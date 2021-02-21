@@ -27,7 +27,7 @@ class RepeatKaazService extends AbstractService
      */
     public function get_all()
     {
-        return DB2::table(self::$table_name, 'rk')
+        return DB2::table($this->table_name, 'rk')
                 ->inner_join(ITables::$KAAZ_TYPES, 'kt', 'kt.id = rk.kaaz_type_id')
                 ->select(['rk.*', 'kt.name as kaaz_type_name'])
                 ->order_by('rk.created_at desc')

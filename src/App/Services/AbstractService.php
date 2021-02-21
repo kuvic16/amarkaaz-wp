@@ -16,7 +16,7 @@ abstract class AbstractService
      * Respected table name of the service
      * @var string
      */
-    protected static $table_name;
+    protected $table_name;
 
     /**
      * Constructor of abstract service
@@ -24,7 +24,7 @@ abstract class AbstractService
      */
     public function __construct($table_name)
     {
-        self::$table_name = $table_name;
+        $this->table_name = $table_name;
     }
 
     /**
@@ -36,7 +36,7 @@ abstract class AbstractService
      */
     public function find_by_id($id)
     {
-        return DB2::table(self::$table_name)->find_by_id($id);
+        return DB2::table($this->table_name)->find_by_id($id);
     }
 
     /**
@@ -45,7 +45,7 @@ abstract class AbstractService
      */
     public function get_all()
     {
-        return DB::table(self::$table_name)->get_all();
+        return DB::table($this->table_name)->get_all();
     }
 
 

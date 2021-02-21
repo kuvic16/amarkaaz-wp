@@ -12,13 +12,8 @@ use Exception;
 /**
  * Repeat kaaz service
  */
-class KaazService
-{
-    /**
-     * Respected table name of the service
-     * @var string
-     */
-    public static $table_name;
+class KaazService extends AbstractService
+{    
 
     /**
      * Repeat kaaz service
@@ -32,10 +27,7 @@ class KaazService
      */
     public function __construct()
     {
-        //var_dump(ITables::$KAAZS);
-        //parent::__construct(ITables::$KAAZS);
-        self::$table_name = ITables::$KAAZS;
-        //var_dump(self::$table_name);
+        parent::__construct(ITables::$KAAZS);
         $this->repeat_kaaz_service = new RepeatKaazService();
     }
 
@@ -49,6 +41,8 @@ class KaazService
     public function upcoming_kaaz()
     {
         $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
+        //var_dump($repeat_kaaz_list);
+        //die;
         foreach($repeat_kaaz_list as $repeat_kaaz) {
             try {
                 // create a daily kaaz based on repeat kaaz
@@ -83,7 +77,7 @@ class KaazService
      */
     public function get_all()
     {
-        return DB2::table(self::$table_name, 'rk')
+        return DB2::table($this->table_name, 'rk')
                 ->inner_join(ITables::$KAAZ_TYPES, 'kt', 'kt.id = rk.kaaz_type_id')
                 ->select(['rk.*', 'kt.name as kaaz_type_name'])
                 ->order_by('rk.created_at desc')
@@ -100,7 +94,7 @@ class KaazService
      */
     public function get_by($page = 1, $limit = 10)
     {
-        return DB2::table(self::$table_name, 'rk')
+        return DB2::table($this->table_name, 'rk')
                 ->inner_join(ITables::$KAAZ_TYPES, 'kt', 'kt.id = rk.kaaz_type_id')
                 ->select(['rk.*', 'kt.name as kaaz_type_name'])
                 ->order_by('rk.created_at desc')
@@ -118,7 +112,7 @@ class KaazService
      */
     function create($args = [])
     {
-        $exist = DB2::table(self::$table_name)
+        $exist = DB2::table($this->table_name)
                 ->where(['name' => $args['name']])
                 ->first();
         
@@ -136,7 +130,7 @@ class KaazService
             unset($data['id']);
         }
 
-        $id = DB::table(self::$table_name)->create($data);        
+        $id = DB::table($this->table_name)->create($data);        
 
         if ($id === null) {
             throw new Exception(__('Failed to insert data!', 'amar-kaaz'));            
@@ -153,7 +147,7 @@ class KaazService
      */
     function update($args = [])
     {
-        $exist = DB2::table(self::$table_name, 'rk')
+        $exist = DB2::table($this->table_name, 'rk')
                 ->where(['name' => $args['name']])
                 ->where(['id', '!=', $args['id']])
                 ->first();
@@ -168,7 +162,7 @@ class KaazService
         ];
         $data = wp_parse_args($args, $defaults);
 
-        DB2::table(self::$table_name)->save($data);
+        DB2::table($this->table_name)->save($data);
     }
 
     /**
@@ -180,10 +174,10 @@ class KaazService
      */
     function delete($id)
     {
-        $exist = DB2::table(self::$table_name)->find_by_id($id);
+        $exist = DB2::table($this->table_name)->find_by_id($id);
         if(!$exist) {
             throw new Exception(__('Not found!', 'amar-kaaz'));
         }
-        DB2::table(self::$table_name)->delete($id);
+        DB2::table($this->table_name)->delete($id);
     }
 }
