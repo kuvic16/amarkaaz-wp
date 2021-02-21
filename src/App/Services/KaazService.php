@@ -47,18 +47,22 @@ class KaazService extends AbstractService
             try {
                 // create a daily kaaz based on repeat kaaz
                 if ($repeat_kaaz->repeat_policy === IRepeatKaaz::$POLICY_DAILY) {
-                    $start_time = date("Y-m-d");
-                    $start_time .= " " . $repeat_kaaz->start_time;
+                    $start_time_string = date("Y-m-d");
+                    $start_time_string .= " " . $repeat_kaaz->start_time;
+                    $start_time_obj = new DateTime($start_time_string);
+                    $start_time = date_format($start_time_obj, 'Y-m-d H:i:s');
 
-                    $end_time = date("Y-m-d");
-                    $end_time .= " " . $repeat_kaaz->end_time;
+                    $end_time_string = date("Y-m-d");
+                    $end_time_string .= " " . $repeat_kaaz->end_time;
+                    $end_time_obj = new DateTime($end_time_string);
+                    $end_time = date_format($end_time_obj, 'Y-m-d H:i:s');
                             
                     $n_daily_kaaz = [
                         'name'           => $repeat_kaaz->name,
                         'kaaz_type_id'   => $repeat_kaaz->kaaz_type_id,
                         'repeat_kaaz_id' => $repeat_kaaz->id,
-                        'start_time'     => new DateTime($start_time),
-                        'end_time'       => new DateTime($end_time),
+                        'start_time'     => $start_time,
+                        'end_time'       => $end_time,
                         'is_completed'   => false
                     ];
                     $this->create($n_daily_kaaz);  
