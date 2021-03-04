@@ -41,8 +41,6 @@ class KaazService extends AbstractService
     public function upcoming_kaaz()
     {
         $repeat_kaaz_list = $this->repeat_kaaz_service->get_all();
-        //var_dump($repeat_kaaz_list);
-        //die;
         foreach($repeat_kaaz_list as $repeat_kaaz) {
             try {
                 // create a daily kaaz based on repeat kaaz
@@ -65,8 +63,7 @@ class KaazService extends AbstractService
                         'end_time'       => $end_time,
                         'is_completed'   => false
                     ];
-                    $this->create($n_daily_kaaz);  
-                    die;                  
+                    $this->create($n_daily_kaaz);
                 }
             }catch(\Exception $ex) {
                 var_dump($ex->getMessage());
