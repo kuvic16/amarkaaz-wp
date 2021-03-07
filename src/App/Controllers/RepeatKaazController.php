@@ -78,9 +78,6 @@ class RepeatKaazController
      */
     public function _list()
     {
-        $this->kaaz_service->upcoming_kaaz();
-        die("testing");
-
         $page = intval($_GET['page']) > 0 ? intval($_GET['page']) : 1;
         $repeat_kaaz = $this->repeat_kaaz_service->get_by($page, 10);
         Response::success([
